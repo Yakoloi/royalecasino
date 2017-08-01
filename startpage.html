@@ -13,26 +13,41 @@
 </head>
 <body>
 <div class="container">
-	<div class="text-center">
-     	<button class="btn btn-default btn-lg" id="startButton">Let's Play</button>
+
+	<div class="text-center ">
+		<button class="btn btn-default btn-lg" id="startButton">Let's Play</button>
     </div>
+
 </div>
 
 
+	
 
 
 
 
 
 
-<!-- link to  logic.js -->
-<!-- <script type="text/javascript" src ="logic.js"></script> -->
+
+
+
+
 
 <!-- link to the jQuery Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- LINK TO FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+<script type="text/javascript">
+	$('#startButton').on('click', function(){
+        $('body').css({
+          'background': 'url(assets/images/signin-bg.png) no-repeat center center fixed',
+          'background-size': 'cover'
+        });
+        $('#startButton').hide();
+      });
+</script>
 
 </body>
 </html>

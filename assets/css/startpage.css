@@ -1,12 +1,13 @@
 body {
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	
 	background: url("../images/neon-sign.jpg") no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+
 
 button#startButton{
 	background-color: transparent;
@@ -23,3 +24,4 @@ button#startButton:hover{
 	font-weight: bolder;
 
 }
+
