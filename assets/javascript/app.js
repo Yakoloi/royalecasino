@@ -1,3 +1,6 @@
+var highScore = [];
+var username = []; //to be incorporated into objects?
+
 $("#startscreen").html("<image></image>")
 $("#startscreen").click(function() {
   //click to start
@@ -20,30 +23,22 @@ function setup(){
 }
 
 
-$("#about").onclick(){
-    //fanceyboxpopout
-}
+$("#about").click(function(){
+   //fancyboxpopout 
+});
 
 
+$("startS").click(function() {
+    //startsgame
+    sGameStart();
+});
 
-
-
-//enter the main menu
-// map on click button to start game(single)
-  // enter game screen
-  // click to start
-
-// map on click button to start game(multi)
-  //enter game screen
-  // click on board position to ready
-    // starts multiplayer chat
+/*$("startM").click(function(){
+   //starts multiplayer
+    mGameStart();
+});*/
   
-// map on click button to help screen
-  // enter a single sheet help pop up screen
-  // click to exit
-  
-// map on click button to leaderboard
-  // enter a dynamically created leaderboard
-  // leaderboard adds username and score and flair sorted by score
-  // button click to exit
-
+$("leaderB").click(function(){
+    //use firebase to populate leaderboard
+    $("#leader-board > lbody").append("<tr><td>" + "username" + "userscore")
+})
