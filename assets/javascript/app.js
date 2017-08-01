@@ -1,14 +1,32 @@
-//implement a start screen
-  // click to start
+$("#startscreen").html("<image></image>")
+$("#startscreen").click(function() {
+  //click to start
+    //signIn();
+    setup();
+    });
 
-//enter login screen
-  // sign up or login
-  // sign up ask for email and password
-  // sign up ask for oAuth (Google, Facebook etc)
-  // ask to create a username
-  // else
-  // login using email username or oAuth
-  // record user info
+/*function signIn(){
+    //oAuth goes here
+    setup();
+}*/
+
+
+function setup(){
+    $("#menu").html("<image></image>");
+    $("#about").html("<image></image");
+    $("#startS").html("<image></image");
+   // $("startM").html("<image></image>");
+    $("#leaderB").html("<image></image>")
+}
+
+
+$("#about").onclick(){
+    //fanceyboxpopout
+}
+
+
+
+
 
 //enter the main menu
 // map on click button to start game(single)
