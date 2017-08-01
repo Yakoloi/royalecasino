@@ -7,3 +7,19 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+button#startButton{
+	background-color: transparent;
+	margin-top: 500px;
+	border: 2px solid #fff;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+button#startButton:hover{
+	background-color: #fff;
+	border: 2px solid #fff;
+	color: #d23a30;
+	font-weight: bolder;
+
+}
