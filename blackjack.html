@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blackjack Game!</title>
+    <!--- BOOTSTRAP CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--- STYLE-->
+    <link rel="stylesheet" type="text/css" href="assets/css/blackjack.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- <form id="giphy-form">
+  <label>Search Video Game Character: </label>
+  <input type="text" id="giphy-input"><br> -->
+    <!-- Button triggers new movie to be added -->
+    <!--   <input id="add-giphy" type="submit" value="Add a giphy!">
+</form> -->
+    <!-- <button id='dealCards' type='button' class='btn btn-outline-primary'>Deal Cards</button> -->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your hand</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="buttonView"> </div>
+                    <div id="handView"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dealer</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="dealerButtons"> </div>
+                    <div id="dealerHand"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Game Text</h3>
+            </div>
+            <div class="panel-body">
+                <div id="gameText"></div>
+            </div>
+        </div>
+    </div>
+    <!--- Javascript-->
+    <script type="text/javascript" src="assets/javascript/blackjack.js"></script>
+</body>
+
+</html>
