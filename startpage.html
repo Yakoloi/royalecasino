@@ -4,11 +4,19 @@
 	<title>Black Jack Start Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-   	<!-- link to Bootstrap-->
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   	<!-- link to local style sheet-->
-  	<link rel="stylesheet" href="assets/css/startpage.css">
+  <!-- link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- link to local style sheet-->
+  <link rel="stylesheet" href="assets/css/startpage.css">
+
+  <!-- link to the jQuery Library --> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <!-- LINK TO FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
 </head>
 <body>
@@ -16,7 +24,34 @@
 
 	<div class="text-center ">
 		<button class="btn btn-default btn-lg" id="startButton">Let's Play</button>
-    </div>
+  </div>
+
+<!--===================LOGIN REGISTER PAGE===================-->
+  <div class="login-container">
+    <form class="signUp">
+      <h3>Create Your Account</h3>
+      <p>Enter your email address</br>and your password to join the fun!</p>
+
+      <input class="w100" type="email" placeholder="Your Email" reqired autocomplete='off' />
+      <input type="password" placeholder="Your Password" reqired />
+      <input type="password" placeholder="Verify Password" reqired />
+
+      <button class="form-btn sx log-in" type="button">Log In</button>
+      <button class="form-btn dx" type="submit">Sign Up</button>
+    </form>
+
+    <form class="signIn">
+      <h3>Welcome</br>Back !</h3>
+      <button class="fb" type="button">Log In With Facebook</button>
+      <p>- or -</p>
+
+      <input type="email" placeholder="Your Email" autocomplete='off' reqired />
+      <input type="password" placeholder="Your Password" reqired />
+
+      <button class="form-btn sx back" type="button">Back</button>
+      <button class="form-btn dx" type="submit">Log In</button>
+    </form>
+  </div>
 
 </div>
 
@@ -26,28 +61,43 @@
 
 
 
-
-
-
-
-
-
-
-<!-- link to the jQuery Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- LINK TO FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-
 <script type="text/javascript">
+// first hide the login register page
+$('.login-container').hide();
+
+//click the start button
 	$('#startButton').on('click', function(){
         $('body').css({
           'background': 'url(assets/images/signin-bg.png) no-repeat center center fixed',
           'background-size': 'cover'
         });
         $('#startButton').hide();
+        $('.login-container').show();
       });
+
+
+//animation for the login/signup pannel
+  $(".log-in").on('click', function(){
+  $(".signIn").addClass("active-dx");
+  $(".signUp").addClass("inactive-sx");
+  $(".signUp").removeClass("active-sx");
+  $(".signIn").removeClass("inactive-dx");
+  });
+
+
+//animation for the login/goback pannel
+  $(".back").on('click', function(){
+    $(".signUp").addClass("active-sx");
+    $(".signIn").addClass("inactive-dx");
+    $(".signIn").removeClass("active-dx");
+    $(".signUp").removeClass("inactive-sx");
+  });
+
+
 </script>
+
+
+
 
 </body>
 </html>

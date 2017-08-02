@@ -1,3 +1,23 @@
+/*
+bright red: #d23a30
+mid red: #87201b;
+dark red: #35001c;
+pink: #e001be;
+yellow: #ffe769;
+dark yellow: #fcba02;
+orange: #f37400;
+fb blue: #3b5998;
+
+*/
+
+@import 'https://fonts.googleapis.com/css?family=Dosis|Roboto:300,400';
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*******************************************************************************************/
+/*START PAGE*/
 body {
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	background: url("../images/neon-sign.jpg") no-repeat center center fixed; 
@@ -23,5 +43,265 @@ button#startButton:hover{
 	color: #d23a30;
 	font-weight: bolder;
 
+}
+
+
+/*******************************************************************************************/
+/*LOGIN REGISTER PAGE STYLING*/
+
+.login-container{
+    position:absolute;
+    width: auto;
+    height:auto;
+    top: calc(50% - 240px);
+    left: calc(50% - 155px);
+}
+
+form {
+    position: absolute;
+    text-align: center;
+    background: #fff;
+    width: 310px;
+    height: 470px;
+    border-radius: 5px;
+    padding: 30px 20px 0 20px;
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    text-transform: capitalize;
+    font-size: 12px;
+    color: #f37400;
+    margin-bottom: 30px;
+}
+
+p > span {
+    padding-top: 3px;
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+h3 {
+    font-family: 'Dosis';
+    font-size: 35px;
+    text-transform: uppercase;
+    color: #d23a30;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-weight: bolder;
+}
+
+input,
+button{
+    outline: none !important; 
+}
+
+button.fb {
+    border: none;
+    background: #3b5998;
+    width: 160px;
+    height: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: 1px solid #3b5998;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition:all 0.3s linear;
+}
+button.fb:hover {
+    background: #fff;
+    color: #3b5998;
+}
+
+button.form-btn {
+    position: absolute;
+    width: 50%;
+    height: 60px;
+    bottom: 0;
+    border: 0;
+    font-family: 'Dosis';
+    font-size: 24px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+button.form-btn.sx {
+    left: 0;
+    border-radius: 0 0 0 5px;
+    background-color: rgba(243, 116, 0, 1);
+    color: #fff;
+    transition:all 0.3s linear;
+}
+
+button.form-btn.sx:hover {
+    background-color:rgba(210, 58, 48, 1);
+    color: #fff;
+}
+
+button.form-btn.sx.back {
+    background-color: #f37400;
+    transition:all 0.3s linear;
+}
+
+button.form-btn.sx.back:hover {
+    background-color: rgba(210, 58, 48, 1);
+}
+
+button.form-btn.dx {
+    right: 0;
+    border-radius: 0 0 5px 0;
+    background-color: rgba(210, 58, 48, 1);
+    color: #fff;
+}
+
+button.form-btn.dx:hover {
+    background-color: rgba(243, 116, 0, 1);
+    color: #fff;
+}
+
+input {
+    border: none;
+    border-bottom: 1px dashed #d23a30;
+    width: 85%;
+    font-family: 'Roboto';
+    color: #d23a30;
+    text-align: center;
+    font-size: 17px;
+    font-weight:lighter;
+    margin-bottom:35px;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(135, 32, 27, 0.2);
+    font-family: 'Roboto';
+    font-weight:lighter;
+}
+
+:-moz-placeholder {
+   color: rgba(135, 32, 27, 0.2);
+    font-family: 'Roboto';
+    font-weight:lighter;
+}
+
+::-moz-placeholder {
+   color: rgba(135, 32, 27, 0.2);
+    font-family: 'Roboto';
+    font-weight:lighter;
+}
+
+:-ms-input-placeholder {  
+   color: rgba(135, 32, 27, 0.2);
+    font-family: 'Roboto';
+    font-weight:lighter;
+}
+
+.signIn input,
+.signUp .w100 {
+    width: 90%;
+}
+
+.signIn{
+        z-index: 1;
+        transform: perspective(100px) translate3d(100px, 0px, -70px);
+        opacity: 0.5;
+}
+
+.signUp {
+    z-index: 2;
+}
+
+.active-dx{
+    animation-name: foregrounding-dx;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+}
+
+.active-sx{
+    animation-name: foregrounding-sx;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+}
+
+.inactive-dx{
+    animation-name: overshadowing-dx;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+}
+
+.inactive-sx{
+    animation-name: overshadowing-sx;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes overshadowing-dx {
+    0%{
+        z-index:2;
+        transform: perspective(100px) translate3d(0px, 0px, 0px);
+        opacity: 1;
+        box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    }
+    100%{
+        z-index: 1;
+        transform: perspective(100px) translate3d(100px, 0px, -70px);
+        opacity: 0.5;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+    }
+}
+
+@keyframes overshadowing-sx {
+    0%{
+        z-index:2;
+        transform: perspective(100px) translate3d(0px, 0px, 0px);
+        opacity: 1;
+        box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    }
+    100%{
+        z-index: 1;
+        transform: perspective(100px) translate3d(-100px, 0px, -70px);
+        opacity: 0.5;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+    }
+}
+
+@keyframes foregrounding-dx {
+    0%{
+        z-index:1;
+        transform: perspective(100px) translate3d(100px, 0px, -30px);
+        opacity: 0.5;
+    }
+    50%{
+        z-index:2;
+        transform: perspective(100px) translate3d(400px, 0px, -30px);
+    }
+    100%{
+        z-index:2;
+        transform: perspective(100px) translate3d(0px, 0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes foregrounding-sx {
+    0%{
+        z-index:1;
+        transform: perspective(100px) translate3d(-100px, 0px, -30px);
+        opacity: 0.5;
+    }
+    50%{
+        z-index:2;
+        transform: perspective(100px) translate3d(-400px, 0px, -30px);
+    }
+    100%{
+        z-index:2;
+        transform: perspective(100px) translate3d(0px, 0px, 0px);
+        opacity: 1;
+    }
 }
 
