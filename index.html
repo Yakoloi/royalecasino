@@ -10,56 +10,92 @@
 
 <body>
     <div class="container-fluid">
+        <!-- Jumbotron -->
         <div class="row">
-            <div class="col-md-12" id="dealerhand">
-            </div>
-            <div class="col-md-12" id="playerhand">
+        <div class="col-sm-12">
+            <div class="jumbotron" style="background-color: transparent !important">
+                <h2>
+                    21 or Bust!
+                </h2>        
             </div>
         </div>
-        <div id="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <br>
-                    
-                    <div class="col-md-3">
-                        <center>
-                            <img src="assets/images/doubledown.png" width="80" height="80" class="img-circle" alt="doubledownicon">
-                            <br>
-                            <button type="button" class="btn btn-info">Double Down</button>
-                        </center>
+    </div>
+        <!-- Dealer Hand -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        Dealer Hand
+                        </h3>
                     </div>
-                    <div class="col-md-3">
-                        <center>
-                            <img src="assets/images/split.png" width="80" height="80" class="img-circle" alt="spliticon">
-                            <br>
-                            <button type="button" class="btn btn-info">Split</button>
-                        </center>
+                    <div class="panel-body" id="dealerhand">
                     </div>
-                    <div class="col-md-3">
-                        <center>
-                            <img src="assets/images/standing.png" width="80" height="80" class="img-circle" alt="standicon">
-                            <br>
-                            <button type="button" class="btn btn-info">Stand</button>
-                        </center>
-                    </div>
-                    <div class="col-md-3">
-                        <center>
-                            <img src="assets/images/hit.png" width="80" height="80" class="img-circle" alt="hiticon">
-                            <br>
-                            <button type="button" class="btn btn-info">Hit</h4>
-                            <br>
-                        </center>
-                    </div>
-                    
-                  
-                   
                 </div>
             </div>
         </div>
-        <!-- jQuery -->
-                    <script src="https://code.jquery.com/jquery.js"></script>
-                    <!-- Link to Moment.js should go here -->
-                    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+        <!-- Player Hand -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        Player Hand
+                        </h3>
+                    </div>
+                    <div class="panel-body" id="playerhand">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Actions Bar -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        Actions
+                        </h3>
+                    </div>
+                    <div class="panel-body" id="actions">
+                        <div class="col-md-3">
+                            <center>
+                                <img src="assets/images/doubledown.png" width="80" height="80" class="img-circle" alt="doubledownicon">
+                                <br>
+                                <button type="button" class="btn btn-info">Double Down</button>
+                            </center>
+                        </div>
+                        <div class="col-md-3">
+                            <center>
+                                <img src="assets/images/split.png" width="80" height="80" class="img-circle" alt="spliticon">
+                                <br>
+                                <button type="button" class="btn btn-info">Split</button>
+                            </center>
+                        </div>
+                        <div class="col-md-3">
+                            <center>
+                                <img src="assets/images/standing.png" width="80" height="80" class="img-circle" alt="standicon">
+                                <br>
+                                <button type="button" class="btn btn-info">Stand</button>
+                            </center>
+                        </div>
+                        <div class="col-md-3">
+                            <center>
+                                <img src="assets/images/hit.png" width="80" height="80" class="img-circle" alt="hiticon">
+                                <br>
+                                <button type="button" class="btn btn-info">Hit</h4>
+                                    <br>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </body>
 
 </html>
