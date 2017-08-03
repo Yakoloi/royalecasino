@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Black Jack Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDx2Q4c27zp0bwaoTpishDh5yRQWL8H60w",
+            authDomain: "groupproject1-624dd.firebaseapp.com",
+            databaseURL: "https://groupproject1-624dd.firebaseio.com",
+            projectId: "groupproject1-624dd",
+            storageBucket: "groupproject1-624dd.appspot.com",
+            messagingSenderId: "696725330630"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+
+    <!-- link to jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- link to local style sheet-->
+    <link rel="stylesheet" href="assets/css/startpage.css">
+
+    <!-- LINK TO FIREBASE -->
+
+
+
+</head>
+
+<body>
+    <div id='form-container' class="container">
+        <div class="form-group">
+            <input type="text" placeholder='email: ' class='form-control' id='email'>
+            <input type='password' placeholder='Password: ' class='form-control' id='password'>
+            <button class='btn btn-danger' id='signUpBtn'>Sign up</button>
+            <button class='btn btn-success' id='signInBtn'>Sign In</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- link to  app.js -->
+    <script type="text/javascript" src="assets/javascript/firebase.js"></script>
+
+</body>
+
+</html>
