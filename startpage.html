@@ -12,11 +12,16 @@
   <!-- link to local style sheet-->
   <link rel="stylesheet" href="assets/css/startpage.css">
 
+
   <!-- link to the jQuery Library --> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
   <!-- LINK TO FIREBASE -->
   <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+  <!-- link to validate the input format -->
+  <link rel="stylesheet" href="assets/css/bootstrapValidator.css">
+  <script src="assets/javascript/bootstrapValidator.js"></script>
 
 </head>
 <body>
@@ -32,9 +37,9 @@
       <h3>Create Your Account</h3>
       <p>Enter your email address</br>and your password to join the fun!</p>
 
-      <input class="w100" type="email" placeholder="Your Email" reqired autocomplete='off' />
-      <input type="password" placeholder="Your Password" reqired />
-      <input type="password" placeholder="Verify Password" reqired />
+      <input class="w100" type="email" placeholder="Your Email" required autocomplete='off' />
+      <input type="password" placeholder="Your Password" id="password" required />
+      <input type="password" placeholder="Confirm Password" id="confirm_password" required />
 
       <button class="form-btn sx log-in" type="button">Log In</button>
       <button class="form-btn dx" type="submit">Sign Up</button>
@@ -45,8 +50,8 @@
       <button class="fb" type="button">Log In With Facebook</button>
       <p>- or -</p>
 
-      <input type="email" placeholder="Your Email" autocomplete='off' reqired />
-      <input type="password" placeholder="Your Password" reqired />
+      <input type="email" placeholder="Your Email" autocomplete='off' required />
+      <input type="password" placeholder="Your Password" id="password" required />
 
       <button class="form-btn sx back" type="button">Back</button>
       <button class="form-btn dx" type="submit">Log In</button>
@@ -92,6 +97,23 @@ $('.login-container').hide();
     $(".signIn").removeClass("active-dx");
     $(".signUp").removeClass("inactive-sx");
   });
+
+
+//validate password matching
+  var password = document.getElementById("password")
+  var confirm_password = document.getElementById("confirm_password");
+
+  function validatePassword(){
+    if(password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("Passwords Don't Match");
+    } 
+    else {
+      confirm_password.setCustomValidity('');
+    }
+  }
+
+  password.onchange = validatePassword;
+  confirm_password.onkeyup = validatePassword;
 
 
 </script>

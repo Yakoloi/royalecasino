@@ -19,7 +19,7 @@ fb blue: #3b5998;
 /*******************************************************************************************/
 /*START PAGE*/
 body {
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	/*font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;*/
 	background: url("../images/neon-sign.jpg") no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -304,4 +304,21 @@ input {
         opacity: 1;
     }
 }
+
+
+/*form input validation*/
+label.valid {
+    width: 24px;
+    height: 24px;
+    background: url(assets/img/valid.png) center center no-repeat;
+    display: inline-block;
+    text-indent: -9999px;
+}
+label.error {
+    font-weight: bold;
+    color: red;
+    padding: 2px 8px;
+    margin-top: 2px;
+}
+
 
