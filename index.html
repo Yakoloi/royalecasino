@@ -6,24 +6,27 @@
     <title>Blackjack Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 </head>
 
 <body>
     <div class="container-fluid">
         <!-- Jumbotron -->
         <div class="row">
-        <div class="col-sm-12">
-            <div class="jumbotron" style="background-color: transparent !important">
-                <h2>
-                    21 or Bust!
-                </h2>        
+            <div class="col-sm-12">
+                <div class="jumbotron text-center">
+                    <h2 id ="title" class="animated infinite flash">
+                    I'm not addicted to gambling. I'm addicted to sitting in a semi-circle!!!
+                </h2>
+                </div>
             </div>
         </div>
-    </div>
         <!-- Dealer Hand -->
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-success">
+                <div class="panel panel-success text-center">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         Dealer Hand
@@ -37,7 +40,7 @@
         <!-- Player Hand -->
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-success">
+                <div class="panel panel-success text-center">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         Player Hand
@@ -51,41 +54,51 @@
         <!-- Actions Bar -->
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-success">
+                <div class="panel panel-success text-center">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         Actions
                         </h3>
                     </div>
                     <div class="panel-body" id="actions">
-                        <div class="col-md-3">
-                            <center>
-                                <img src="assets/images/doubledown.png" width="80" height="80" class="img-circle" alt="doubledownicon">
-                                <br>
-                                <button type="button" class="btn btn-info">Double Down</button>
-                            </center>
-                        </div>
-                        <div class="col-md-3">
-                            <center>
-                                <img src="assets/images/split.png" width="80" height="80" class="img-circle" alt="spliticon">
-                                <br>
-                                <button type="button" class="btn btn-info">Split</button>
-                            </center>
-                        </div>
-                        <div class="col-md-3">
-                            <center>
-                                <img src="assets/images/standing.png" width="80" height="80" class="img-circle" alt="standicon">
-                                <br>
-                                <button type="button" class="btn btn-info">Stand</button>
-                            </center>
-                        </div>
-                        <div class="col-md-3">
-                            <center>
-                                <img src="assets/images/hit.png" width="80" height="80" class="img-circle" alt="hiticon">
-                                <br>
-                                <button type="button" class="btn btn-info">Hit</h4>
-                                    <br>
-                            </center>
+                        <div class="col-md-12">
+                            <ul id="actionbuttons">
+                                <li>
+                                    <center>
+                                        <img src="assets/images/doubledown.png" width="80" height="80" class="img-circle" alt="doubledownicon">
+                                        <br>
+                                        <button href="#" type="button" class="btn btn-info btnwidth">Double Down</button>
+                                    </center>
+                                </li>
+                                <li>
+                                    <center>
+                                        <img src="assets/images/split.png" width="80" height="80" class="img-circle" alt="spliticon">
+                                        <br>
+                                        <button href="#" type="button" class="btn btn-info btnwidth">Split</button>
+                                    </center>
+                                </li>
+                                <li>
+                                    <center>
+                                        <img src="assets/images/standing.png" width="80" height="80" class="img-circle" alt="standicon">
+                                        <br>
+                                        <button href="#" type="button" class="btn btn-info btnwidth">Stand</button>
+                                    </center>
+                                </li>
+                                <li>
+                                    <center>
+                                        <img src="assets/images/hit.png" width="80" height="80" class="img-circle" alt="hiticon">
+                                        <br>
+                                        <button href="#" type="button" class="btn btn-info btnwidth">Hit</button>
+                                    </center>
+                                </li>
+                                <li>
+                                    <center>
+                                        <img src="assets/images/deal.png" width="80" height="80" class="img-circle" alt="dealicon">
+                                        <br>
+                                        <button href="#" type="button" class="btn btn-info btnwidth">Deal</button>
+                                    </center>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

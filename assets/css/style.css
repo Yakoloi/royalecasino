@@ -1,0 +1,50 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.jumbotron {
+    background-color: transparent !important;
+}
+
+
+/*Button Border Hover Effect*/
+/****************************/
+
+.btnwidth {
+    width: 110px !important;
+    border: solid 5px #fff;
+}
+
+.btnwidth,
+.btnwidth:hover {
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.btnwidth:hover {
+    border: solid 5px #551a8b;
+    cursor: pointer;
+}
+
+/*Button Floats Clear Unordered List Bullets*/
+/********************************************/
+
+li {
+    float: left;
+    padding: 1px;
+}
+
+ul {
+    clear: both;
+    list-style-type: none;
+}
+
+#title {
+    font-family: 'Bangers', cursive;
+    font-size: 40px;
+}
+
+.panel-title {
+    font-family: 'Bangers', cursive;
+}
