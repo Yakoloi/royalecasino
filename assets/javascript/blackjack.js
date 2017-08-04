@@ -1,78 +1,60 @@
-// var deckObj = {
+var deckObj = {
 
-//     deckID: "",
-//     queryURL:"https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
-//     deck: [],
+    deckID: "",
+    queryURL: "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
+    deck: [],
 
-//     createDeck: function() {
-//         $.ajax({
-//                 url: queryURL,
-//                 method: "GET"
-//             })
-//             .done(function(response) {
-//                 deckID = response.deck_id;
+    createDeck: function() {
+        $.ajax({
+                url: deckObj.queryURL,
+                method: "GET"
+            })
+            .done(function(response) {
+                deckID = response.deck_id;
 
-//                 deckObj.getDeck();
-//             });
-//     },
-
-
-//     getDeck: function() {
-//         var queryURL6 = "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=52";
-//         $.ajax({
-//                 url: queryURL6,
-//                 method: "GET"
-//             })
-//             .done(function(response) {
-
-//                 deck = response.cards;
+                deckObj.getDeck();
+            });
+    },
 
 
-//             });
+    getDeck: function() {
+        var queryURL6 = "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=52";
+        $.ajax({
+                url: queryURL6,
+                method: "GET"
+            })
+            .done(function(response) {
 
-//     }
-
-
-
-// }
-
-var deckID = "";
-var queryURL = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
-var deck = [];
-
-function createDeck() {
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .done(function(response) {
-            deckID = response.deck_id;
-
-            getDeck();
-        });
-}
+                deck = response.cards;
+                $("#buttonView").append("<button id='dealCards' type='button' class='btn btn-outline-primary'>Deal Cards</button>");
+                $("#dealCards").one('click', game.dealCards);
 
 
-function getDeck() {
-    var queryURL6 = "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=52";
-    $.ajax({
-            url: queryURL6,
-            method: "GET"
-        })
-        .done(function(response) {
+            });
 
-            deck = response.cards;
-            $("#buttonView").append("<button id='dealCards' type='button' class='btn btn-outline-primary'>Deal Cards</button>");
-            $("#dealCards").one('click', game.dealCards);
-        });
+    },
+    playAgain: function() {
+        $("#buttonView").html("");
+        $("#handView").html("");
+        $("#dealerHand").html("");
+        $("#gameText").html("");
+        dealer.dealerBustCheck = false;
+        game.playerScore = 0;
+        game.playerCards = [];
+        dealer.dealerScore = 0;
+        dealer.dealerCards = [];
+
+
+        deckObj.createDeck();
+    },
+    gameOverDisplay: function() {
+        $("#buttonView").html("");
+        $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
+        $("#playAgain").one('click', deckObj.playAgain);
+    }
+
 
 }
-
-
-
-createDeck();
-
-
 
 var game = {
     arrayhand: {},
@@ -80,9 +62,16 @@ var game = {
     playerCards: [],
     playerScore: 0,
 
-    dealCardsListener: function() {
-        // $("#dealCards").one('click', game.dealCards);
+    drawCard: function() {
+        var card1ImgURL = deck[deck.length - 1].image;
+        var card1Img = "<img src='" + card1ImgURL + "'</img>"
+        $("#handView").append(card1Img)
 
+        //Adding cards to array with suit and card value
+        game.playerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value]);
+        console.log("Player just clicked hit, deck seen below");
+        console.log(game.playerCards);
+        deck.pop();
     },
 
     dealCards: function() {
@@ -129,23 +118,12 @@ var game = {
         // game.buttonChoice = $(this).attr('data-choice');
         switch (game.buttonChoice) {
             case 'hit':
-                var card1ImgURL = deck[deck.length - 1].image;
-                var card1Img = "<img src='" + card1ImgURL + "'</img>"
-                $("#handView").append(card1Img)
-
-                //Adding cards to array with suit and card value
-                game.playerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value]);
-                console.log("Player just clicked hit, deck seen below");
-                console.log(game.playerCards);
-                deck.pop();
-                game.updatePlayerScore();
                 game.playerChoices();
-
-
+                game.drawCard();
+                game.updatePlayerScore();
 
                 break;
             case 'stand':
-
 
                 dealer.dealerTurn();
 
@@ -157,14 +135,44 @@ var game = {
     },
     updatePlayerScore: function() {
         game.playerScore = 0;
+        var hasAce = false;
+        var aceIndex;
+        var numWithoutAce = 0;
         for (i = 0; i < game.playerCards.length; i++) {
             var num = parseInt((game.playerCards[i])[1]) || 10;
+            if (game.playerCards[i][1] === "ACE") {
+                num = 0;
+                hasAce = true;
+                aceIndex = i;
+            }
             game.playerScore += num;
         }
-        if (game.playerScore >= 21) {
-            game.playerBust();
+        if (hasAce = true) {
+            for (i = 0; i < game.playerCards.length; i++) {
+                if (aceIndex != i) {
+                    var notAceCard = parseInt((game.playerCards[i])[1]) || 10;
+                    numWithoutAce += notAceCard;
+                }
+            }
+            hasAce = false;
+        }
+        if (numWithoutAce <= 10) {
+            game.playerScore += 11;
+        } else {
+            game.playerScore += 1;
+        }
+
+
+        if (dealer.playerScore > 21) {
+            dealer.dealerBustCheck = true;
+        }
+
+        if (game.playerScore > 21) {
+            $("#gameText").html("<p> The Dealer wins! The player busted! </p>");
+            deckObj.gameOverDisplay();
         }
         console.log("Player score is " + game.playerScore);
+
     },
     playerBust: function() {
         $("#gameText").html("<p> Your score is " + game.playerScore + ". This is over 21, you bust! </p>");
@@ -178,7 +186,7 @@ var dealer = {
     buttonChoice: "",
     dealerCards: [],
     dealerScore: 0,
-    dealerBust: false,
+    dealerBustCheck: false,
 
     drawCard: function() {
         //get hand
@@ -200,13 +208,33 @@ var dealer = {
     },
     updateDealerScore: function() {
         dealer.dealerScore = 0;
+        var hasAce = false;
+        var aceIndex;
+        var numWithoutAce = 0;
         for (i = 0; i < dealer.dealerCards.length; i++) {
             var num = parseInt((dealer.dealerCards[i])[1]) || 10;
+            if (dealer.dealerCards[i][1] === "ACE") {
+                num = 0;
+                hasAce = true;
+                aceIndex = i;
+            }
             dealer.dealerScore += num;
         }
-        if (dealer.dealerScore >= 21) {
-            dealer.dealerBust();
-            dealer.dealerBust = false;
+        if (hasAce = true) {
+            for (i = 0; i < dealer.dealerCards.length; i++) {
+                if (aceIndex != i) {
+                    var notAceCard = parseInt((dealer.dealerCards[i])[1]) || 10;
+                    numWithoutAce += notAceCard;
+                }
+            }
+        }
+        if (numWithoutAce <= 10) {
+            dealer.dealerScore += 11;
+        } else {
+            dealer.dealerScore += 1;
+        }
+        if (dealer.dealerScore > 21) {
+            dealer.dealerBustCheck = true;
         }
         console.log("Dealer score is" + dealer.dealerScore);
 
@@ -222,33 +250,28 @@ var dealer = {
 
 
     },
-    dealerBust: function() {
-        $("#gameText").html("<p> Dealer busted!</p>");
-    },
     endGame: function() {
-      if (game.playerScore > dealer.dealerScore) {
-        $("#gameText").html("<p> The player wins! Hit replay to play again! </p>");
-        $("#buttonView").html("");
-        $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
-        // $("#dealCards").one('click', game.dealCards);
-      } else if (game.playerScore < dealer.dealerScore){
-        if (dealer.dealerBust===false) {
-          $("#gameText").html("<p> The dealer wins! Click on play Again to play again! </p>");
-          $("#buttonView").html("");
-          $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
+        if (game.playerScore > dealer.dealerScore) {
+            $("#gameText").html("<p> The player wins! Hit replay to play again! </p>");
+            deckObj.gameOverDisplay();
 
-        }else {
-          $("#gameText").html("<p> The Player wins! The dealer busted! </p>");
-          $("#buttonView").html("");
-          $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
+        } else if (game.playerScore < dealer.dealerScore) {
+            if (dealer.dealerBustCheck === true) {
+                $("#gameText").html("<p> The Player wins! The dealer busted! </p>");
+                deckObj.gameOverDisplay();
+                dealer.dealerBustCheck = false;
+            } else {
+                $("#gameText").html("<p> The dealer wins! Click on play Again to play again! </p>");
+                deckObj.gameOverDisplay();
+            }
+        } else {
+            $("#gameText").html("<p> Tie Game! The pot is split! </p>");
+            deckObj.gameOverDisplay();
         }
-      } else{
-        $("#gameText").html("<p> Tie Game! The pot is split! </p>");
-        $("#buttonView").html("");
-        $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
-      }
+
     }
 }
 
 
-game.dealCardsListener();
+
+deckObj.createDeck();
