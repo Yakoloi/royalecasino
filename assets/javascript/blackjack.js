@@ -1,3 +1,19 @@
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDx2Q4c27zp0bwaoTpishDh5yRQWL8H60w",
+    authDomain: "groupproject1-624dd.firebaseapp.com",
+    databaseURL: "https://groupproject1-624dd.firebaseio.com",
+    projectId: "groupproject1-624dd",
+    storageBucket: "groupproject1-624dd.appspot.com",
+    messagingSenderId: "696725330630"
+  };
+  firebase.initializeApp(config);
+
+
+  
+
+
+
 var deckObj = {
 
     deckID: "",
@@ -67,6 +83,7 @@ var game = {
     buttonChoice: "",
     playerCards: [],
     playerScore: 0,
+    deck: deckObj.deck,
 
     drawCard: function() {
         var card1ImgURL = deck[deck.length - 1].image;
@@ -195,6 +212,7 @@ var dealer = {
     dealerCards: [],
     dealerScore: 0,
     dealerBustCheck: false,
+    deck: deckObj.deck,
 
     drawCard: function() {
         //get hand
