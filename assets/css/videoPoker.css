@@ -1,0 +1,12 @@
+body {
+    background-image: url("../images/green.jpg");
+}
+
+.cards {
+	width: 10%;
+    height: 10%;
+}
+
+#pokerPay {
+	width: 80%;
+}

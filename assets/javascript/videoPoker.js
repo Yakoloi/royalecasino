@@ -26,7 +26,10 @@ var deckObj = {
             .done(function(response) {
 
                 deck = response.cards;
-                $("#buttonView").append("<button id='dealCards' type='button' class='btn btn-outline-primary'>Deal Cards</button>");
+                $("#buttonView").append("<button id='betOne' type='button' class='btn btn-outline-primary'>Bet One</button>");
+                $("#buttonView").append("<button id='betMax' type='button' class='btn btn-outline-primary'>Bet Max</button>");
+                $("#buttonView").append("<button id='deal' type='button' class='btn btn-outline-primary'>Deal Cards</button>");
+                $("#buttonView").append("<button id='cashOut' type='button' class='btn btn-outline-primary'>Cash Out</button>");
                 $("#dealCards").one('click', game.dealCards);
 
 
@@ -36,18 +39,16 @@ var deckObj = {
     playAgain: function() {
 
     	//reset everything
-    	$("#playerScore").html("Player Score: 0");
-    	$("#playerChips").html("Player Chips: 0");
-    	$("#dealerScore").html("Dealer Score: 0");
-        $("#buttonView").html("");
-        $("#handView").html("");
-        $("#dealerHand").html("");
-        $("#gameText").html("");
-        dealer.dealerBustCheck = false;
+    	// $("#playerScore").html("Player Score: 0");
+    	// $("#playerChips").html("Player Chips: 0");
+    	// $("#dealerScore").html("Dealer Score: 0");
+     //    $("#buttonView").html("");
+     //    $("#handView").html("");
+     //    $("#dealerHand").html("");
+     //    $("#gameText").html("");
         game.playerScore = 0;
         game.playerCards = [];
-        dealer.dealerScore = 0;
-        dealer.dealerCards = [];
+
 
 
         deckObj.createDeck();
@@ -187,120 +188,6 @@ var game = {
 
     }
 
-
-}
-
-var dealer = {
-    arrayhand: {},
-    buttonChoice: "",
-    dealerCards: [],
-    dealerScore: 0,
-    dealerBustCheck: false,
-
-    drawCard: function() {
-        //get hand
-
-        var card1ImgURL = deck[deck.length - 1].image;
-        var card1Img = "<img src='" + card1ImgURL + "'</img>"
-        $("#dealerHand").append(card1Img)
-
-        //Adding cards to array with suit and card value
-        dealer.dealerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value]);
-        deck.pop();
-
-
-        console.log("Below is dealer's hand!");
-        console.log(dealer.dealerCards);
-
-        dealer.updateDealerScore();
-
-    },
-    updateDealerScore: function() {
-        //start from zero
-        dealer.dealerScore = 0;
-
-        //does Dealer have ace?
-        var hasAce = false;
-
-        //where is that ace?
-        var aceIndex;
-
-        //total points of hand without that ace
-        var numWithoutAce = 0;
-
-        for (i = 0; i < dealer.dealerCards.length; i++) {
-
-            //get me the value of the card, if it returns Null than give value of 10 (is faceCard)
-            var num2 = parseInt((dealer.dealerCards[i])[1]) || 10;
-
-            //if facecard is ace
-            if (dealer.dealerCards[i][1] === "ACE") {
-                num2 = 0;
-                hasAce = true;
-                aceIndex = i;
-            }
-            dealer.dealerScore += num2;
-        }
-        //if player has ace in hand
-        if (hasAce === true) {
-            for (i = 0; i < dealer.dealerCards.length; i++) {
-                if (aceIndex != i) {
-                    var notAceCard = parseInt((dealer.dealerCards[i])[1]) || 10;
-                    if (dealer.dealerCards[i][1] != "ACE") {
-                        numWithoutAce += notAceCard;
-                    } else {
-                        //this happens because the card is a duplicate ace card, must be 1 or else it would exceed 21
-                        notAceCard = 1;
-                    }
-
-                }
-            }
-            if (numWithoutAce <= 10) {
-                dealer.dealerScore += 11;
-            } else {
-                dealer.dealerScore += 1;
-            }
-        }
-
-        if (dealer.dealerScore > 21) {
-            dealer.dealerBustCheck = true;
-        }
-        $("#dealerScore").html("");
-        $("#dealerScore").html("The dealer score: " + dealer.dealerScore);
-
-        console.log("Dealer score is" + dealer.dealerScore);
-
-    },
-
-    dealerTurn: function() {
-        $("#gameText").html("<p> Dealer's turn!</p>");
-        while (dealer.dealerScore <= 17) {
-            dealer.drawCard();
-        }
-        console.log("Dealer's score after stand is" + dealer.dealerScore);
-        dealer.endGame();
-
-
-    },
-    endGame: function() {
-        if (game.playerScore > dealer.dealerScore) {
-            $("#gameText").html("<p> The player wins! Hit replay to play again! </p>");
-            deckObj.gameOverDisplay();
-
-        } else if (game.playerScore < dealer.dealerScore) {
-            if (dealer.dealerBustCheck === true) {
-                $("#gameText").html("<p> The Player wins! The dealer busted! </p>");
-                deckObj.gameOverDisplay();
-                dealer.dealerBustCheck = false;
-            } else {
-                $("#gameText").html("<p> The dealer wins! Click on play Again to play again! </p>");
-                deckObj.gameOverDisplay();
-            }
-        } else {
-            $("#gameText").html("<p> Tie Game! The pot is split! </p>");
-            deckObj.gameOverDisplay();
-        }
-    }
 }
 
 
