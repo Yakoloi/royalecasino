@@ -26,9 +26,17 @@
 </head>
 <body>
 <div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 text-center">
+      <img src="assets/images/casino-sign1.png" class="blink" alt="casio-sign"/>
+    </div>
+  </div>
 
-	<div class="text-center ">
-		<button class="btn btn-default btn-lg" id="startButton">Let's Play</button>
+	<div class="row">
+    <div class="col-xs-12 text-center">
+      <button class="btn btn-primary btn-lg btn-responsive" id="startButton">Let's Play</button>
+    </div>
+		
   </div>
 
 <!--===================LOGIN REGISTER PAGE===================-->
@@ -53,7 +61,7 @@
       <input type="email" placeholder="Your Email" autocomplete='off' required />
       <input type="password" placeholder="Your Password" id="password" required />
 
-      <button class="form-btn sx back" type="button">Back</button>
+      <button class="form-btn sx back" type="button">Sign Up</button>
       <button class="form-btn dx" type="submit">Log In</button>
     </form>
   </div>
@@ -72,11 +80,12 @@ $('.login-container').hide();
 
 //click the start button
 	$('#startButton').on('click', function(){
-        $('body').css({
-          'background': 'url(assets/images/signin-bg.png) no-repeat center center fixed',
-          'background-size': 'cover'
-        });
+        // $('body').css({
+        //   'background': 'url(assets/images/signin-bg.png) no-repeat center center fixed',
+        //   'background-size': 'cover'
+        // });
         $('#startButton').hide();
+        $('.blink').hide();
         $('.login-container').show();
       });
 
