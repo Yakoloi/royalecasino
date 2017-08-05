@@ -21,11 +21,7 @@ var winnings = "winnings not defined";
 var newChip = "adjusted chip winning not defined";
 
 
-
 $(document).ready(function () {
-
-
-
 
     var deckObj = {
 
@@ -92,7 +88,6 @@ $(document).ready(function () {
             $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
             $("#playAgain").one('click', deckObj.playAgain);
             $("#playerChips").html("PlayerChips: " + tempuser.chips);
-            winnings = 0;
         }
 
 
@@ -348,7 +343,7 @@ $(document).ready(function () {
 
                 alert("player winnings: " + winnings);
                 newChip = tempuser.chips + winnings;
-                database.ref("users/chips").set(tempuser.chips += winnings);
+                database.ref("users/chips").set(tempuser.chips + winnings);
 
                 deckObj.gameOverDisplay();
 
