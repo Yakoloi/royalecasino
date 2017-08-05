@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jacks or better video poker!</title>
+    <!--- BOOTSTRAP CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--- STYLE-->
+    <link rel="stylesheet" type="text/css" href="assets/css/videoPoker.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your hand</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="buttonView"> </div>
+                    <div id="handView">
+                        <img id="card1" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
+                        <img id="card2" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
+                        <img id="card3" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
+                        <img id="card4" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
+                        <img id="card5" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Game Text</h3>
+                </div>
+                <div class="panel-body">
+
+                    <div id="gameText">
+                        <img id="pokerPay" src="assets/images/videoPokerPay.PNG"> </img>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Score Board</h3>
+                </div>
+                <div class="panel-body">
+                    <h1 id="playerChips">Player Chips: 100 </h1>
+                    <h1 id="bet">Bet: 1 </h1>
+                    <h1 id="paid"> Paid: 0 </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--- Javascript-->
+    <script type="text/javascript" src="assets/javascript/videoPoker.js"></script>
+</body>
+
+</html>
