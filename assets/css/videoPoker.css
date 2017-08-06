@@ -10,3 +10,9 @@ body {
 #pokerPay {
 	width: 80%;
 }
+
+#cardImg {
+    width: 100px;
+    float:left;
+
+}

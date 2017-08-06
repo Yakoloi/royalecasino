@@ -163,8 +163,8 @@ var game = {
                     } else {
                         //this happens because the card is a duplicate ace card, must be 1 or else it would exceed 21
                         notAceCard = 1;
+                        numWithoutAce += notAceCard;
                     }
-                    numWithoutAce += notAceCard;
                 }
             }
             if (numWithoutAce <= 10) {
@@ -250,6 +250,7 @@ var dealer = {
                     } else {
                         //this happens because the card is a duplicate ace card, must be 1 or else it would exceed 21
                         notAceCard = 1;
+                        numWithoutAce += notAceCard;
                     }
 
                 }
