@@ -36,14 +36,19 @@ var deckObj = {
     },
     playAgain: function() {
 
-        //reset everything
-        // $("#playerScore").html("Player Score: 0");
-        // $("#playerChips").html("Player Chips: 0");
-        // $("#dealerScore").html("Dealer Score: 0");
-        //    $("#buttonView").html("");
-        //    $("#handView").html("");
-        //    $("#dealerHand").html("");
-        //    $("#gameText").html("");
+        //Reset Everything
+        $("#playerScore").html("Player Score: 0");
+        $("#playerChips").html("Player Chips: 0");
+        $("#dealerScore").html("Dealer Score: 0");
+        $("#buttonView").html("");
+        $("#handView").html("");
+        $("#handView").append("<img id='card1' class='cards' alt='cardback' src='assets/images/cardback.jpg'> </img>");
+        $("#handView").append("<img id='card2' class='cards' alt='cardback' src='assets/images/cardback.jpg'> </img>");
+        $("#handView").append("<img id='card3' class='cards' alt='cardback' src='assets/images/cardback.jpg'> </img>");
+        $("#handView").append("<img id='card4' class='cards' alt='cardback' src='assets/images/cardback.jpg'> </img>");
+        $("#handView").append("<img id='card5' class='cards' alt='cardback' src='assets/images/cardback.jpg'> </img>");
+        $("#dealerHand").html("");
+        $("#gameText").html("");
         game.playerScore = 0;
         game.playerCards = [];
 
@@ -116,22 +121,469 @@ var game = {
         // game.playerCards2 = game.playerCards2.filter(e => e.length);
         console.log(game.playerCards2);
         game.handLogic();
+        game.payOut();
         game.displayNewCards();
 
 
-        // var card1ImgURL = deck[deck.length - 1].image;
-        // var card1Img = "<img src='" + card1ImgURL + "'</img>"
-        // $("#handView").append(card1Img)
-
-        // //Adding cards to array with suit and card value
-        // game.playerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value]);
-        // console.log("Player just clicked hit, deck seen below");
-        // console.log(game.playerCards);
-        // deck.pop();
     },
 
+    payOut: function() {
+        var handLogicReturn = game.handLogic();
+
+        //one pair
+        if (handLogicReturn.result === "One Pair" && handLogicReturn.isJackOrBetter === true) {
+            if (game.bet === 1) {
+                game.paid = 1;
+            }
+            if (game.bet === 2) {
+                game.paid = 2;
+            }
+            if (game.bet === 3) {
+                game.paid = 3;
+            }
+            if (game.bet === 4) {
+                game.paid = 4;
+            }
+            if (game.bet === 5) {
+                game.paid = 5;
+            }
+
+        }
+
+        //two pair
+        if (handLogicReturn.result === "Two Pair") {
+            if (game.bet === 1) {
+                game.paid = 2;
+            }
+            if (game.bet === 2) {
+                game.paid = 4;
+            }
+            if (game.bet === 3) {
+                game.paid = 6;
+            }
+            if (game.bet === 4) {
+                game.paid = 8;
+            }
+            if (game.bet === 5) {
+                game.paid = 10;
+            }
+        }
+
+
+        //three of a kind 
+        if (handLogicReturn.result === "Three Of A Kind") {
+            if (game.bet === 1) {
+                game.paid = 3;
+            }
+            if (game.bet === 2) {
+                game.paid = 6;
+            }
+            if (game.bet === 3) {
+                game.paid = 9;
+            }
+            if (game.bet === 4) {
+                game.paid = 12;
+            }
+            if (game.bet === 5) {
+                game.paid = 15;
+            }
+        }
+
+
+        //Straight
+        if (handLogicReturn.result === "Straight") {
+            if (game.bet === 1) {
+                game.paid = 4;
+            }
+            if (game.bet === 2) {
+                game.paid = 8;
+            }
+            if (game.bet === 3) {
+                game.paid = 12;
+            }
+            if (game.bet === 4) {
+                game.paid = 16;
+            }
+            if (game.bet === 5) {
+                game.paid = 20;
+            }
+        }
+
+        //flush 
+        if (handLogicReturn.result === "Flush") {
+            if (game.bet === 1) {
+                game.paid = 6;
+            }
+            if (game.bet === 2) {
+                game.paid = 12;
+            }
+            if (game.bet === 3) {
+                game.paid = 18;
+            }
+            if (game.bet === 4) {
+                game.paid = 24;
+            }
+            if (game.bet === 5) {
+                game.paid = 30;
+            }
+        }
+        //full house
+        if (handLogicReturn.result === "Full House") {
+            if (game.bet === 1) {
+                game.paid = 9;
+            }
+            if (game.bet === 2) {
+                game.paid = 18;
+            }
+            if (game.bet === 3) {
+                game.paid = 27;
+            }
+            if (game.bet === 4) {
+                game.paid = 36;
+            }
+            if (game.bet === 5) {
+                game.paid = 45;
+            }
+        }
+        //4 of a kind 
+        if (handLogicReturn.result === "Four Of A Kind") {
+            if (game.bet === 1) {
+                game.paid = 25;
+            }
+            if (game.bet === 2) {
+                game.paid = 50;
+            }
+            if (game.bet === 3) {
+                game.paid = 75;
+            }
+            if (game.bet === 4) {
+                game.paid = 100;
+            }
+            if (game.bet === 5) {
+                game.paid = 125;
+            }
+        }
+        //straight flush
+        if (handLogicReturn.result === "Straight Flush") {
+            if (game.bet === 1) {
+                game.paid = 50;
+            }
+            if (game.bet === 2) {
+                game.paid = 100;
+            }
+            if (game.bet === 3) {
+                game.paid = 150;
+            }
+            if (game.bet === 4) {
+                game.paid = 200;
+            }
+            if (game.bet === 5) {
+                game.paid = 250;
+            }
+        }
+        //Royal Flush
+        if (handLogicReturn.result === "Royal Flush") {
+            if (game.bet === 1) {
+                game.paid = 250;
+            }
+            if (game.bet === 2) {
+                game.paid = 500;
+            }
+            if (game.bet === 3) {
+                game.paid = 750;
+            }
+            if (game.bet === 4) {
+                game.paid = 1000;
+            }
+            if (game.bet === 5) {
+                game.paid = 4000;
+            }
+
+
+        }
+        if (handLogicReturn.result === "One Pair" && handLogicReturn.isJackOrBetter === true) {
+            $("#gameText").html("The Player's Hand: " + handLogicReturn.result);
+            $("#gameText").append("<p> You won " + game.paid + ". Click Play Again to play again!</p>");
+            game.chips += game.paid;
+        } else if (handLogicReturn.result != "" && handLogicReturn.result !== "One Pair") {
+            $("#gameText").html("The Player's Hand: " + handLogicReturn.result);
+            $("#gameText").append("<p> You won " + game.paid + ". Click Play Again to play again!</p>");
+            game.chips += game.paid;
+        } else {
+            $("#gameText").html("You lose!");
+            $("#gameText").append("<p>Click Play Again to play again!</p>");
+            game.chips -= game.bet;
+        }
+
+
+        game.updatePlayerScore();
+        deckObj.gameOverDisplay();
+
+    },
     handLogic: function() {
-        console.log("handLogic function called");
+        var pairCount = 0;
+        var suitCount = 1;
+        var straightCount = 1;
+        var duplicateCount = 1;
+        var hasStraight = false;
+        var hasFlush = false;
+        var hasHighestStraight = false;
+        var pairValues = [];
+        var handValues = [];
+        var handSuits = [];
+        var handResult = {
+            result: "",
+            onePairValue: "",
+            isJackOrBetter: false
+
+        }
+
+        //card values
+        for (i = 0; i < game.playerCards2.length; i++) {
+            handValues.push(game.playerCards2[i][1]);
+        }
+
+        //card suits
+        for (i = 0; i < game.playerCards2.length; i++) {
+            handSuits.push(game.playerCards2[i][0]);
+        }
+
+        handValues.sort();
+        handSuits.sort();
+
+
+        console.log("Hand values: " + handValues);
+        console.log("handSuit: " + handSuits);
+
+
+        //count pairs
+        var currentValue;
+        var duplicateValues = [];
+        var duplicateCard;
+        var hasFirstPair = false;
+
+
+        //FOR TESTING 
+        // handValues = ["5", "5", "JACK", "JACK", "QUEEN"];
+        // handValues=["2","7","ACE","KING",'KING']
+        // handValues = ["10", "7", "ACE", "JACK", "JACK"]
+        // handSuits = ["HEARTS", "HEARTS", "HEARTS", "HEARTS", "HEARTS"];
+        // handValues = ["2", "2", "9", "QUEEN", "QUEEN"];
+
+        //CHECK FOR pair, two pair, three of a kind, or four of a kind
+        for (i = 0; i < handValues.length; i++) {
+            if (handValues[i + 1] === handValues[i]) {
+                duplicateCount += 1;
+
+                //IF THE CURRENT CARD IN THIS FOR LOOP IS NOT A DUPLICATE OF THE PREVIOUS CARD
+                if (duplicateCard !== handValues[i] && duplicateCard !== undefined) {
+
+                    //duplicateCount can increment to 4 in the event of full house. if at full house, we want this variable to be 3
+                    duplicateCount -= 1;
+                }
+
+                //IF THERE IS NOT THREE OF A KIND 
+                if (duplicateCount !== 3) {
+                    hasFirstPair = true;
+                    // duplicateValues.push(handValues[i]);
+                }
+            } else if (duplicateCount >= 2) {
+                //SAVING THIS VALUE IN CASE THERE IS FULL HOUSE
+                //LAST DUPLICATE CARD BEFORE NEW ONE
+                duplicateCard = handValues[i - 1];
+            }
+
+            if (hasFirstPair === true) {
+                pairCount += 1;
+                hasFirstPair = false;
+                handResult.onePairValue = handValues[i];
+            }
+
+        }
+
+
+
+        //after for loop
+
+
+        //one pair
+        if (pairCount === 1) {
+            handResult.result = "One Pair";
+            if (handResult.onePairValue === "JACK" || handResult.onePairValue === "QUEEN" || handResult.onePairValue === "KING" || handResult.onePairValue === "ACE") {
+                handResult.isJackOrBetter = true;
+            }
+
+        }
+        //two pair
+        if (pairCount === 2) {
+            handResult.result = "Two Pair";
+        }
+        //three of a kind 
+        if (duplicateCount === 3) {
+            handResult.result = "Three Of A Kind";
+        }
+        //four of a kind
+        if (duplicateCount === 4) {
+            handResult.result = "Four Of A Kind";
+        }
+
+
+
+
+
+        //INCASE THE 3 of kind was after the pair, the duplicateCount would be 2 but it would still be a full house
+        // duplicateCount += 1;
+        //CHECK IF PLAYER HAS FULL HOUSE
+        if (duplicateCount === 3 || duplicateCount === 2) {
+            //CHECK LAST 2 CARDS
+            if (duplicateCount === 3) {
+                var firstNonPairIndex = handValues.indexOf(duplicateCard)
+
+                var lastTwoCards = [];
+
+                for (i = 0; i < handValues.length; i++) {
+                    if (handValues[i] !== handValues[firstNonPairIndex - 1]) {
+                        lastTwoCards.push(handValues[i]);
+
+
+                    }
+                }
+                if (lastTwoCards[0] === lastTwoCards[1]) {
+                    handResult.result = "Full House";
+                }
+            }
+
+            //CHECK LAST TWO CARDS
+            if (duplicateCount === 2) {
+                var firstNonPairIndex = handValues.indexOf(duplicateCard)
+
+                var lastThreeCards = [];
+
+                for (i = 0; i < handValues.length; i++) {
+                    if (handValues[i] !== handValues[firstNonPairIndex - 1]) {
+                        lastThreeCards.push(handValues[i]);
+
+
+                    }
+                }
+                if (lastThreeCards[0] === lastThreeCards[1] && lastThreeCards[1] === lastThreeCards[2]) {
+                    handResult.result = "Full House";
+                }
+            }
+
+
+        }
+
+
+
+
+        //check for Straight
+        //for TESTING
+        // handValues = ["8", "9", "10", "JACK", "QUEEN"];
+        // handValues.sort();
+        var hasTen = handValues.indexOf("10");
+        for (i = 0; i < handValues.length; i++) {
+            var num = parseInt(handValues[i]) || 11;
+            if (num === (parseInt(handValues[i + 1]) + 1) || num === (parseInt(handValues[i + 1]) - 1)) {
+                straightCount += 1;
+                hasTen = -1;
+            }
+            // if (num === (parseInt(handValues[i + 1]) + 1) || num === (parseInt(handValues[i + 1]) - 1) || hasTen !== -1) {
+            //     straightCount += 1;
+            //     hasTen = -1;
+            // }
+
+
+            if (num === 11) {
+
+                if (straightCount === 1 || straightCount === 2 || straightCount === 3 || straightCount === 4) {
+                    if (handValues.indexOf("2") === -1 && handValues.indexOf("3") === -1 && handValues.indexOf("4") === -1 && handValues.indexOf("5") === -1) {
+                        var handIndex = handValues.indexOf("JACK");
+                        if (handIndex !== (-1)) {
+                            straightCount += 1;
+                        }
+                    }
+                }
+
+                // && handValues.indexOf("3") === -1 && handValues.indexOf("4") === -1 && handValues.indexOf("5") === -1
+                if (straightCount === 2 || straightCount === 3 || straightCount === 4) {
+                    if (handValues.indexOf("2") === -1 && handValues.indexOf("3") === -1 && handValues.indexOf("4") === -1 && handValues.indexOf("5") === -1) {
+
+
+                        var handIndex = handValues.indexOf("QUEEN")
+                        if (handIndex !== (-1)) {
+                            straightCount += 1;
+                        }
+
+                    }
+
+                }
+                if (straightCount === 3 || straightCount === 4) {
+
+                    if (handValues.indexOf("2") === -1 && handValues.indexOf("3") === -1 && handValues.indexOf("4") === -1 && handValues.indexOf("5") === -1) {
+                        var handIndex = handValues.indexOf("KING");
+                        if (handIndex !== (-1)) {
+                            straightCount += 1;
+                        }
+
+                        if (handValues.indexOf("10") !== -1 && handValues.indexOf("JACK") !== -1 && handValues.indexOf("QUEEN") !== -1 && handValues.indexOf("KING") !== -1) {
+                            hasHighestStraight = true;
+                        }
+                    }
+                }
+                if (straightCount === 4) {
+                    var handIndex = handValues.indexOf("ACE");
+                    if (handIndex !== (-1)) {
+                        straightCount += 1;
+
+
+
+                    }
+
+                }
+            }
+        }
+        if (straightCount === 5) {
+            handResult.result = "Straight";
+            hasStraight = true;
+        }
+        console.log("Straight Count is" + straightCount);
+        //END STRAIGHT CHECK 
+
+
+
+        //check for flush 
+        for (i = 0; i < handSuits.length; i++) {
+            if (handSuits[i] === handSuits[i + 1]) {
+                suitCount += 1;
+            }
+        }
+        if (suitCount === 5) {
+            handResult.result = "Flush";
+            hasFlush = true;
+        }
+
+
+
+
+        //check for Straight Flush
+        if (hasFlush === true && hasStraight === true) {
+            handResult.result = "Straight Flush";
+        }
+
+        //Check for Royal Flush
+        if (hasFlush === true && hasHighestStraight === true) {
+            handResult.result = "Royal Flush";
+        }
+
+        console.log(duplicateValues);
+        console.log(handResult.result);
+        console.log(duplicateCount);
+        console.log("Suit Count is" + suitCount);
+
+
+
+        return handResult;
     },
 
     displayNewCards: function() {
@@ -208,7 +660,7 @@ var game = {
         $("#buttonView").append("<button id='betOne' type='button' data-choice='betOne' class='playerChoiceButtons'>Bet One</button>");
         $("#buttonView").append("<button id='betMax' type='button' data-choice='betMax'  class='playerChoiceButtons'>Bet Max</button>");
         $("#buttonView").append("<button id='deal' type='button' data-choice='deal'  class='playerChoiceButtons'>Deal/Draw</button>");
-
+        game.updatePlayerScore();
         $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
             game.buttonAction();
@@ -261,6 +713,9 @@ var game = {
         $("#bet").html("Bet: " + game.bet);
         $("#paid").html("Paid: " + game.paid);
 
+
+    },
+    reset: function() {
 
     }
 
