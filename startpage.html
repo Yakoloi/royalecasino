@@ -22,6 +22,9 @@
   <!-- link to validate the input format -->
   <link rel="stylesheet" href="assets/css/bootstrapValidator.css">
   <script src="assets/javascript/bootstrapValidator.js"></script>
+  
+  <!-- link to javascript-->
+  <script src="assets/javascript/startpage.js"></script>
 
 </head>
 <body>
@@ -45,20 +48,20 @@
       <h3>Create Your Account</h3>
       <p>Enter your email address</br>and your password to join the fun!</p>
 
-      <input class="w100" type="email" placeholder="Your Email" required autocomplete='off' />
-      <input type="password" placeholder="Your Password" id="password" required />
+      <input id="email-sign-up" class="w100" type="email" placeholder="Your Email" required autocomplete='off' />
+      <input type="password" placeholder="Your Password" id="sign-up-password" required />
       <input type="password" placeholder="Confirm Password" id="confirm_password" required />
 
       <button class="form-btn sx log-in" type="button">Log In</button>
-      <button class="form-btn dx" type="submit">Sign Up</button>
+      <button id="sign-up" class="form-btn dx" type="submit">Sign Up</button>
     </form>
 
-    <form class="signIn">
+<!--    <form class="signIn">
       <h3>Welcome</br>Back !</h3>
       <button class="fb" type="button">Log In With Facebook</button>
-      <p>- or -</p>
+      <p>- or -</p>-->
 
-      <input type="email" placeholder="Your Email" autocomplete='off' required />
+      <input id="email-login" type="email" placeholder="Your Email" autocomplete='off' required />
       <input type="password" placeholder="Your Password" id="password" required />
 
       <button class="form-btn sx back" type="button">Sign Up</button>
@@ -77,7 +80,6 @@
 <script type="text/javascript">
 // first hide the login register page
 $('.login-container').hide();
-
 //click the start button
 	$('#startButton').on('click', function(){
         // $('body').css({
@@ -88,8 +90,6 @@ $('.login-container').hide();
         $('.blink').hide();
         $('.login-container').show();
       });
-
-
 //animation for the login/signup pannel
   $(".log-in").on('click', function(){
   $(".signIn").addClass("active-dx");
@@ -97,8 +97,6 @@ $('.login-container').hide();
   $(".signUp").removeClass("active-sx");
   $(".signIn").removeClass("inactive-dx");
   });
-
-
 //animation for the login/goback pannel
   $(".back").on('click', function(){
     $(".signUp").addClass("active-sx");
@@ -106,25 +104,19 @@ $('.login-container').hide();
     $(".signIn").removeClass("active-dx");
     $(".signUp").removeClass("inactive-sx");
   });
-
-
 //validate password matching
-  var password = document.getElementById("password")
+  var signUpPassword = document.getElementById("sign-up-password")
   var confirm_password = document.getElementById("confirm_password");
-
   function validatePassword(){
-    if(password.value != confirm_password.value) {
+    if(signUpPassword.value != confirm_password.value) {
       confirm_password.setCustomValidity("Passwords Don't Match");
     } 
     else {
       confirm_password.setCustomValidity('');
     }
   }
-
-  password.onchange = validatePassword;
+  signUpPassword.onchange = validatePassword;
   confirm_password.onkeyup = validatePassword;
-
-
 </script>
 
 
