@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>black jack table </title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- link to Bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- link to local style sheet-->
+	<link rel="stylesheet" href="assets/css/blackjack-test4.css">
+
+
+	<!-- link to the jQuery Library --> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+ 	<!-- LINK TO FIREBASE -->
+ 	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+ 	<!-- link to validate the input format -->
+	<link rel="stylesheet" href="assets/css/bootstrapValidator.css">
+ 	<script src="assets/javascript/bootstrapValidator.js"></script>
+</head>
+<body>
+<div class="container-fuild">
+	<div class="row text-center gamePanel">
+		
+		<div class="col-xs-6 col-xs-offset-3">
+			<div class="well" id="dealer">Dealer Hand</div>
+		</div>
+		
+		<div class="col-xs-6 col-xs-offset-3">
+			<div class="well" id="gameText">Game Text</div>
+		</div>
+
+		<div class="col-xs-6 col-xs-offset-3">
+			<div class="well" id="player">User Hand</div>
+		</div>
+		
+	</div>
+
+		
+	
+
+
+	<div class="row">
+		<div class="action text-center">
+		<!--=================== chips to bet ===================-->
+			<div class="col-xs-12 col-sm-4 text-center">
+				
+				<div class="row" id="chipBet">
+					<div class="col-xs-3">
+						<img src="assets/images/chip-1.png" class="img-responsive chips" id="chipOne"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-5.png" class="img-responsive chips" id="chipFive"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-10.png" class="img-responsive chips" id="chipTen"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-20.png" class="img-responsive chips" id="chipTweny"/>
+					</div>
+				</div>
+
+				
+			</div>
+
+			<!--=================== buttons ===================-->
+			<div class="col-xs-12 col-sm-4 text-center" >
+				<div class="row" id="buttonChoice">
+					<div class="col-xs-12"><button class="btn btn-md btn-responsive" id="dealCard">Deal</button></div>
+					<div class="col-xs-4 col-xs-offset-2"><button class="btn btn-md btn-responsive" id="hit">Hit</button></div>
+
+					<div class="col-xs-4"><button class="btn btn-md btn-responsive" id="stand">Stand</button></div>
+    			</div>
+			</div>
+			
+			<!--=================== cash/bet $$$$ ===================-->
+			<div class="col-xs-12 col-sm-3" >
+				<div id="money">
+					<p id="userMoney">Balance:</p>
+					<p id="betMoney">Bet:</p>
+					</ul>
+					
+				</div>	
+			</div>
+			<!--=================== music button ===================-->
+			<div class="col-xs-12 col-sm-1">
+				<div class="row">
+					<div class="col-xs-3 col-sm-hidden"></div>
+
+					<div class="col-xs-3 col-sm-12">
+						<img src="assets/images/music-on.png" class="img-responsive" id="musicOn"/>
+					</div>
+					
+					<div class="col-xs-3 col-sm-12">
+						<img src="assets/images/main-menu.png" class="img-responsive" id="main-menu"/>
+					</div>
+
+					<div class="col-xs-3 col-sm-hidden"></div>
+					
+				</div>	
+			</div>
+			
+		</div>
+	</div>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+$('#hit').hide();
+$('#stand').hide();
+
+	$('#dealCard').on('click', function(){
+		$('#hit').show();
+		$('#stand').show();
+		$('#dealCard').hide();
+	});
+
+	$('#musicOn').on('click', function(){
+		$('#musicOn').attr('src', 'assets/images/music-off.png');
+		
+	});
+
+
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
