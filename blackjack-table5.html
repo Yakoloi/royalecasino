@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<!-- link to local style sheet-->
-	<link rel="stylesheet" href="assets/css/blackjack-test3.css">
+	<link rel="stylesheet" href="assets/css/blackjack-test5.css">
 
 
 	<!-- link to the jQuery Library --> 
@@ -26,62 +26,68 @@
 </head>
 <body>
 <div class="container-fuild">
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3 gamePanel">
-			<div class="row text-center">
-				<div class="col-xs-12">
-					<div class="well" id="dealer">Dealer Hand</div>
-				</div>
-		
-				<div class="col-xs-12">
-					<div class="well" id="gameText">Game Text</div>
-				</div>
-
-				<div class="col-xs-12">
-					<div class="well" id="player">User Hand</div>
-				</div>
-			</div>
-
+	<div class="row text-center gamePanel">
+		<div class="col-xs-8 col-xs-offset-2">
+			<p class="" id="dealerScore"></p>
 		</div>
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="" id="dealerHand"></div>
+		</div>
+		
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="" id="gameText"><h4>&nbsp;</h4></div>
+		</div>
+
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="" id="handView"></div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2">
+			<p class="" id="playerScore"></p>
+		</div>
+		
 	</div>
+
+		
+	
 
 
 	<div class="row">
 		<div class="action text-center">
 		<!--=================== chips to bet ===================-->
 			<div class="col-xs-12 col-sm-4 text-center">
-				<div class="well">
-					<div class="row">
-						<div class="col-xs-3">
-							<img src="assets/images/chip-1.png" class="img-responsive chips" id="chipOne"/>
-						</div>
-						<div class="col-xs-3">
-							<img src="assets/images/chip-5.png" class="img-responsive chips" id="chipFive"/>
-						</div>
-						<div class="col-xs-3">
-							<img src="assets/images/chip-10.png" class="img-responsive chips" id="chipTen"/>
-						</div>
-						<div class="col-xs-3">
-							<img src="assets/images/chip-20.png" class="img-responsive chips" id="chipTweny"/>
-						</div>
+				
+				<div class="row" id="chipBet">
+					<div class="col-xs-3">
+						<img src="assets/images/chip-1.png" class="img-responsive chips" id="chipOne"/>
 					</div>
-
+					<div class="col-xs-3">
+						<img src="assets/images/chip-5.png" class="img-responsive chips" id="chipFive"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-10.png" class="img-responsive chips" id="chipTen"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-20.png" class="img-responsive chips" id="chipTweny"/>
+					</div>
 				</div>
+
+				
 			</div>
 
 			<!--=================== buttons ===================-->
-			<div class="col-xs-12 col-sm-3 text-center" >
-				<div class="well" id="buttonChoice">
-					<button class="btn btn-md btn-responsive" id="dealCard">Deal</button>
-					<button class="btn btn-md btn-responsive" id="hit">Hit</button>
-					<button class="btn btn-md btn-responsive" id="stand">Stand</button>
+			<div class="col-xs-12 col-sm-4 text-center" >
+				<div class="row" id="buttonView">
+					<!-- <div class="col-xs-12"><button class="btn btn-md btn-responsive" id="dealCards">Deal</button></div> -->
+					<!-- <div class="col-xs-4 col-xs-offset-2"><button class="btn btn-md btn-responsive" id="hit">Hit</button></div> -->
+
+					<!-- <div class="col-xs-4"><button class="btn btn-md btn-responsive" id="stand">Stand</button></div> -->
     			</div>
 			</div>
 			
 			<!--=================== cash/bet $$$$ ===================-->
-			<div class="col-xs-12 col-sm-4" >
-				<div class="well"  id="money">
-					<p id="userMoney">Balance:</p>
+			<div class="col-xs-12 col-sm-3" >
+				<div id="money">
+					<p id="playerChips">Balance:</p>
 					<p id="betMoney">Bet:</p>
 					</ul>
 					
@@ -114,27 +120,24 @@
 </div>
 
 <script type="text/javascript">
-$('#hit').hide();
-$('#stand').hide();
-
-	$('#dealCard').on('click', function(){
-		$('#hit').show();
-		$('#stand').show();
-		$('#dealCard').hide();
-	});
+//------------------------music/audio on/off -------------------//
+var isAudioOn = true;
 
 	$('#musicOn').on('click', function(){
+		if(isAudioOn === true){
 		$('#musicOn').attr('src', 'assets/images/music-off.png');
-		
+		isAudioOn = false;
+		}
+		else{
+		$('#musicOn').attr('src', 'assets/images/music-on.png')	
+		isAudioOn = true;
+		}
 	});
-
-
-
-
-
-
-
 </script>
+
+
+
+<script type="text/javascript" src="assets/javascript/blackJackTest-5.js"></script>
 
 </body>
 
