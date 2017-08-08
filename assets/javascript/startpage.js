@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var logUser = "";
-var name, email, photoUrl, uid, emailVerified;
+var name, email, bet, uid, chips;
 var userRef = database.ref("users/");
 var newUserRef;
 
@@ -20,11 +20,14 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         alert("loggedin");
         logUser = firebase.auth().currentUser;
+        uid = user.uid;
         name = user.displayName;
         email = user.email;
-        photoUrl = user.photoURL;
-        uid = user.uid;
-        newUserRef = database.ref("users/" + uid)
+        newUserRef = database.ref("users/" + uid);
+        chips = user.chips;
+        console.log("chips: " + chips)
+        bet = user.bet;
+
     } else {
         alert("No user is signed in.");
     }
@@ -72,12 +75,29 @@ $(document).ready(function () {
         });
     });
 
-    function newUserInit() {
-
-        newUserRef.set({
-            chips: 1000,
-            email: email,
-        });
-    }
-
 });
+
+function newUserInit() {
+
+    newUserRef.set({
+        chips: 1000,
+        email: email,
+        bet: 0,
+    });
+}
+
+var key;
+var childKey;
+
+function pullVariables() {
+/*    database.ref("users/" + uid + "/chips").set(500);
+    database.ref("users/" + uid + "/bet").set(0);
+
+    */
+    newUserRef.once("value").then(function(snapshot){
+        chips = snapshot.child("chips").val();
+        alert(chips);
+        
+        
+    })
+}
