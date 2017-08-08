@@ -1,0 +1,21 @@
+.panel {
+    border: 0;
+}
+
+.table > thead > tr > th, .table > thead > tr > td {
+    border: 0;
+}
+
+.panel-borderless {
+  border: 0;
+  box-shadow: none;
+}
+
+.panel, .panel-group .panel-heading+.panel-collapse>.panel-body {
+    border: none;
+}
+
+.panel-body {
+	border-top: 0 !important;
+}
+

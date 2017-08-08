@@ -3,12 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Blackjack Game</title>
+    <!-- Card Favicon -->
+    <link rel="shortcut icon" href="assets/images/Cards.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/Cards.ico" type="image/x-icon">
+    <title>Casino Royale</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+
 </head>
 
 <body>
@@ -16,23 +27,28 @@
         <!-- Jumbotron -->
         <div class="row">
             <div class="col-sm-12">
-                <div class="jumbotron text-center">
-                    <h2 id ="title" class="animated infinite flash">
-                    I'm not addicted to gambling. I'm addicted to sitting in a semi-circle!!!
-                </h2>
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Game Text</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="gameText"></div>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Dealer Hand -->
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-success text-center">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         Dealer Hand
                         </h3>
                     </div>
                     <div class="panel-body" id="dealerhand">
+                        <div id="dealerButtons"> </div>
+                        <div id="dealerHand"></div>
                     </div>
                 </div>
             </div>
@@ -40,13 +56,15 @@
         <!-- Player Hand -->
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-success text-center">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         Player Hand
                         </h3>
                     </div>
                     <div class="panel-body" id="playerhand">
+                        <div id="buttonView"> </div>
+                        <div id="handView"></div>
                     </div>
                 </div>
             </div>
@@ -54,7 +72,7 @@
         <!-- Actions Bar -->
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-success text-center">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         Actions
@@ -65,37 +83,37 @@
                             <ul id="actionbuttons">
                                 <li>
                                     <center>
-                                        <img src="assets/images/doubledown.png" width="80" height="80" class="img-circle" alt="doubledownicon">
+                                        <img id="btnsizing" src="assets/images/doubledown.png" class="img-circle" alt="doubledownicon">
                                         <br>
-                                        <button href="#" type="button" class="btn btn-info btnwidth">Double Down</button>
+                                        <button href="#" type="button" class="btn btn-danger btnwidth hvr-wobble-vertical">Double Down</button>
                                     </center>
                                 </li>
                                 <li>
                                     <center>
-                                        <img src="assets/images/split.png" width="80" height="80" class="img-circle" alt="spliticon">
+                                        <img id="btnsizing" src="assets/images/split.png" class="img-circle" alt="spliticon">
                                         <br>
-                                        <button href="#" type="button" class="btn btn-info btnwidth">Split</button>
+                                        <button href="#" type="button" class="btn btn-danger btnwidth hvr-wobble-vertical">Split</button>
                                     </center>
                                 </li>
                                 <li>
                                     <center>
-                                        <img src="assets/images/standing.png" width="80" height="80" class="img-circle" alt="standicon">
+                                        <img id="btnsizing" src="assets/images/standing.png" class="img-circle" alt="standicon">
                                         <br>
-                                        <button href="#" type="button" class="btn btn-info btnwidth">Stand</button>
+                                        <button href="#" type="button" class="btn btn-danger btnwidth hvr-wobble-vertical">Stand</button>
                                     </center>
                                 </li>
                                 <li>
                                     <center>
-                                        <img src="assets/images/hit.png" width="80" height="80" class="img-circle" alt="hiticon">
+                                        <img id="btnsizing" src="assets/images/hit.png" class="img-circle" alt="hiticon">
                                         <br>
-                                        <button href="#" type="button" class="btn btn-info btnwidth">Hit</button>
+                                        <button href="#" type="button" class="btn btn-danger btnwidth hvr-wobble-vertical">Hit</button>
                                     </center>
                                 </li>
                                 <li>
                                     <center>
-                                        <img src="assets/images/deal.png" width="80" height="80" class="img-circle" alt="dealicon">
+                                        <img id="btnsizing" src="assets/images/deal.png" class="img-circle" alt="dealicon">
                                         <br>
-                                        <button href="#" type="button" class="btn btn-info btnwidth">Deal</button>
+                                        <button href="#" type="button" class="btn btn-danger btnwidth hvr-wobble-vertical">Deal</button>
                                     </center>
                                 </li>
                             </ul>
@@ -109,6 +127,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Link to Moment.js should go here -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/blackjack.js"></script>
 </body>
 
 </html>
