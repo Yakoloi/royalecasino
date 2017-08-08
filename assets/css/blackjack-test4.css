@@ -37,7 +37,13 @@ p{
 	font-size: 22px;
 }
 
+.cards {
+/*	width: 200px;
+	height: 200px;*/
 
+	transform: scale(0.5);
+
+}
 .well{
 	background-color: rgba(0, 0, 0, 0.1);
 	border-color:transparent;
@@ -91,6 +97,24 @@ p{
 
 }
 
+
+.playerChoiceButtons{
+	padding: 10px 25px;
+	background-color: transparent;
+	border: 1px solid #fff;
+	color: #fff;
+	text-transform: uppercase;
+	
+}
+
+.playerChoiceButtons:hover, .playerChoiceButtons:focus {
+	background: linear-gradient(to right, #f37400, #fcba02);
+    border-color: transparent;
+	color: #fff;
+    outline: none;
+
+
+}
 
 
 

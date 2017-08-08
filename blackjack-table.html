@@ -29,7 +29,7 @@
 	<div class="row text-center gamePanel">
 		
 		<div class="col-xs-6 col-xs-offset-3">
-			<div class="well" id="dealer">Dealer Hand</div>
+			<div class="well" id="dealerHand">Dealer Hand</div>
 		</div>
 		
 		<div class="col-xs-6 col-xs-offset-3">
@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="col-xs-6 col-xs-offset-3">
-			<div class="well" id="player">User Hand</div>
+			<div class="well" id="handView">User Hand</div>
 		</div>
 		
 	</div>
@@ -71,18 +71,18 @@
 
 			<!--=================== buttons ===================-->
 			<div class="col-xs-12 col-sm-4 text-center" >
-				<div class="row" id="buttonChoice">
-					<div class="col-xs-12"><button class="btn btn-md btn-responsive" id="dealCard">Deal</button></div>
-					<div class="col-xs-4 col-xs-offset-2"><button class="btn btn-md btn-responsive" id="hit">Hit</button></div>
+				<div class="row" id="buttonView">
+					<!-- <div class="col-xs-12"><button class="btn btn-md btn-responsive" id="dealCards">Deal</button></div> -->
+<!-- 					<div class="col-xs-4 col-xs-offset-2"><button class="btn btn-md btn-responsive" id="hit">Hit</button></div>
 
-					<div class="col-xs-4"><button class="btn btn-md btn-responsive" id="stand">Stand</button></div>
+					<div class="col-xs-4"><button class="btn btn-md btn-responsive" id="stand">Stand</button></div> -->
     			</div>
 			</div>
 			
 			<!--=================== cash/bet $$$$ ===================-->
 			<div class="col-xs-12 col-sm-3" >
 				<div id="money">
-					<p id="userMoney">Balance:</p>
+					<p id="playerChips">Balance:</p>
 					<p id="betMoney">Bet:</p>
 					</ul>
 					
@@ -118,16 +118,16 @@
 $('#hit').hide();
 $('#stand').hide();
 
-	$('#dealCard').on('click', function(){
-		$('#hit').show();
-		$('#stand').show();
-		$('#dealCard').hide();
-	});
+	// $('#dealCard').on('click', function(){
+	// 	$('#hit').show();
+	// 	$('#stand').show();
+	// 	$('#dealCard').hide();
+	// });
 
-	$('#musicOn').on('click', function(){
-		$('#musicOn').attr('src', 'assets/images/music-off.png');
+	// $('#musicOn').on('click', function(){
+	// 	$('#musicOn').attr('src', 'assets/images/music-off.png');
 		
-	});
+	// });
 
 
 
@@ -136,7 +136,8 @@ $('#stand').hide();
 
 
 </script>
-
+    <!--- Javascript-->
+    <script type="text/javascript" src="assets/javascript/omarBlackJackTest.js"></script>
 </body>
 
 </html>
