@@ -1,0 +1,383 @@
+/*
+bright red: #d23a30
+mid red: #87201b;
+dark red: #35001c;
+pink: #e001be;
+yellow: #ffe769;
+dark yellow: #fcba02;
+orange: #f37400;
+fb blue: #3b5998;
+
+*/
+
+@import 'https://fonts.googleapis.com/css?family=Dosis|Roboto:300,400';
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+body {
+	/*font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;*/
+	background: url("../images/blackjack-table-2.png");
+	width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+h4{
+	text-align: center;;
+	color:#fff;
+	text-transform: uppercase;
+	font-size: 10px;
+
+	
+}
+
+p{
+	text-align: left;
+	color:#fff;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+
+
+p#dealerScore, p#playerScore{
+	font-size: 11px;
+	color: #fff;
+	text-align: center;
+	text-transform: capitalize;
+}
+
+p#dealerScore{
+	margin-bottom: -5px;
+}
+
+
+
+
+
+
+.cards {
+	width: 10%;
+	height: 10%;
+	margin-left: -20px;
+}
+
+/*.cards:first-child{
+	margin-left: 20px;
+}*/
+
+
+.well{
+	background-color: rgba(0, 0, 0, 0);
+	border: 0px;
+	margin-bottom: 15px;
+	padding: 0px;
+}
+
+.gamePanel{
+	margin-top: 5%;
+	height: 380px;
+}
+
+
+
+#dealerHand{
+	padding: 10px 0;
+}
+
+#gameText{
+	height: 20px;
+}
+
+#handView{
+	padding: 10px 0;
+}
+
+
+.action{
+	margin-top: 50%;
+	margin-left: 20px;
+	margin-right: 20px;
+
+}
+
+
+
+.btn{
+	padding: 10px 25px;
+	background-color: transparent;
+	border: 1px solid #fff;
+	color: #fff;
+	text-transform: uppercase;
+	
+}
+
+.btn:hover, .btn:focus {
+	background: linear-gradient(to right, #f37400, #fcba02);
+    border-color: transparent;
+	color: #fff;
+    outline: none;
+
+
+}
+
+
+.playerChoiceButtons{
+	margin-right:10px;
+}
+
+
+img.chips:hover{
+	transform: scale(1.4);
+	cursor: pointer;
+}
+
+img#musicOn{
+	width: 50%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 15px;
+}
+
+img#main-menu{
+	width: 50%;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+
+img#musicOn:hover, img#main-menu:hover{
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+
+#chipBet, #money, #buttonView{
+	margin-bottom: 40px;
+}
+
+#money, #buttonView{
+	padding-top: 6%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------MEDIA QUERIES-------------*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+	body{background: url("../images/blackjack-tablelong-2.png");
+	width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+	}
+
+	.cards {
+	width: 25%;
+	height: 25%;
+	margin-left: -40px;
+	}
+
+	img.cards:first-child{
+		margin-left: 0px;
+	}
+
+	.gamePanel{margin-top: 7%;}
+	.action{margin-top: -7%;}
+	#gameText{height: 20px;}
+	p{font-size: 20px};
+
+
+
+	
+
+	
+
+	
+}
+
+@media only screen and (min-width : 420px) {
+	.action{margin-top: 5%;}
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	.action{margin-top: 10%;}
+	.chips {transform: scale(0.6);}
+	img.chips:hover{transform: scale(0.9)}
+	
+}
+
+@media only screen and (min-width : 550px) {
+	.cards {
+	width: 22%;
+	height: 22%;
+	margin-left: -50px;
+	}
+	img.cards:first-child{
+		margin-left: 0px;
+	}
+
+	.action{margin-top: 15%;}
+
+}
+
+@media only screen and (min-width : 600px){
+	.action{margin-top: 22%;}
+}
+
+
+@media only screen and (min-width : 670px){
+	.action{margin-top: 30%;}
+	
+
+	
+}
+@media only screen and (min-width : 767px) {
+	p{font-size: 12px};
+}
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	.action{margin-top: 38%;}
+	.chips {transform: scale(1.3);}
+	img.chips:hover{transform: scale(1.8)}
+	#buttonView{transform: scale(0.7); padding:0px};
+	
+}
+
+
+
+@media only screen and (min-width : 850px){
+	body{background: url("../images/blackjack-table-2.png");
+	width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+	}
+
+	.cards {
+	width: 9%;
+	height: 9%;
+	margin-left: -40px;
+	}
+
+	img.card:first-child{
+		margin-left: 0;
+	}
+	
+	.action{margin-top: -5%;}
+	.gamePanel{margin-top: 5%;}
+
+	.chips {transform: scale(1);}
+	img.chips:hover{transform: scale(1.4)}
+	
+
+
+
+
+	
+
+}
+
+
+@media only screen and (min-width : 925px){
+	.action{margin-top: -2%;}
+	#buttonView{transform: scale(0.8); padding:10px;}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	.action{margin-top: 2%;}
+	
+	
+}
+
+@media only screen and (min-width : 1100px) {
+	.action{margin-top: 4%;}
+	#buttonView{transform: scale(0.9); padding:20px;}
+	p{font-size: 20px};
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	.action{margin-top: 7%;}
+	
+	#gameText{height: 20px;}
+}
+
+@media only screen and (min-width : 1336px) {
+	.action{margin-top: 12%;}
+}
+
+@media only screen and (min-width : 1600px) {
+	.action{margin-top: 15%;}
+}
+
+
+@media only screen and (min-width : 1800px) {
+	.action{margin-top: 18%;}
+}
+
+
+
+
+
+
+
+
+
+/* Custom, iPhone Retina */
+
+/* Extra small devices (portrait phones, less than 576px)*/
+/*@media (max-width: 575px) { ... }
+*/
+/*Small devices (landscape phones, 576px and up)*/
+/*@media (min-width: 576px) and (max-width: 767px) { ... }*/
+
+/*Medium devices (tablets, 768px and up)*/
+/*@media (min-width: 768px) and (max-width: 991px) { ... }*/
+
+/*Large devices (desktops, 992px and up)*/
+/*@media (min-width: 992px) and (max-width: 1199px) { ... }*/
+
+/*Extra large devices (large desktops, 1200px and up)*/
+/*@media (min-width: 1200px) { ... }*/
+
+
+
+
+
+
+
+
+
+
+
+
+

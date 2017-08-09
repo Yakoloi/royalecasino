@@ -117,5 +117,5 @@
      });
 
      alert("user is created");
-     window.location = '../groupProject/blackjack.html';
+     window.location = '../groupProject/blackjack-table.html';
  };

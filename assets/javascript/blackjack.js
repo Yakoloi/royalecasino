@@ -15,7 +15,7 @@ var name, email, currentBet, uid, chips;
 var userRef = database.ref("users/");
 var newUserRef;
 
-firebase.auth().onAuthStateChanged(function (user) {
+firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("user logged in")
         logUser = firebase.auth().currentUser;
@@ -32,7 +32,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function updateVariables() {
-    newUserRef.once("value").then(function (snapshot) {
+    newUserRef.once("value").then(function(snapshot) {
         chips = snapshot.child("chips").val();
         currentBet = snapshot.child("bet").val();
         console.log("chips: " + chips);
@@ -45,7 +45,7 @@ function updateVariables() {
 //Initialize start
 function init() {
     database.ref("users/" + uid + "/bet").set(0);
-    newUserRef.once("value").then(function (snapshot) {
+    newUserRef.once("value").then(function(snapshot) {
         chips = snapshot.child("chips").val();
         currentBet = snapshot.child("bet").val();
         console.log("chips: " + chips);
@@ -63,12 +63,12 @@ var deckObj = {
     queryURL: "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
     deck: [],
 
-    createDeck: function () {
+    createDeck: function() {
         $.ajax({
                 url: deckObj.queryURL,
                 method: "GET"
             })
-            .done(function (response) {
+            .done(function(response) {
                 deckID = response.deck_id;
 
                 deckObj.getDeck();
@@ -76,24 +76,48 @@ var deckObj = {
     },
 
 
-    getDeck: function () {
+    getDeck: function() {
         var queryURL6 = "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=52";
         $.ajax({
                 url: queryURL6,
                 method: "GET"
             })
-            .done(function (response) {
+            .done(function(response) {
 
                 deck = response.cards;
                 $("#buttonView").append("<button id='dealCards' type='button' class='btn btn-outline-primary'>Deal Cards</button>");
-                $("#dealCards").one('click', game.dealCards);
+                game.bet1();
+                $("#chipOne").on('click', function() {
+                                
+
+                    $("#dealCards").one('click', game.dealCards);
+                });
+                $("#chipFive").on('click', function() {
+                    game.bet5();
+
+                    $("#dealCards").one('click', game.dealCards);
+
+                });
+                $("#chipTen").on('click', function() {
+
+                    game.bet10();
+                    $("#dealCards").one('click', game.dealCards);
+
+                });
+                $("#chipTwenty").on('click', function() {
+
+
+                    game.bet20();
+                    $("#dealCards").on('click', game.dealCards);
+
+                });
                 $("#buttonView").append("<button class='playerChoiceButtons' data-choice='bet10' id='bet10' type='button' class='btn btn-outline-primary'>Bet 10</button>").one('click', game.bet10);
                 $("#buttonView").append("<button class='playerChoiceButtons' data-choice='bet50' id='bet50' type='button' class='btn btn-outline-primary'>Bet 50</button>").one('click', game.bet50);
 
             });
 
     },
-    playAgain: function () {
+    playAgain: function() {
 
         //reset everything
         $("#playerScore").html("Player Score: 0");
@@ -112,7 +136,7 @@ var deckObj = {
 
         deckObj.createDeck();
     },
-    gameOverDisplay: function () {
+    gameOverDisplay: function() {
         //display reset button
         $("#buttonView").html("");
         $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
@@ -128,7 +152,7 @@ var game = {
     playerCards: [],
     playerScore: 0,
 
-    drawCard: function () {
+    drawCard: function() {
         var card1ImgURL = deck[deck.length - 1].image;
         var card1Img = "<img src='" + card1ImgURL + "'</img>"
         $("#handView").append(card1Img)
@@ -140,7 +164,7 @@ var game = {
         deck.pop();
     },
 
-    dealCards: function () {
+    dealCards: function() {
         //get hand
         var card1ImgURL = deck[deck.length - 1].image;
         var card1Img = "<img src='" + card1ImgURL + "'</img>"
@@ -166,21 +190,21 @@ var game = {
 
 
     },
-    playerChoices: function () {
+    playerChoices: function() {
         game.buttonChoice = "";
         $("#buttonView").html("");
         $("#buttonView").append("<button class='playerChoiceButtons' data-choice='hit' id='hit' type='button' class='btn btn-outline-primary'>Hit</button>");
         $("#buttonView").append("<button class='playerChoiceButtons' data-choice='stand' id='stand' type='button' class='btn btn-outline-primary'>Stand</button>");
         $("#buttonView").append("<button class='playerChoiceButtons' data-choice='doubleDown' id='doubleDown' type='button' class='btn btn-outline-primary'>Double Down</button>");
 
-        $(".playerChoiceButtons").one('click', function () {
+        $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
             game.buttonAction()
 
         });
 
     },
-    buttonAction: function () {
+    buttonAction: function() {
         // game.buttonChoice = $(this).attr('data-choice');
         switch (game.buttonChoice) {
             case 'hit':
@@ -201,7 +225,7 @@ var game = {
                 break;
         }
     },
-    updatePlayerScore: function () {
+    updatePlayerScore: function() {
         game.playerScore = 0;
         var hasAce = false;
         var aceIndex;
@@ -248,29 +272,39 @@ var game = {
         console.log("Player score is " + game.playerScore);
 
     },
-    bet50: function () {
-        database.ref("users/" + uid + "/chips").set(chips - 50);
-        database.ref("users/" + uid + "/bet").set(+50);
+    bet1: function() {
+        database.ref("users/" + uid + "/chips").set(chips - 1);
+        database.ref("users/" + uid + "/bet").set(+1);
         updateVariables();
     },
-    bet10: function () {
+    bet5: function() {
+        database.ref("users/" + uid + "/chips").set(chips - 5);
+        database.ref("users/" + uid + "/bet").set(+5);
+        updateVariables();
+    },
+    bet10: function() {
         database.ref("users/" + uid + "/chips").set(chips - 10);
         database.ref("users/" + uid + "/bet").set(+10);
         updateVariables();
     },
-    doubleDown: function () {
+    bet20: function() {
+        database.ref("users/" + uid + "/chips").set(chips - 20);
+        database.ref("users/" + uid + "/bet").set(+20);
+        updateVariables();
+    },
+    doubleDown: function() {
         var double = currentBet + currentBet;
         database.ref("users/" + uid + "/chips").set(chips - double);
         database.ref("users/" + uid + "/bet").set(double);
         updateVariables();
     },
-    jackpot: function () {
+    jackpot: function() {
         var winnings = currentBet * 1.5;
         database.ref("users/" + uid + "/chips").set(chips + winnings);
         database.ref("users/" + uid + "/bet").set(0);
         updateVariables();
     },
-    split: function () {
+    split: function() {
         var split = currentBet;
         database.ref("users/" + uid + "/chips").set(chips + split);
         database.ref("users/" + uid + "/bet").set(0);
@@ -286,7 +320,7 @@ var dealer = {
     dealerScore: 0,
     dealerBustCheck: false,
 
-    drawCard: function () {
+    drawCard: function() {
         //get hand
 
         var card1ImgURL = deck[deck.length - 1].image;
@@ -304,7 +338,7 @@ var dealer = {
         dealer.updateDealerScore();
 
     },
-    updateDealerScore: function () {
+    updateDealerScore: function() {
         //start from zero
         dealer.dealerScore = 0;
 
@@ -361,7 +395,7 @@ var dealer = {
 
     },
 
-    dealerTurn: function () {
+    dealerTurn: function() {
         $("#gameText").html("<p> Dealer's turn!</p>");
         while (dealer.dealerScore <= 17) {
             dealer.drawCard();
@@ -371,7 +405,7 @@ var dealer = {
 
 
     },
-    endGame: function () {
+    endGame: function() {
         if (game.playerScore > dealer.dealerScore) {
             $("#gameText").html("<p> The player wins! Hit replay to play again! </p>");
             game.jackpot();
@@ -394,5 +428,3 @@ var dealer = {
 
     }
 }
-
-
