@@ -122,16 +122,25 @@
 <script type="text/javascript">
 //------------------------music/audio on/off -------------------//
 var isAudioOn = true;
+var click = document.createElement('audio');
+      click.setAttribute("src", "assets/images/click.mp3");
+
 
 	$('#musicOn').on('click', function(){
 		if(isAudioOn === true){
 		$('#musicOn').attr('src', 'assets/images/music-off.png');
 		isAudioOn = false;
+		// click.play();
 		}
 		else{
 		$('#musicOn').attr('src', 'assets/images/music-on.png')	
 		isAudioOn = true;
+		click.play();
 		}
+	});
+
+	$('.chips').on('click', function(){
+		click.play();
 	});
 </script>
 

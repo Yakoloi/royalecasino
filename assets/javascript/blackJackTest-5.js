@@ -1,3 +1,12 @@
+// audio click sound
+var audio = document.createElement('audio');
+    audio.setAttribute("src", "assets/images/cardsound.mp3");
+
+var click = document.createElement('audio');
+    click.setAttribute("src", "assets/images/click.mp3");
+
+
+
 var deckObj = {
 
     deckID: "",
@@ -27,7 +36,10 @@ var deckObj = {
 
                 deck = response.cards;
                 $("#buttonView").append("<button id='dealCards' type='button' class='btn btn-md'>Deal Cards</button>");
-                $("#dealCards").one('click', game.dealCards);
+                $("#dealCards").one('click', game.dealCards)
+                $("#dealCards").one('click', function(){
+                    audio.play();
+                });
 
 
             });
@@ -57,6 +69,9 @@ var deckObj = {
         $("#buttonView").html("");
         $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-md'>Play Again</button>");
         $("#playAgain").one('click', deckObj.playAgain);
+        $("#playAgain").one('click', function(){
+            click.play();
+        });
     }
 
 
@@ -89,6 +104,8 @@ var game = {
         var card2Img = "<img class='cards' src='" + card2ImgURL + "'</img>"
         $("#handView").append(card2Img)
 
+        
+
 
         //Adding cards to array with suit and card value
         game.playerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value]);
@@ -116,6 +133,7 @@ var game = {
         $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
             game.buttonAction()
+            audio.play();
 
         });
 
