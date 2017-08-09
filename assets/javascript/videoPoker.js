@@ -194,19 +194,19 @@ var game = {
         //two pair
         if (handLogicReturn.result === "Two Pair") {
             if (currentBet === 1) {
-                paidpaidpaidpaidpaidpaid = 2;
+                paid = 2;
             }
             if (currentBet === 2) {
-                paidpaidpaidpaidpaidpaid = 4;
+                paid = 4;
             }
             if (currentBet === 3) {
-                paidpaidpaidpaidpaidpaid = 6;
+                paid = 6;
             }
             if (currentBet === 4) {
-                paidpaidpaidpaidpaidpaid = 8;
+                paid = 8;
             }
             if (currentBet === 5) {
-                paidpaidpaidpaidpaidpaid = 10;
+                paid = 10;
             }
         }
 
@@ -234,56 +234,56 @@ var game = {
         //Straight
         if (handLogicReturn.result === "Straight") {
             if (currentBet === 1) {
-                paidpaidpaidpaid = 4;
+                paid = 4;
             }
             if (currentBet === 2) {
-                paidpaidpaidpaid = 8;
+                paid = 8;
             }
             if (currentBet === 3) {
-                paidpaidpaidpaid = 12;
+                paid = 12;
             }
             if (currentBet === 4) {
-                paidpaidpaidpaid = 16;
+                paid = 16;
             }
             if (currentBet === 5) {
-                paidpaidpaidpaid = 20;
+                paid = 20;
             }
         }
 
         //flush 
         if (handLogicReturn.result === "Flush") {
             if (currentBet === 1) {
-                paidpaidpaid = 6;
+                paid = 6;
             }
             if (currentBet === 2) {
-                paidpaidpaid = 12;
+                paid = 12;
             }
             if (currentBet === 3) {
-                paidpaidpaid = 18;
+                paid = 18;
             }
             if (currentBet === 4) {
-                paidpaidpaid = 24;
+                paid = 24;
             }
             if (currentBet === 5) {
-                paidpaidpaid = 30;
+                paid = 30;
             }
         }
         //full house
         if (handLogicReturn.result === "Full House") {
             if (currentBet === 1) {
-                paidpaid = 9;
+                paid = 9;
             }
             if (currentBet === 2) {
-                paidpaid = 18;
+                paid = 18;
             }
             if (currentBet === 3) {
-                paidpaid = 27;
+                paid = 27;
             }
             if (currentBet === 4) {
-                paidpaid = 36;
+                paid = 36;
             }
             if (currentBet === 5) {
-                paidpaid = 45;
+                paid = 45;
             }
         }
         //4 of a kind 
@@ -325,19 +325,19 @@ var game = {
         //Royal Flush
         if (handLogicReturn.result === "Royal Flush") {
             if (currentBet === 1) {
-                paidpaid = 250;
+                paid = 250;
             }
             if (currentBet === 2) {
-                paidpaid = 500;
+                paid = 500;
             }
             if (currentBet === 3) {
-                paidpaid = 750;
+                paid = 750;
             }
             if (currentBet === 4) {
-                paidpaid = 1000;
+                paid = 1000;
             }
             if (currentBet === 5) {
-                paidpaid = 4000;
+                paid = 4000;
             }
 
 
