@@ -17,12 +17,12 @@ $(document).ready(function () {
 
 
     database.ref("users/bet").set(0);
-    database.ref().once("value").then(function (snapshot) {
+    database.ref().on("value").then(function (snapshot) {
         var tempuser = snapshot.val().users;
 
-        database.ref().on("value", function (snapshot) {
-            tempuser = snapshot.val().users;
-        });
+        // database.ref().on("value", function (snapshot) {
+        //     tempuser = snapshot.val().users;
+        // });
 
 
 

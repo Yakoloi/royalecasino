@@ -1,15 +1,61 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDx2Q4c27zp0bwaoTpishDh5yRQWL8H60w",
+    authDomain: "groupproject1-624dd.firebaseapp.com",
+    databaseURL: "https://groupproject1-624dd.firebaseio.com",
+    projectId: "groupproject1-624dd",
+    storageBucket: "groupproject1-624dd.appspot.com",
+    messagingSenderId: "696725330630"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+var logUser = "";
+var name, email, currentBet, uid, chips, paid;
+var userRef = database.ref("users/");
+var newUserRef;
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        console.log("user logged in")
+        logUser = firebase.auth().currentUser;
+        name = user.displayName;
+        email = user.email;
+        uid = user.uid;
+        newUserRef = database.ref("users/" + uid);
+        deckObj.createDeck();
+        console.log("variable reset")
+    } else {
+        alert("No user is signed in.");
+    }
+});
+
+function updateVariables() {
+    newUserRef.once("value").then(function (snapshot) {
+        chips = snapshot.child("chips").val();
+        paid = snapshot.child("paid").val();
+        currentBet = snapshot.child("bet").val();
+        console.log("chips: " + chips);
+        console.log("currentBet: " + currentBet);
+        $("#playerChips").html("Player Chips: " + chips);
+        $("#bet").html("Bet: " + currentBet);
+        $("#paid").html("Paid: " + paid);
+    })
+}
+
+
 var deckObj = {
 
     deckID: "",
     queryURL: "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
     deck: [],
 
-    createDeck: function() {
+    createDeck: function () {
         $.ajax({
                 url: deckObj.queryURL,
                 method: "GET"
             })
-            .done(function(response) {
+            .done(function (response) {
                 deckID = response.deck_id;
 
                 deckObj.getDeck();
@@ -17,13 +63,13 @@ var deckObj = {
     },
 
 
-    getDeck: function() {
+    getDeck: function () {
         var queryURL6 = "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=52";
         $.ajax({
                 url: queryURL6,
                 method: "GET"
             })
-            .done(function(response) {
+            .done(function (response) {
 
                 deck = response.cards;
 
@@ -34,11 +80,10 @@ var deckObj = {
             });
 
     },
-    playAgain: function() {
+    playAgain: function () {
 
         //Reset Everything
         $("#playerScore").html("Player Score: 0");
-        $("#playerChips").html("Player Chips: 0");
         $("#dealerScore").html("Dealer Score: 0");
         $("#buttonView").html("");
         $("#handView").html("");
@@ -56,7 +101,7 @@ var deckObj = {
 
         deckObj.createDeck();
     },
-    gameOverDisplay: function() {
+    gameOverDisplay: function () {
         //display reset button
         $("#buttonView").html("");
         $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
@@ -79,11 +124,7 @@ var game = {
         [],
         []
     ],
-    chips: 100,
-    bet: 1,
-    paid: 0,
-
-    drawCards: function() {
+    drawCards: function () {
         $("#handView").html("");
         var nonHoldCardCount = 0;
         for (i = 0; i < game.indexOfHoldCards.length; i++) {
@@ -127,192 +168,195 @@ var game = {
 
     },
 
-    payOut: function() {
+    payOut: function () {
         var handLogicReturn = game.handLogic();
 
         //one pair
         if (handLogicReturn.result === "One Pair" && handLogicReturn.isJackOrBetter === true) {
-            if (game.bet === 1) {
-                game.paid = 1;
+            if (currentBet === 1) {
+                paid = 1;
             }
-            if (game.bet === 2) {
-                game.paid = 2;
+            if (currentBet === 2) {
+                paid = 2;paidpaidpaidpaidpaidpaid
             }
-            if (game.bet === 3) {
-                game.paid = 3;
+            if (currentBet === 3) {
+                paid = 3;
             }
-            if (game.bet === 4) {
-                game.paid = 4;
+            if (currentBet === 4) {
+                paid = 4;
             }
-            if (game.bet === 5) {
-                game.paid = 5;
+            if (currentBet === 5) {
+                paid = 5;
             }
 
         }
 
         //two pair
         if (handLogicReturn.result === "Two Pair") {
-            if (game.bet === 1) {
-                game.paid = 2;
+            if (currentBet === 1) {
+                paidpaidpaidpaidpaidpaid = 2;
             }
-            if (game.bet === 2) {
-                game.paid = 4;
+            if (currentBet === 2) {
+                paidpaidpaidpaidpaidpaid = 4;
             }
-            if (game.bet === 3) {
-                game.paid = 6;
+            if (currentBet === 3) {
+                paidpaidpaidpaidpaidpaid = 6;
             }
-            if (game.bet === 4) {
-                game.paid = 8;
+            if (currentBet === 4) {
+                paidpaidpaidpaidpaidpaid = 8;
             }
-            if (game.bet === 5) {
-                game.paid = 10;
+            if (currentBet === 5) {
+                paidpaidpaidpaidpaidpaid = 10;
             }
         }
 
 
         //three of a kind 
         if (handLogicReturn.result === "Three Of A Kind") {
-            if (game.bet === 1) {
-                game.paid = 3;
+            if (currentBet === 1) {
+                paidpaidpaidpaidpaid = 3;
             }
-            if (game.bet === 2) {
-                game.paid = 6;
+            if (currentBet === 2) {
+                paidpaidpaidpaidpaid = 6;
             }
-            if (game.bet === 3) {
-                game.paid = 9;
+            if (currentBet === 3) {
+                paidpaidpaidpaidpaid = 9;
             }
-            if (game.bet === 4) {
-                game.paid = 12;
+            if (currentBet === 4) {
+                paidpaidpaidpaidpaid = 12;
             }
-            if (game.bet === 5) {
-                game.paid = 15;
+            if (currentBet === 5) {
+                paidpaidpaidpaidpaid = 15;
             }
         }
 
 
         //Straight
         if (handLogicReturn.result === "Straight") {
-            if (game.bet === 1) {
-                game.paid = 4;
+            if (currentBet === 1) {
+                paidpaidpaidpaid = 4;
             }
-            if (game.bet === 2) {
-                game.paid = 8;
+            if (currentBet === 2) {
+                paidpaidpaidpaid = 8;
             }
-            if (game.bet === 3) {
-                game.paid = 12;
+            if (currentBet === 3) {
+                paidpaidpaidpaid = 12;
             }
-            if (game.bet === 4) {
-                game.paid = 16;
+            if (currentBet === 4) {
+                paidpaidpaidpaid = 16;
             }
-            if (game.bet === 5) {
-                game.paid = 20;
+            if (currentBet === 5) {
+                paidpaidpaidpaid = 20;
             }
         }
 
         //flush 
         if (handLogicReturn.result === "Flush") {
-            if (game.bet === 1) {
-                game.paid = 6;
+            if (currentBet === 1) {
+                paidpaidpaid = 6;
             }
-            if (game.bet === 2) {
-                game.paid = 12;
+            if (currentBet === 2) {
+                paidpaidpaid = 12;
             }
-            if (game.bet === 3) {
-                game.paid = 18;
+            if (currentBet === 3) {
+                paidpaidpaid = 18;
             }
-            if (game.bet === 4) {
-                game.paid = 24;
+            if (currentBet === 4) {
+                paidpaidpaid = 24;
             }
-            if (game.bet === 5) {
-                game.paid = 30;
+            if (currentBet === 5) {
+                paidpaidpaid = 30;
             }
         }
         //full house
         if (handLogicReturn.result === "Full House") {
-            if (game.bet === 1) {
-                game.paid = 9;
+            if (currentBet === 1) {
+                paidpaid = 9;
             }
-            if (game.bet === 2) {
-                game.paid = 18;
+            if (currentBet === 2) {
+                paidpaid = 18;
             }
-            if (game.bet === 3) {
-                game.paid = 27;
+            if (currentBet === 3) {
+                paidpaid = 27;
             }
-            if (game.bet === 4) {
-                game.paid = 36;
+            if (currentBet === 4) {
+                paidpaid = 36;
             }
-            if (game.bet === 5) {
-                game.paid = 45;
+            if (currentBet === 5) {
+                paidpaid = 45;
             }
         }
         //4 of a kind 
         if (handLogicReturn.result === "Four Of A Kind") {
-            if (game.bet === 1) {
-                game.paid = 25;
+            if (currentBet === 1) {
+                paid = 25;
             }
-            if (game.bet === 2) {
-                game.paid = 50;
+            if (currentBet === 2) {
+                paid = 50;
             }
-            if (game.bet === 3) {
-                game.paid = 75;
+            if (currentBet === 3) {
+                paid = 75;
             }
-            if (game.bet === 4) {
-                game.paid = 100;
+            if (currentBet === 4) {
+                paid = 100;
             }
-            if (game.bet === 5) {
-                game.paid = 125;
+            if (currentBet === 5) {
+                paid = 125;
             }
         }
         //straight flush
         if (handLogicReturn.result === "Straight Flush") {
-            if (game.bet === 1) {
-                game.paid = 50;
+            if (currentBet === 1) {
+                paid = 50;
             }
-            if (game.bet === 2) {
-                game.paid = 100;
+            if (currentBet === 2) {
+                paid = 100;
             }
-            if (game.bet === 3) {
-                game.paid = 150;
+            if (currentBet === 3) {
+                paid = 150;
             }
-            if (game.bet === 4) {
-                game.paid = 200;
+            if (currentBet === 4) {
+                paid = 200;
             }
-            if (game.bet === 5) {
-                game.paid = 250;
+            if (currentBet === 5) {
+                paid = 250;
             }
         }
         //Royal Flush
         if (handLogicReturn.result === "Royal Flush") {
-            if (game.bet === 1) {
-                game.paid = 250;
+            if (currentBet === 1) {
+                paidpaid = 250;
             }
-            if (game.bet === 2) {
-                game.paid = 500;
+            if (currentBet === 2) {
+                paidpaid = 500;
             }
-            if (game.bet === 3) {
-                game.paid = 750;
+            if (currentBet === 3) {
+                paidpaid = 750;
             }
-            if (game.bet === 4) {
-                game.paid = 1000;
+            if (currentBet === 4) {
+                paidpaid = 1000;
             }
-            if (game.bet === 5) {
-                game.paid = 4000;
+            if (currentBet === 5) {
+                paidpaid = 4000;
             }
 
 
         }
         if (handLogicReturn.result === "One Pair" && handLogicReturn.isJackOrBetter === true) {
+            var winPay = chips + paid;
             $("#gameText").html("The Player's Hand: " + handLogicReturn.result);
-            $("#gameText").append("<p> You won " + game.paid + ". Click Play Again to play again!</p>");
-            game.chips += game.paid;
+            $("#gameText").append("<p> You won " + paid + ". Click Play Again to play again!</p>");
+            database.ref("users/" + uid + "/chips").set(winPay);
         } else if (handLogicReturn.result != "" && handLogicReturn.result !== "One Pair") {
+            var pairPay = chips + paid;
             $("#gameText").html("The Player's Hand: " + handLogicReturn.result);
-            $("#gameText").append("<p> You won " + game.paid + ". Click Play Again to play again!</p>");
-            game.chips += game.paid;
+            $("#gameText").append("<p> You won " + paid + ". Click Play Again to play again!</p>");
+            database.ref("users/" + uid + "/chips").set(pairPay);
         } else {
+            var chipsMinusBet = chips - currentBet;
             $("#gameText").html("You lose!");
             $("#gameText").append("<p>Click Play Again to play again!</p>");
-            game.chips -= game.bet;
+            database.ref("users/" + uid + "/chips").set(chipsMinusBet);
         }
 
 
@@ -320,7 +364,7 @@ var game = {
         deckObj.gameOverDisplay();
 
     },
-    handLogic: function() {
+    handLogic: function () {
         var pairCount = 0;
         var suitCount = 1;
         var straightCount = 1;
@@ -586,7 +630,7 @@ var game = {
         return handResult;
     },
 
-    displayNewCards: function() {
+    displayNewCards: function () {
 
         for (i = 0; i < game.playerCards2.length; i++) {
             var cardImgURL = game.playerCards2[i][2];
@@ -596,7 +640,7 @@ var game = {
 
     },
 
-    dealCards: function() {
+    dealCards: function () {
         //get hand
         $("#handView").html("");
         var card1ImgURL = deck[deck.length - 1].image;
@@ -639,21 +683,21 @@ var game = {
         // game.updatePlayerScore();
         // game.playerChoices();
 
-        $(".holdButton").on("click", function() {
+        $(".holdButton").on("click", function () {
             game.holdIndex = $(this).attr('data-index');
             game.holdCards();
         });
-        $("#deal").one("click", function() {
+        $("#deal").one("click", function () {
             game.drawCards();
         });
 
     },
-    holdCards: function() {
+    holdCards: function () {
         var trackDoubles = [];
         game.indexOfHoldCards.push(game.holdIndex);
 
     },
-    playerChoices: function() {
+    playerChoices: function () {
         game.buttonChoice = "";
 
         $("#buttonView").html("");
@@ -661,19 +705,19 @@ var game = {
         $("#buttonView").append("<button id='betMax' type='button' data-choice='betMax'  class='playerChoiceButtons'>Bet Max</button>");
         $("#buttonView").append("<button id='deal' type='button' data-choice='deal'  class='playerChoiceButtons'>Deal/Draw</button>");
         game.updatePlayerScore();
-        $(".playerChoiceButtons").one('click', function() {
+        $(".playerChoiceButtons").one('click', function () {
             game.buttonChoice = $(this).attr('data-choice');
             game.buttonAction();
 
         });
 
     },
-    buttonAction: function() {
+    buttonAction: function () {
         // game.buttonChoice = $(this).attr('data-choice');
         switch (game.buttonChoice) {
             case 'betOne':
-                if (game.bet <= 4) {
-                    game.bet += 1;
+                if (currentBet <= 4) {
+                    database.ref("users/" + uid + "/bet").set(currentBet += 1);
                     game.updatePlayerScore();
                     game.playerChoices();
 
@@ -686,8 +730,8 @@ var game = {
 
                 break;
             case 'betMax':
-                if (game.bet <= 4) {
-                    game.bet = 5;
+                if (currentBet <= 4) {
+                    database.ref("users/" + uid + "/bet").set(5);
                     game.updatePlayerScore();
                     game.playerChoices();
 
@@ -708,14 +752,12 @@ var game = {
 
         }
     },
-    updatePlayerScore: function() {
-        $("#playerChips").html("Player Chips: " + game.chips);
-        $("#bet").html("Bet: " + game.bet);
-        $("#paid").html("Paid: " + game.paid);
-
-
+    updatePlayerScore: function () {
+        newUserRef.once("value").then(function (snapshot) {
+            updateVariables();
+        })
     },
-    reset: function() {
+    reset: function () {
 
     }
 
