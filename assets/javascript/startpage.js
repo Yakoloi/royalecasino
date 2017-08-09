@@ -11,7 +11,7 @@
 
  var database = firebase.database();
  var logUser = "";
- var name, email, bet, uid, chips;
+ var name, email, bet, uid, chips, paid;
  var userRef = database.ref("users/");
  var newUserRef;
 
@@ -80,6 +80,7 @@
              chips: 1000,
              email: email,
              bet: 0,
+             paid: 0
          });
 
          alert("user is created")
