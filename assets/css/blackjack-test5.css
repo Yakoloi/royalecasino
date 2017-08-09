@@ -135,6 +135,25 @@ p#dealerScore{
 }
 
 
+.playerChoiceButtons{
+	padding: 10px 25px;
+	background-color: transparent;
+	border: 1px solid #fff;
+	color: #fff;
+	text-transform: uppercase;
+	
+}
+
+.playerChoiceButtons:hover, .playerChoiceButtons:focus {
+	background: linear-gradient(to right, #f37400, #fcba02);
+    border-color: transparent;
+	color: #fff;
+    outline: none;
+
+
+}
+
+
 img.chips:hover{
 	transform: scale(1.4);
 	cursor: pointer;

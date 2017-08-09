@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var logUser = "";
-var name, email, currentBet, uid, chips;
+var name, email, currentBet, uid //,chips
 var userRef = database.ref("users/");
 var newUserRef;
 
@@ -33,12 +33,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function updateVariables() {
     newUserRef.once("value").then(function(snapshot) {
-        chips = snapshot.child("chips").val();
-        currentBet = snapshot.child("bet").val();
-        console.log("chips: " + chips);
-        console.log("currentBet: " + currentBet);
-        $("#playerChips").html("Player Chips: " + chips);
-        $("#bet").html("Bet: " + currentBet);
+        game.playerChips = snapshot.child("chips").val();
+        game.playerBet = snapshot.child("bet").val();
+        console.log("chips: " + game.playerChips);
+        console.log("currentBet: " + game.playerBet);
+        $("#playerChips").html("Player Chips: " + game.playerChips);
+        $("#betMoney").html("Bet: " + game.playerBet);
     })
 }
 
@@ -46,12 +46,12 @@ function updateVariables() {
 function init() {
     database.ref("users/" + uid + "/bet").set(0);
     newUserRef.once("value").then(function(snapshot) {
-        chips = snapshot.child("chips").val();
-        currentBet = snapshot.child("bet").val();
-        console.log("chips: " + chips);
-        console.log("currentBet: " + currentBet);
-        $("#playerChips").html("Player Chips: " + chips);
-        $("#bet").html("Bet: " + currentBet)
+        game.playerChips = snapshot.child("chips").val();
+        game.playerBet = snapshot.child("bet").val();
+        console.log("chips: " + game.playerChips);
+        console.log("currentBet: " + game.playerBet);
+        $("#playerChips").html("Player Chips: " + game.playerChips);
+        $("#bet").html("Bet: " + game.playerBet)
         $("#gameText").html("<p>Welcome " + logUser.email + "</p>");
 
     })
@@ -86,33 +86,44 @@ var deckObj = {
 
                 deck = response.cards;
                 $("#buttonView").append("<button id='dealCards' type='button' class='btn btn-outline-primary'>Deal Cards</button>");
-                game.bet1();
                 $("#chipOne").on('click', function() {
-                                
+                    game.betFunction(1);
+                    $("#chipTwenty").off('click');
+                    $("#chipOne").off('click');
+                    $("#chipFive").off('click');
+                    $("#chipTen").off('click');
 
-                    $("#dealCards").one('click', game.dealCards);
                 });
                 $("#chipFive").on('click', function() {
-                    game.bet5();
-
-                    $("#dealCards").one('click', game.dealCards);
-
+                    game.betFunction(5);
+                    $("#chipTwenty").off('click');
+                    $("#chipOne").off('click');
+                    $("#chipFive").off('click');
+                    $("#chipTen").off('click');
                 });
                 $("#chipTen").on('click', function() {
 
-                    game.bet10();
-                    $("#dealCards").one('click', game.dealCards);
-
+                    game.betFunction(10);
+                    $("#chipTwenty").off('click');
+                    $("#chipOne").off('click');
+                    $("#chipFive").off('click');
+                    $("#chipTen").off('click');
                 });
                 $("#chipTwenty").on('click', function() {
 
-
-                    game.bet20();
-                    $("#dealCards").on('click', game.dealCards);
+                    game.betFunction(20);
+                    $("#chipTwenty").off('click');
+                    $("#chipOne").off('click');
+                    $("#chipFive").off('click');
+                    $("#chipTen").off('click');
 
                 });
-                $("#buttonView").append("<button class='playerChoiceButtons' data-choice='bet10' id='bet10' type='button' class='btn btn-outline-primary'>Bet 10</button>").one('click', game.bet10);
-                $("#buttonView").append("<button class='playerChoiceButtons' data-choice='bet50' id='bet50' type='button' class='btn btn-outline-primary'>Bet 50</button>").one('click', game.bet50);
+
+                //     $(".img-responsive chips").one('click', function() {
+                //         game.betFunction(20)
+                // });
+
+                $("#dealCards").one('click', game.dealCards);
 
             });
 
@@ -151,10 +162,12 @@ var game = {
     buttonChoice: "",
     playerCards: [],
     playerScore: 0,
+    playerBet: 0,
+    playerChips,
 
     drawCard: function() {
         var card1ImgURL = deck[deck.length - 1].image;
-        var card1Img = "<img src='" + card1ImgURL + "'</img>"
+        var card1Img = "<img class='cards' src='" + card1ImgURL + "'</img>"
         $("#handView").append(card1Img)
 
         //Adding cards to array with suit and card value
@@ -165,12 +178,13 @@ var game = {
     },
 
     dealCards: function() {
+        $(".playerChoiceButtons").off('click');
         //get hand
         var card1ImgURL = deck[deck.length - 1].image;
-        var card1Img = "<img src='" + card1ImgURL + "'</img>"
+        var card1Img = "<img class='cards' src='" + card1ImgURL + "'</img>"
         $("#handView").append(card1Img)
         var card2ImgURL = deck[deck.length - 2].image;
-        var card2Img = "<img src='" + card2ImgURL + "'</img>"
+        var card2Img = "<img class='cards' src='" + card2ImgURL + "'</img>"
         $("#handView").append(card2Img)
 
 
@@ -199,7 +213,7 @@ var game = {
 
         $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
-            game.buttonAction()
+            game.buttonAction();
 
         });
 
@@ -230,6 +244,7 @@ var game = {
         var hasAce = false;
         var aceIndex;
         var numWithoutAce = 0;
+        var currentBet = 0;
         for (i = 0; i < game.playerCards.length; i++) {
             var num = parseInt((game.playerCards[i])[1]) || 10;
             if (game.playerCards[i][1] === "ACE") {
@@ -272,44 +287,52 @@ var game = {
         console.log("Player score is " + game.playerScore);
 
     },
-    bet1: function() {
-        database.ref("users/" + uid + "/chips").set(chips - 1);
-        database.ref("users/" + uid + "/bet").set(+1);
-        updateVariables();
-    },
-    bet5: function() {
-        database.ref("users/" + uid + "/chips").set(chips - 5);
-        database.ref("users/" + uid + "/bet").set(+5);
-        updateVariables();
-    },
-    bet10: function() {
-        database.ref("users/" + uid + "/chips").set(chips - 10);
-        database.ref("users/" + uid + "/bet").set(+10);
-        updateVariables();
-    },
-    bet20: function() {
-        database.ref("users/" + uid + "/chips").set(chips - 20);
-        database.ref("users/" + uid + "/bet").set(+20);
+    betFunction: function(x) {
+        game.playerChips += game.playerBet;
+        game.playerBet = x;
+        database.ref("users/" + uid + "/chips").set(game.playerChips - x);
+        database.ref("users/" + uid + "/bet").set(+x);
         updateVariables();
     },
     doubleDown: function() {
-        var double = currentBet + currentBet;
-        database.ref("users/" + uid + "/chips").set(chips - double);
+        var double = currentBet * 2;
+        database.ref("users/" + uid + "/chips").set(chips - double / 2);
         database.ref("users/" + uid + "/bet").set(double);
         updateVariables();
     },
-    jackpot: function() {
-        var winnings = currentBet * 1.5;
-        database.ref("users/" + uid + "/chips").set(chips + winnings);
-        database.ref("users/" + uid + "/bet").set(0);
+    payOut: function(x) {
+
+        switch (x) {
+            case "Win":
+                var winnings = game.playerBet * 1.5 + game.playerBet;
+
+                database.ref("users/" + uid + "/chips").set(game.playerChips + winnings);
+                database.ref("users/" + uid + "/bet").set(0);
+                $("#gameText").html("<p> Congratulations, you won this hand! You won a total of " + winnings + "(including your bet) chips. Hit replay to play again! </p>");
+                break;
+
+
+
+            case "dealerBust":
+                var winnings = game.playerBet * 1.5 + game.playerBet;
+
+                database.ref("users/" + uid + "/chips").set(game.playerChips + winnings);
+                database.ref("users/" + uid + "/bet").set(0);
+                $("#gameText").html("<p> Congratulations, you won this hand because the Dealer busted! You won a total of " + winnings + "(including your bet) chips. Hit replay to play again! </p>");
+                break;
+            case "Lose":
+                database.ref("users/" + uid + "/chips").set(game.playerChips - game.playerBet);
+                database.ref("users/" + uid + "/bet").set(0);
+                $("#gameText").html("<p> You lost the hand! You lost a total of " + game.playerBet + " chips. Hit replay to play again! </p>");
+
+                break;
+
+            case "Tie":
+                $("#gameText").html("<p> Tie game! You lost nothing. Hit replay to play again! </p>");
+                break;
+        }
         updateVariables();
     },
-    split: function() {
-        var split = currentBet;
-        database.ref("users/" + uid + "/chips").set(chips + split);
-        database.ref("users/" + uid + "/bet").set(0);
-        updateVariables();
-    }
 
 }
 
@@ -324,7 +347,7 @@ var dealer = {
         //get hand
 
         var card1ImgURL = deck[deck.length - 1].image;
-        var card1Img = "<img src='" + card1ImgURL + "'</img>"
+        var card1Img = "<img class='cards' src='" + card1ImgURL + "'</img>"
         $("#dealerHand").append(card1Img)
 
         //Adding cards to array with suit and card value
@@ -407,24 +430,27 @@ var dealer = {
     },
     endGame: function() {
         if (game.playerScore > dealer.dealerScore) {
-            $("#gameText").html("<p> The player wins! Hit replay to play again! </p>");
-            game.jackpot();
+            // $("#gameText").html("<p> The player wins! Hit replay to play again! </p>");
+            game.payOut("Win");
             deckObj.gameOverDisplay();
 
         } else if (game.playerScore < dealer.dealerScore) {
             if (dealer.dealerBustCheck === true) {
-                $("#gameText").html("<p> The Player wins! The dealer busted! </p>");
+                // $("#gameText").html("<p> The Player wins! The dealer busted! </p>");
+                game.payOut("dealerBust");
                 deckObj.gameOverDisplay();
                 dealer.dealerBustCheck = false;
             } else {
-                $("#gameText").html("<p> The dealer wins! Click on play Again to play again! </p>");
+                // $("#gameText").html("<p> The dealer wins! Click on play Again to play again! </p>");
+                game.payOut("Lose");
                 deckObj.gameOverDisplay();
             }
         } else {
-            $("#gameText").html("<p> Tie Game! The pot is split! </p>");
-            game.split();
+            // $("#gameText").html("<p> Tie Game! The pot is split! </p>");
+            game.payOut("Tie");
             deckObj.gameOverDisplay();
         }
 
-    }
+    },
+
 }
