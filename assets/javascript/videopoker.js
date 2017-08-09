@@ -59,7 +59,7 @@ var deckObj = {
     gameOverDisplay: function() {
         //display reset button
         $("#buttonView").html("");
-        $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary'>Play Again</button>");
+        $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary playAgainButton btn-transparent'>Play Again</button>");
         $("#playAgain").one('click', deckObj.playAgain);
     }
 
@@ -601,20 +601,22 @@ var game = {
         $("#handView").html("");
         var card1ImgURL = deck[deck.length - 1].image;
         var card1Img = "<img id='card1Img' src='" + card1ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card1Img + "<button id='card1' type='button' class='holdButton btn-transparent'>Hold</button></div>");
+        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card1Img + " </div>" + "<div class='row'>" + "<button id='card1' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card2ImgURL = deck[deck.length - 2].image;
         var card2Img = "<img id='card2Img'  src='" + card2ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card2Img + "<button id='card2' type='button' class='holdButton btn-transparent'>Hold</button></div>");
+        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card2Img + " </div>" + "<div class='row'>" + "<button id='card2' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card3ImgURL = deck[deck.length - 3].image;
         var card3Img = "<img  id='card3Img'  src='" + card3ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card3Img + "<button id='card3' type='button' class='holdButton btn-transparent'>Hold</button></div>");
+        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card3Img + " </div>" + "<div class='row'>" + "<button id='card3' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card4ImgURL = deck[deck.length - 4].image;
         var card4Img = "<img  id='card4Img'  src='" + card4ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card4Img + "<button id='card4' type='button' class='holdButton btn-transparent'>Hold</button></div>");
+        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card4Img + " </div>" + "<div class='row'>" + "<button id='card4' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card5ImgURL = deck[deck.length - 5].image;
         var card5Img = "<img  id='card5Img'  src='" + card5ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card5Img + "<button id='card5' type='button' class='holdButton btn-transparent'>Hold</button></div>");
-
+        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card5Img + " </div>" + "<div class='row'>" + "<button id='card5' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $('.hold').click(function(){
+            $(this).toggleClass('clicked');
+        });
 
         //Adding cards to array with suit and card value
         game.playerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value, deck[deck.length - 1].image]);
@@ -658,8 +660,8 @@ var game = {
 
         $("#buttonView").html("");
         $("#buttonView").append("<button id='betOne' type='button' data-choice='betOne' class='playerChoiceButtons btn-transparent'>Bet One</button>");
-        $("#buttonView").append("<button id='betMax' type='button' data-choice='betMax'  class='playerChoiceButtons btn-transparent'>Bet Max</button>");
-        $("#buttonView").append("<button id='deal' type='button' data-choice='deal'  class='playerChoiceButtons btn-transparent'>Deal/Draw</button>");
+        $("#buttonView").append("<button id='betMax' type='button' data-choice='betMax' class='playerChoiceButtons btn-transparent'>Bet Max</button>");
+        $("#buttonView").append("<button id='deal'   type='button' data-choice='deal'   class='playerChoiceButtons btn-transparent'>Deal/Draw</button>");
         game.updatePlayerScore();
         $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
@@ -715,13 +717,13 @@ var game = {
 
 
     },
+
+
+
     reset: function() {
 
     }
 
 }
-
-
-
 
 deckObj.createDeck();

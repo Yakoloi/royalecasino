@@ -26,28 +26,46 @@ h1 {
     color: #fcba02;
     font-family: 'Bangers', cursive;
     font-size: 16px;
+    text-align: center;
 }
+
+#buttonView{
+    padding-left: 15px;
+
+}
+#handView {
+    padding-left: 15px;
+}
+
+
+
 
 /* Cards and Button Sizing */
 
 img {
-    width: 80px;
-    height: 100px;
+    float: left;
+    display: block;
+    width: 110px;
+    height: 140px;
     display: block;
     cursor: pointer;
-    float: left;
 }
 
 #btnsizing {
-    clear: both;
     width: 80px;
     height: 80px;
 }
 
-#pokerPay {
-    width: 70%;
-    height: 70%;
+.img-responsive.img-center {
+    margin: 0 auto;
+    height: 90%;
+    width: 90%;
 }
+
+
+
+
+/* Player Choice Buttons */
 
 .playerChoiceButtons {
     float: left;
@@ -65,17 +83,74 @@ img {
 }
 
 .playerChoiceButtons:hover {
+    background-color: #d23a30;
     border: solid 5px #87201b;
     cursor: pointer;
     color: #ffe769;
 }
 
-ul {
+li {
     clear: both;
     list-style-type: none;
 }
 
+.clicked {
+    color: #3b5998;
+    border: solid 5px #e001be;
+}
+
+#holdCard {
+    overflow: none;
+    float: left;
+    display: block;
+    margin-right: 1px;
+    width: 110px !important;
+    padding-left: 17px;
+    padding-right: 97px;
+
+}
+
+li {
+    clear: both;
+    list-style-type: none;
+}
+
+
+/* Hold Button */
+
 .holdButton {
+    display: inline-block;
+    width: 110px !important;
+    border: solid 5px #fcba02;
+    font-family: 'Bangers', cursive;
+    color: #35001c;
+}
+
+.holdButton,
+.holdButton:hover {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.holdButton:hover {
+    background-color: #d23a30;
+    border: solid 5px #87201b;
+    cursor: pointer;
+    color: #ffe769;
+}
+
+li {
+    clear: both;
+    list-style-type: none;
+}
+
+
+
+
+/* Play Again Button */
+
+.playAgainButton {
     float: left;
     display: block;
     width: 110px !important;
@@ -84,19 +159,29 @@ ul {
     color: #35001c;
 }
 
-
-.holdButton,
-.holdButton:hover {
+.playAgainButton,
+.playAgainButton:hover {
     display: block;
     margin: 10px 0;
     padding: 5px;
 }
 
-.holdButton:hover {
+.playAgainButton:hover {
+    background-color: #d23a30;
     border: solid 5px #87201b;
     cursor: pointer;
     color: #ffe769;
 }
+
+li {
+    clear: both;
+    list-style-type: none;
+}
+
+
+
+
+/* Transparent Button Background */
 
 .btn-transparent {
     background: transparent;
@@ -107,6 +192,16 @@ ul {
     transition: background .2s ease-in-out, border .2s ease-in-out;
     border: 2px solid #fcba02;
 }
+
+
+
+
+
+
+
+
+
+
 
 /* Button Border Hover Effect */
 
@@ -130,17 +225,12 @@ ul {
     color: #ffe769;
 }
 
-/*Button Floats Clear Unordered List Bullets*/
 
-li {
-    float: left;
-    padding: 1px;
-}
 
-ul {
-    clear: both;
-    list-style-type: none;
-}
+
+
+
+
 
 /* Fonts */
 
@@ -148,6 +238,16 @@ ul {
     font-family: 'Bangers', cursive;
     color: #fcba02;
 }
+
+
+
+
+
+
+
+
+
+
 
 /* Transparent Panel */
 
@@ -170,6 +270,16 @@ ul {
 .panel {
     margin: 0;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -254,6 +364,16 @@ ul {
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
