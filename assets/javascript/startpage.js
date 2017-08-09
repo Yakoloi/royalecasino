@@ -65,32 +65,25 @@
  $("#sign-up").on("click", function (event) {
      event.preventDefault();
      
-     
+    setTimeout(newUserInit, 2500);
+
      var emailInput = document.getElementById('sign-up-email').value;
      var passwordInput = document.getElementById('sign-up-password').value;
+
+     if (passwordInput.length < 6) {
+         alert("Password must be 6 characters or greater");
+     }
+
      firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput).catch(function (error) {
          console.log(error.code);
          console.log(error.message);
      });
 
-     //newUserInit();
-     function newUserInit() {
-
-         newUserRef.set({
-             chips: 1000,
-             email: email,
-             bet: 0,
-             paid: 0
-         });
-
-         alert("user is created")
-     };
-     setTimeout(newUserInit, 3000);
-
  });
 
  $("#sign-in").on("click", function (event) {
      event.preventDefault();
+
      var emailInput = document.getElementById('log-in-email').value;
      var passwordInput = document.getElementById('log-in-password').value;
 
@@ -112,3 +105,17 @@
          console.log(error);
      });
  });
+
+
+ function newUserInit() {
+     console.log("newUserInit");
+     newUserRef.set({
+         chips: 1000,
+         email: email,
+         bet: 0,
+         paid: 0
+     });
+
+     alert("user is created");
+     window.location = '../groupProject/blackjack.html';
+ };
