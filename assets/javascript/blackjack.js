@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         deckObj.createDeck();
         console.log("variable reset")
     } else {
-        alert("No user is signed in.");
+        console.log("No user is signed in.");
     }
 });
 
@@ -56,15 +56,6 @@ function init() {
 
     })
 }
-
-
-//bet button listener
-$(document).on('click', '#betButton', function () {
-    database.ref("users/" + uid + "/chips").set(chips - 10);
-    database.ref("users/" + uid + "/bet").set(currentBet + 10);
-
-});
-
 
 var deckObj = {
 
