@@ -64,8 +64,8 @@
 
  $("#sign-up").on("click", function (event) {
      event.preventDefault();
-     
-    setTimeout(newUserInit, 2500);
+
+     setTimeout(newUserInit, 2500);
 
      var emailInput = document.getElementById('sign-up-email').value;
      var passwordInput = document.getElementById('sign-up-password').value;
@@ -87,23 +87,22 @@
      var emailInput = document.getElementById('log-in-email').value;
      var passwordInput = document.getElementById('log-in-password').value;
 
-     firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput).catch(function (error) {
+     firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput)
+         .then(function () {
+         alert("loggedinSignIn");
+         window.location = '../groupProject/blackjack.html';
+             // Success 
+         })
+         .catch(function (error) {
+         alert("pleas try again");
+             // Error Handling
+         });
+
+     /*firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput).catch(function (error) {
          console.log(error.code);
          console.log(error.message);
      });
-
-     firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput).catch(function (error) {
-
-         var errorCode = error.code;
-         var errorMessage = error.message;
-
-         if (errorCode === 'auth/wrong-password') {
-             alert('Wrong password.');
-         } else {
-             alert(errorMessage);
-         }
-         console.log(error);
-     });
+*/
  });
 
 
