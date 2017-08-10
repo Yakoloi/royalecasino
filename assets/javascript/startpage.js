@@ -11,14 +11,14 @@
 
  var database = firebase.database();
  var logUser = "";
- var name, email, bet, uid, chips, paid;
+ var name, email, bet, uid, chips, paid, newUserRef;;
  var userRef = database.ref("users/");
- var newUserRef;
+ var usernameInput;
 
 
  firebase.auth().onAuthStateChanged(function (user) {
      if (user) {
-         alert("loggedin");
+         console.log("log in cookie detected");
          logUser = firebase.auth().currentUser;
          uid = user.uid;
          name = user.displayName;
@@ -27,40 +27,35 @@
          chips = user.chips;
          console.log("chips: " + chips)
          bet = user.bet;
+         window.location = '../groupProject/blackjack-table6.html';
 
      } else {
          console.log("No user is signed in.");
      }
  });
 
- var signUpBtn = document.getElementById('signUpBtn');
- var signInBtn = document.getElementById("signInBtn");
+ function newUserInit() {
+     console.log("newUserInit");
 
-
- /*signUpBtn.addEventListener("click", function () {
-     var emailInput = document.getElementById('email').value;
-     var passwordInput = document.getElementById('password').value;
-     firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput).catch(function (error) {
-         console.log(error.code);
-         console.log(error.message);
+     logUser.updateProfile({
+         displayName: usernameInput,
+     }).then(function () {
+         console.log("displayname changed to: " + usernameInput);
+         console.log("user is created database references set redirecting");
+         window.location = '../groupProject/blackjack-table6.html';
+     }).catch(function (error) {
+         console.log("error updating display name");
      });
 
-     //newUserInit();
-
-     function newUserInit() {
-
-         newUserRef.set({
-             chips: 1000,
-             email: email,
-             bet: 0,
-         });
-
-         alert("user is created")
-     };
-     setTimeout(newUserInit, 4000);
-
-
- });*/
+     newUserRef.set({
+         chips: 1000,
+         email: email,
+         bet: 0,
+         paid: 0,
+         username: usernameInput
+     });
+     
+ };
 
  $("#sign-up").on("click", function (event) {
      event.preventDefault();
@@ -69,6 +64,7 @@
 
      var emailInput = document.getElementById('sign-up-email').value;
      var passwordInput = document.getElementById('sign-up-password').value;
+     usernameInput = document.getElementById('sign-up-username').value;
 
      if (passwordInput.length < 6) {
          alert("Password must be 6 characters or greater");
@@ -87,34 +83,57 @@
      var emailInput = document.getElementById('log-in-email').value;
      var passwordInput = document.getElementById('log-in-password').value;
 
+
      firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput)
          .then(function () {
-         alert("loggedinSignIn");
-         window.location = '../groupProject/blackjack-table5.html';
+             console.log("loggedinSignIn");
+             window.location = '../groupProject/blackjack-table6.html';
              // Success 
          })
          .catch(function (error) {
-         alert("pleas try again");
+             console.log("please try again");
              // Error Handling
          });
 
-     /*firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput).catch(function (error) {
-         console.log(error.code);
-         console.log(error.message);
-     });
-*/
  });
 
+ //login page animation section
+ // first hide the login register page
+ $('.login-container').hide();
+ //click the start button
+ $('#startButton').on('click', function () {
+     // $('body').css({
+     //   'background': 'url(assets/images/signin-bg.png) no-repeat center center fixed',
+     //   'background-size': 'cover'
+     // });
+     $('#startButton').hide();
+     $('.blink').hide();
+     $('.login-container').show();
+ });
+ //animation for the login/signup panel
+ $(".log-in").on('click', function () {
+     $(".signIn").addClass("active-dx");
+     $(".signUp").addClass("inactive-sx");
+     $(".signUp").removeClass("active-sx");
+     $(".signIn").removeClass("inactive-dx");
+ });
+ //animation for the login/goback pannel
+ $(".back").on('click', function () {
+     $(".signUp").addClass("active-sx");
+     $(".signIn").addClass("inactive-dx");
+     $(".signIn").removeClass("active-dx");
+     $(".signUp").removeClass("inactive-sx");
+ });
+ //validate password matching
+ var signUpPassword = document.getElementById("sign-up-password")
+ var confirm_password = document.getElementById("confirm_password");
 
- function newUserInit() {
-     console.log("newUserInit");
-     newUserRef.set({
-         chips: 1000,
-         email: email,
-         bet: 0,
-         paid: 0
-     });
-
-     alert("user is created");
-     window.location = '../groupProject/blackjack-table5.html';
- };
+ function validatePassword() {
+     if (signUpPassword.value != confirm_password.value) {
+         confirm_password.setCustomValidity("Passwords Don't Match");
+     } else {
+         confirm_password.setCustomValidity('');
+     }
+ }
+ signUpPassword.onchange = validatePassword;
+ confirm_password.onkeyup = validatePassword;

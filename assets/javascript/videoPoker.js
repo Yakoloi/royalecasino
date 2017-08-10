@@ -15,6 +15,7 @@ var name, email, currentBet, uid, chips, paid;
 var userRef = database.ref("users/");
 var newUserRef;
 
+//checks for authlogin then assigns reference variables for user info
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         console.log("user logged in")
@@ -29,7 +30,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         alert("No user is signed in.");
     }
 });
-
+//syncs locally stored variables with database then updates the numbers fields
 function updateVariables() {
     newUserRef.once("value").then(function (snapshot) {
         chips = snapshot.child("chips").val();
