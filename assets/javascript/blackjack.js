@@ -295,8 +295,8 @@ var game = {
         updateVariables();
     },
     doubleDown: function() {
-        var double = currentBet * 2;
-        database.ref("users/" + uid + "/chips").set(chips - double / 2);
+        var double = game.playerBet * 2;
+        database.ref("users/" + uid + "/chips").set(game.playerChips - double / 2);
         database.ref("users/" + uid + "/bet").set(double);
         updateVariables();
     },

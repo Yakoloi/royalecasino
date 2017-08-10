@@ -645,19 +645,19 @@ var game = {
         $("#handView").html("");
         var card1ImgURL = deck[deck.length - 1].image;
         var card1Img = "<img id='card1Img' src='" + card1ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card1Img + "<button id='card1' type='button' class='holdButton'>Hold</button></div>");
+        $("#handView").append("<div class='hold'> " + card1Img + "<button id='card1' data-index='0' type='button' class='holdButton'>Hold</button></div>");
         var card2ImgURL = deck[deck.length - 2].image;
         var card2Img = "<img id='card2Img'  src='" + card2ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card2Img + "<button id='card2' type='button' class='holdButton'>Hold</button></div>");
+        $("#handView").append("<div class='hold'> " + card2Img + "<button id='card2' data-index='1' type='button' class='holdButton'>Hold</button></div>");
         var card3ImgURL = deck[deck.length - 3].image;
         var card3Img = "<img  id='card3Img'  src='" + card3ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card3Img + "<button id='card3' type='button' class='holdButton'>Hold</button></div>");
+        $("#handView").append("<div class='hold'> " + card3Img + "<button id='card3' data-index='2' type='button' class='holdButton'>Hold</button></div>");
         var card4ImgURL = deck[deck.length - 4].image;
         var card4Img = "<img  id='card4Img'  src='" + card4ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card4Img + "<button id='card4' type='button' class='holdButton'>Hold</button></div>");
+        $("#handView").append("<div class='hold'> " + card4Img + "<button id='card4' data-index='3' type='button' class='holdButton'>Hold</button></div>");
         var card5ImgURL = deck[deck.length - 5].image;
         var card5Img = "<img  id='card5Img'  src='" + card5ImgURL + "'></img>"
-        $("#handView").append("<div class='hold'> " + card5Img + "<button id='card5' type='button' class='holdButton'>Hold</button></div>");
+        $("#handView").append("<div class='hold'> " + card5Img + "<button id='card5' data-index='4' type='button' class='holdButton'>Hold</button></div>");
 
 
         //Adding cards to array with suit and card value
