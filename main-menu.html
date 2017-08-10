@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Game Choices</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- link to local style sheet-->
+    <link rel="stylesheet" href="assets/css/main-menu.css">
+    <!-- link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- LINK TO FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <!-- link to validate the input format -->
+    <link rel="stylesheet" href="assets/css/bootstrapValidator.css">
+    <script src="assets/javascript/bootstrapValidator.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+		<!-- will replace images of the 2 game option here and add more styling maybe firewor animation -->
+        <div class="row" id="gameOption">
+            <div class="col-xs-3 col-xs-hidden"></div>
+            <div class="col-xs-3 text-center">
+                <img src="assets/images/casino-sign1.png" id="blackJack" alt="blackjack" />
+            </div>
+            <div class="col-xs-3 text-center">
+                <img src="assets/images/casino-sign1.png" id="videoPoker" alt="video-poker" />
+            </div>
+            <div class="col-xs-3 col-xs-hidden"></div>
+        </div>
+
+
+        <div class="row">
+	        <div class="container">
+	            <div class="col-xs-6 col-xs-offset-3">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h2 class="panel-title">Users Information</h2>
+	                    </div>
+	                    <div class="panel-body table-responsive">
+	                        <table class="table table-hover" id="userInfo">
+	                            <thead>
+	                                <tr>
+	                                    <th>Username</th>
+	                                    <th>Chips</th>
+	                                    
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            	<!-- dinamicly add in td here for username and chips -->
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

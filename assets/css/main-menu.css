@@ -1,0 +1,70 @@
+/*
+bright red: #d23a30
+mid red: #87201b;
+dark red: #35001c;
+pink: #e001be;
+yellow: #ffe769;
+dark yellow: #fcba02;
+orange: #f37400;
+fb blue: #3b5998;
+
+*/
+
+@import 'https://fonts.googleapis.com/css?family=Dosis|Roboto:300,400';
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*******************************************************************************************/
+
+
+/*START PAGE*/
+
+body {
+    /*font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;*/
+    background: url("../images/signin-bg1.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+
+
+
+#blackJack, #videoPoker {
+    max-width: 100%;
+}
+
+#gameOption {
+	margin-top: 50px;
+}
+
+
+.panel-default>.panel-heading{
+	background: linear-gradient(to right, #f37400, #fcba02);
+	color: #ffffff;
+	border-bottom:none;
+
+}
+
+h2.panel-title{
+	font-weight: bolder;
+	text-align: center;
+}
+
+.panel{
+	border: 1px solid #f37400;
+	background-color: transparent;
+	color: #fff;
+	margin-top: 50px;
+}
+
+.table>thead>tr>th{
+	border-bottom: 0.5px dashed #fff;
+}
+
+th{
+	font-weight: normal;
+}
