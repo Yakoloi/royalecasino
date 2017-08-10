@@ -15,7 +15,6 @@
  var userRef = database.ref("users/");
  var usernameInput;
 
-
  firebase.auth().onAuthStateChanged(function (user) {
      if (user) {
          console.log("log in cookie detected");
@@ -27,6 +26,9 @@
          chips = user.chips;
          console.log("chips: " + chips)
          bet = user.bet;
+         $("#startButton").click(function () {
+             window.location = '../groupProject/blackjack-table6.html';
+         })
 
      } else {
          console.log("No user is signed in.");
@@ -53,7 +55,7 @@
          paid: 0,
          username: usernameInput
      });
-     
+
  };
 
  $("#sign-up").on("click", function (event) {
