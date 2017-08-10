@@ -50,7 +50,6 @@ p{
 	font-size: 20px;
 }
 
-<<<<<<< HEAD
 .userInfo{
 	position: fixed;
 }
@@ -68,12 +67,6 @@ button#userName:hover, button#userName:focus, button#userName:active{
 }
 
 
-=======
-iframe   {
-	opacity: 0.5;
-	float:left;
-}
->>>>>>> e942a67040f958189688325815af001827da9047
 
 p#dealerScore, p#playerScore{
 	font-size: 11px;

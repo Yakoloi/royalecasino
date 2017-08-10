@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Card Favicon -->
+    <link rel="shortcut icon" href="assets/images/Cards.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/Cards.ico" type="image/x-icon">
+    <title>Casino Royale</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Game Text -->
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Game Text</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div id="gameScore">
+                                <img id="pokerPay" class="img-responsive img-center" src="assets/images/videoPokerPay.PNG" alt="payout"></img>
+                            </div>
+                         </div>
+                        <div class="row">        
+                            <div id="gameText">
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <!-- Score Board -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Score Board</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1 id="playerChips">Player Chips: 100 </h1>
+                        <h1 id="bet">Bet: 1 </h1>
+                        <h1 id="paid"> Paid: 0 </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <!-- Player Hand -->
+    <div class="container-fluid">    
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        Player Hand
+                        </h3>
+                    </div>
+                    <div class="panel-body" id="playerhand">
+                        <!-- Button View -->
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="buttonView"></div>
+                            </div>
+                        </div>
+                        <!-- Hand View -->
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="handView"></div>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/videopokerD.js"></script>
+</body>
+
+</html>
