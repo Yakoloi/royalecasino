@@ -70,6 +70,7 @@ function signOut() {
 
 $("#signOut").click(function () {
     console.log("signing out");
+    signOut();
 })
 
 var audio = document.createElement('audio');
