@@ -22,6 +22,30 @@ h1 {
     font-size: 16px;
 }
 
+.container-fluid {
+    margin-top: 25px;
+}
+
+
+/* user login */
+
+div.userInfo {
+    position: fixed;
+    margin: 5px auto;
+}
+
+button#userName {
+    border: none;
+    cursor: none;
+}
+
+button#userName:hover,
+button#userName:focus,
+button#userName:active {
+    background: transparent;
+    border: none;
+}
+
 #gameText {
     color: #fcba02;
     font-family: 'Bangers', cursive;
@@ -29,15 +53,28 @@ h1 {
     text-align: center;
 }
 
-#buttonView{
-    padding-left: 15px;
 
+/* Padding and Margins*/
+
+#buttonView {
+    padding-left: 15px;
 }
+
 #handView {
     padding-left: 15px;
 }
 
+#pokerPay {
+    padding-left: 50px;
+}
 
+#betOne {
+    margin-right: 10px;
+}
+
+#betMax {
+    margin-right: 10px;
+}
 
 
 /* Cards and Button Sizing */
@@ -63,8 +100,6 @@ img {
 }
 
 
-
-
 /* Player Choice Buttons */
 
 .playerChoiceButtons {
@@ -72,6 +107,7 @@ img {
     display: block;
     width: 110px !important;
     border: solid 5px #fcba02;
+    border-radius: 25px;
     font-family: 'Bangers', cursive;
     color: #35001c;
 }
@@ -85,18 +121,24 @@ img {
 .playerChoiceButtons:hover {
     background-color: #d23a30;
     border: solid 5px #87201b;
+    border-radius: 25px;
     cursor: pointer;
     color: #ffe769;
 }
 
+
+}
 li {
     clear: both;
     list-style-type: none;
 }
 
+
+/* Border Hold */
 .clicked {
     color: #3b5998;
     border: solid 5px #e001be;
+    border-radius: 15px;
 }
 
 #holdCard {
@@ -107,7 +149,6 @@ li {
     width: 110px !important;
     padding-left: 17px;
     padding-right: 97px;
-
 }
 
 li {
@@ -117,11 +158,11 @@ li {
 
 
 /* Hold Button */
-
 .holdButton {
     display: inline-block;
     width: 110px !important;
     border: solid 5px #fcba02;
+    border-radius: 25px;
     font-family: 'Bangers', cursive;
     color: #35001c;
 }
@@ -136,6 +177,7 @@ li {
 .holdButton:hover {
     background-color: #d23a30;
     border: solid 5px #87201b;
+    border-radius: 25px;
     cursor: pointer;
     color: #ffe769;
 }
@@ -146,15 +188,13 @@ li {
 }
 
 
-
-
 /* Play Again Button */
-
 .playAgainButton {
     float: left;
     display: block;
     width: 110px !important;
     border: solid 5px #fcba02;
+    border-radius: 25px;
     font-family: 'Bangers', cursive;
     color: #35001c;
 }
@@ -169,6 +209,7 @@ li {
 .playAgainButton:hover {
     background-color: #d23a30;
     border: solid 5px #87201b;
+    border-radius: 25px;
     cursor: pointer;
     color: #ffe769;
 }
@@ -179,10 +220,7 @@ li {
 }
 
 
-
-
 /* Transparent Button Background */
-
 .btn-transparent {
     background: transparent;
     color: #ffe769;
@@ -191,66 +229,18 @@ li {
     -o-transition: background .2s ease-in-out, border .2s ease-in-out;
     transition: background .2s ease-in-out, border .2s ease-in-out;
     border: 2px solid #fcba02;
+    border-radius: 25px;
 }
 
 
-
-
-
-
-
-
-
-
-
-/* Button Border Hover Effect */
-
-.btnwidth {
-    width: 110px !important;
-    border: solid 5px #fcba02;
-    font-family: 'Bangers', cursive;
-    color: #35001c;
-}
-
-.btnwidth,
-.btnwidth:hover {
-    display: block;
-    margin: 10px 0;
-    padding: 5px;
-}
-
-.btnwidth:hover {
-    border: solid 5px #87201b;
-    cursor: pointer;
-    color: #ffe769;
-}
-
-
-
-
-
-
-
-
-/* Fonts */
-
+/* Fonts Panel Title */
 .panel-title {
     font-family: 'Bangers', cursive;
     color: #fcba02;
 }
 
 
-
-
-
-
-
-
-
-
-
 /* Transparent Panel */
-
 .panel-transparent {
     background: none;
 }
@@ -265,6 +255,7 @@ li {
 
 .panel-heading {
     border: 0;
+    border-radius: 15px;
 }
 
 .panel {
@@ -272,45 +263,33 @@ li {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Wobble Vertical */
-
 @-webkit-keyframes hvr-wobble-vertical {
     16.65% {
         -webkit-transform: translateY(8px);
         transform: translateY(8px);
     }
+
     33.3% {
         -webkit-transform: translateY(-6px);
         transform: translateY(-6px);
     }
+
     49.95% {
         -webkit-transform: translateY(4px);
         transform: translateY(4px);
     }
+
     66.6% {
         -webkit-transform: translateY(-2px);
         transform: translateY(-2px);
     }
+
     83.25% {
         -webkit-transform: translateY(1px);
         transform: translateY(1px);
     }
+
     100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
@@ -322,22 +301,27 @@ li {
         -webkit-transform: translateY(8px);
         transform: translateY(8px);
     }
+
     33.3% {
         -webkit-transform: translateY(-6px);
         transform: translateY(-6px);
     }
+
     49.95% {
         -webkit-transform: translateY(4px);
         transform: translateY(4px);
     }
+
     66.6% {
         -webkit-transform: translateY(-2px);
         transform: translateY(-2px);
     }
+
     83.25% {
         -webkit-transform: translateY(1px);
         transform: translateY(1px);
     }
+
     100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
@@ -366,44 +350,33 @@ li {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Icon Wobble Vertical */
-
 @-webkit-keyframes hvr-icon-wobble-vertical {
     16.65% {
         -webkit-transform: translateY(6px);
         transform: translateY(6px);
     }
+
     33.3% {
         -webkit-transform: translateY(-5px);
         transform: translateY(-5px);
     }
+
     49.95% {
         -webkit-transform: translateY(4px);
         transform: translateY(4px);
     }
+
     66.6% {
         -webkit-transform: translateY(-2px);
         transform: translateY(-2px);
     }
+
     83.25% {
         -webkit-transform: translateY(1px);
         transform: translateY(1px);
     }
+
     100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
@@ -415,22 +388,27 @@ li {
         -webkit-transform: translateY(6px);
         transform: translateY(6px);
     }
+
     33.3% {
         -webkit-transform: translateY(-5px);
         transform: translateY(-5px);
     }
+
     49.95% {
         -webkit-transform: translateY(4px);
         transform: translateY(4px);
     }
+
     66.6% {
         -webkit-transform: translateY(-2px);
         transform: translateY(-2px);
     }
+
     83.25% {
         -webkit-transform: translateY(1px);
         transform: translateY(1px);
     }
+
     100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);

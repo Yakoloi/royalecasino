@@ -1,3 +1,49 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDx2Q4c27zp0bwaoTpishDh5yRQWL8H60w",
+    authDomain: "groupproject1-624dd.firebaseapp.com",
+    databaseURL: "https://groupproject1-624dd.firebaseio.com",
+    projectId: "groupproject1-624dd",
+    storageBucket: "groupproject1-624dd.appspot.com",
+    messagingSenderId: "696725330630"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+var logUser = "";
+var name, email, currentBet, uid, chips, paid;
+var userRef = database.ref("users/");
+var newUserRef;
+
+//checks for authlogin then assigns reference variables for user info
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        console.log("user logged in")
+        logUser = firebase.auth().currentUser;
+        name = user.displayName;
+        email = user.email;
+        uid = user.uid;
+        newUserRef = database.ref("users/" + uid);
+        deckObj.createDeck();
+        console.log("variable reset")
+    } else {
+        alert("No user is signed in.");
+    }
+});
+//syncs locally stored variables with database then updates the numbers fields
+function updateVariables() {
+    newUserRef.once("value").then(function (snapshot) {
+        chips = snapshot.child("chips").val();
+        paid = snapshot.child("paid").val();
+        currentBet = snapshot.child("bet").val();
+        console.log("chips: " + chips);
+        console.log("currentBet: " + currentBet);
+        $("#playerChips").html("Player Chips: " + chips);
+        $("#bet").html("Bet: " + currentBet);
+        $("#paid").html("Paid: " + paid);
+    })
+}
+
 var deckObj = {
 
     deckID: "",
@@ -614,8 +660,16 @@ var game = {
         var card5ImgURL = deck[deck.length - 5].image;
         var card5Img = "<img  id='card5Img'  src='" + card5ImgURL + "'></img>"
         $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card5Img + " </div>" + "<div class='row'>" + "<button id='card5' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        // border for hold cards
         $('.hold').click(function(){
             $(this).toggleClass('clicked');
+        // hold card audio
+        var holdAudio = document.createElement('audio');
+            holdAudio.setAttribute("src", "assets/sound/cardSlide.mp3");
+        $(".holdButton").on('click', function(){
+            holdAudio.play();
+        });
+        
         });
 
         //Adding cards to array with suit and card value
@@ -666,6 +720,23 @@ var game = {
         $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
             game.buttonAction();
+        // player choices audio   
+        var betOneAudio = document.createElement('audio');
+            betOneAudio.setAttribute("src", "assets/sound/chipsStack.mp3");
+            betOneAudio.load()
+        $("#betOne.playerChoiceButtons").on('click', function(){
+            betOneAudio.play();
+        }); 
+        var betMaxAudio = document.createElement('audio');
+            betMaxAudio.setAttribute("src", "assets/sound/chipsStack.mp3");
+        $("#betMax.playerChoiceButtons").on('click', function(){
+            betMaxAudio.play();
+        }); 
+        var dealAudio = document.createElement('audio');
+            dealAudio.setAttribute("src", "assets/sound/cardShuffle.mp3");
+        $("#deal.playerChoiceButtons").on('click', function(){
+            dealAudio.play();
+        });
 
         });
 
