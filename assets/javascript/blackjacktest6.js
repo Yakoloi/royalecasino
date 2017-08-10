@@ -73,10 +73,10 @@ $("#signOut").click(function () {
 })
 
 var audio = document.createElement('audio');
-    audio.setAttribute("src", "assets/audio/cardsound.mp3");
+audio.setAttribute("src", "assets/audio/cardsound.mp3");
 
 var click = document.createElement('audio');
-    click.setAttribute("src", "assets/audio/click.mp3");
+click.setAttribute("src", "assets/audio/click.mp3");
 
 
 var deckObj = {
@@ -330,8 +330,8 @@ var game = {
         currentBet = game.playerBet;
         var double = currentBet * 2;
         var chipsMinusDouble = game.playerChips - double;
-        var doubleRef = chipsMinusDouble / 2;
-        database.ref("users/" + uid + "/chips").set(doubleRef);
+        //var doubleRef = chipsMinusDouble / 2;
+        database.ref("users/" + uid + "/chips").set(chipsMinusDouble);
         database.ref("users/" + uid + "/bet").set(double);
         updateVariables();
     },
@@ -352,18 +352,25 @@ var game = {
                 var winnings = game.playerBet * 1.5 + game.playerBet;
 
                 database.ref("users/" + uid + "/chips").set(game.playerChips + winnings);
-                database.ref("users/" + uid + "/bet").set(0);
                 $("#gameText").html("<h4> Congratulations, you won this hand because the Dealer busted! You won a total of " + winnings + "(including your bet) chips. Hit replay to play again! </h4>");
+                database.ref("users/" + uid + "/bet").set(0);
+                game.playerbet = 0;
+                updateVariables();
                 break;
             case "Lose":
                 database.ref("users/" + uid + "/chips").set(game.playerChips - game.playerBet);
-                database.ref("users/" + uid + "/bet").set(0);
                 $("#gameText").html("<h4> You lost the hand! You lost a total of " + game.playerBet + " chips. Hit replay to play again! </h4>");
-
+                database.ref("users/" + uid + "/bet").set(0);
+                game.playerbet = 0;
+                updateVariables();
                 break;
 
             case "Tie":
                 $("#gameText").html("<h4> Tie game! You lost nothing. Hit replay to play again! </h4>");
+                var refund = game.playerBet + game.playerChips;
+                database.ref("users/" + uid + "/chips").set(refund);
+                game.playerbet = 0;
+                updateVariables();
                 break;
         }
         game.playerbet = 0;
