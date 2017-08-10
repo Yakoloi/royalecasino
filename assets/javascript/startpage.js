@@ -27,7 +27,6 @@
          chips = user.chips;
          console.log("chips: " + chips)
          bet = user.bet;
-         window.location = '../groupProject/blackjack-table6.html';
 
      } else {
          console.log("No user is signed in.");
