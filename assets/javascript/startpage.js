@@ -58,7 +58,7 @@
 
  };
 
- $("#sign-up").on("click", function (event) {
+$("#sign-up").on("click", function (event) {
      event.preventDefault();
 
      setTimeout(newUserInit, 2500);
@@ -67,13 +67,10 @@
      var passwordInput = document.getElementById('sign-up-password').value;
      usernameInput = document.getElementById('sign-up-username').value;
 
-     if (passwordInput.length < 6) {
-         alert("Password must be 6 characters or greater");
-     }
-
      firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput).catch(function (error) {
          console.log(error.code);
          console.log(error.message);
+         $("#text").html(error.message);
      });
 
  });
@@ -102,14 +99,27 @@
  // first hide the login register page
  $('.login-container').hide();
  //click the start button
- $('#startButton').on('click', function () {
+ $('#startButton').one('click', function () {
      // $('body').css({
      //   'background': 'url(assets/images/signin-bg.png) no-repeat center center fixed',
      //   'background-size': 'cover'
      // });
-     $('#startButton').hide();
-     $('.blink').hide();
-     $('.login-container').show();
+     // $('#startButton').hide();
+     //$('.blink').hide();
+     //$('.login-container').show();
+     $('#startButton').show();
+     setTimeout(function () {
+         $('#startButton').hide();
+     }, 500);
+     $('.blink').show();
+     setTimeout(function () {
+         $('.blink').hide();
+     }, 500);
+     $('.login-container').hide();
+     setTimeout(function () {
+         $('.login-container').show();
+     }, 500);
+
  });
  //animation for the login/signup panel
  $(".log-in").on('click', function () {
@@ -125,7 +135,7 @@
      $(".signIn").removeClass("active-dx");
      $(".signUp").removeClass("inactive-sx");
  });
- //validate password matching
+/* //validate password matching
  var signUpPassword = document.getElementById("sign-up-password")
  var confirm_password = document.getElementById("confirm_password");
 
@@ -137,4 +147,4 @@
      }
  }
  signUpPassword.onchange = validatePassword;
- confirm_password.onkeyup = validatePassword;
+ confirm_password.onkeyup = validatePassword;*/
