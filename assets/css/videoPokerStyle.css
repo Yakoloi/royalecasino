@@ -1,0 +1,486 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: url("../images/signin-bg.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+p {
+    color: #fcba02;
+    font-family: 'Bangers', cursive;
+    font-size: 16px;
+}
+
+h1 {
+    color: #fcba02;
+    font-family: 'Bangers', cursive;
+    font-size: 16px;
+}
+
+.container-fluid {
+    margin-top: 25px;
+}
+
+
+/* user login signout and main menu buttons */
+
+div.userInfo {
+    position: fixed;
+    margin: 5px auto;
+}
+
+button#userName {
+    border: none;
+    cursor: none;
+}
+
+button#userName:hover,
+button#userName:focus,
+button#userName:active {
+    background: transparent;
+    border: none;
+}
+
+button#signOut {
+    border: none;
+    cursor: none;
+}
+
+button#signOut:hover,
+button#signOut:focus,
+button#signOut:active {
+    background: transparent;
+    border: none;
+}
+
+button#main-menu {
+    border: none;
+    cursor: none;
+}
+
+button#main-menu:hover,
+button#main-menu:focus,
+button#main-menu:active {
+    background: transparent;
+    border: none;
+}
+
+#gameText {
+    color: #fcba02;
+    font-family: 'Bangers', cursive;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+/* Padding and Margins*/
+
+#buttonView {
+    padding-left: 15px;
+}
+
+#handView {
+    padding-left: 15px;
+}
+
+#pokerPay {
+    padding-left: 50px;
+}
+
+#betOne {
+    margin-right: 10px;
+}
+
+#betMax {
+    margin-right: 10px;
+}
+
+
+/* Cards and Button Sizing */
+
+img {
+    float: left;
+    display: block;
+    width: 110px;
+    height: 140px;
+    display: block;
+    cursor: pointer;
+}
+
+#btnsizing {
+    width: 80px;
+    height: 80px;
+}
+
+.img-responsive.img-center {
+    margin: 0 auto;
+    height: 90%;
+    width: 90%;
+}
+.menuBar {
+    margin-bottom: 10px;
+}
+
+.menuButtons {
+    padding: 10px;
+    margin-right: 5px;
+    width: 90px !important;
+    border: solid 2px #fcba02;
+    border-radius: 25px;
+    font-family: 'Bangers', cursive;
+    color: #35001c;
+}
+/* Player Choice Buttons */
+
+.playerChoiceButtons {
+    float: left;
+    display: block;
+    width: 110px !important;
+    border: solid 5px #fcba02;
+    border-radius: 25px;
+    font-family: 'Bangers', cursive;
+    color: #35001c;
+}
+
+.playerChoiceButtons,
+.playerChoiceButtons:hover {
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.playerChoiceButtons:hover {
+    background-color: #d23a30;
+    border: solid 5px #87201b;
+    border-radius: 25px;
+    cursor: pointer;
+    color: #ffe769;
+}
+
+
+}
+li {
+    clear: both;
+    list-style-type: none;
+}
+
+
+/* Border Hold */
+.clicked {
+    color: #3b5998;
+    border: solid 5px #e001be;
+    border-radius: 15px;
+}
+
+#holdCard {
+    overflow: none;
+    float: left;
+    display: block;
+    margin-right: 1px;
+    width: 110px !important;
+    padding-left: 17px;
+    padding-right: 97px;
+}
+
+li {
+    clear: both;
+    list-style-type: none;
+}
+
+
+/* Hold Button */
+.holdButton {
+    display: inline-block;
+    width: 110px !important;
+    border: solid 5px #fcba02;
+    border-radius: 25px;
+    font-family: 'Bangers', cursive;
+    color: #35001c;
+}
+
+.holdButton,
+.holdButton:hover {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.holdButton:hover {
+    background-color: #d23a30;
+    border: solid 5px #87201b;
+    border-radius: 25px;
+    cursor: pointer;
+    color: #ffe769;
+}
+
+li {
+    clear: both;
+    list-style-type: none;
+}
+
+
+/* Play Again Button */
+.playAgainButton {
+    float: left;
+    display: block;
+    width: 110px !important;
+    border: solid 5px #fcba02;
+    border-radius: 25px;
+    font-family: 'Bangers', cursive;
+    color: #35001c;
+}
+
+.playAgainButton,
+.playAgainButton:hover {
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.playAgainButton:hover {
+    background-color: #d23a30;
+    border: solid 5px #87201b;
+    border-radius: 25px;
+    cursor: pointer;
+    color: #ffe769;
+}
+
+li {
+    clear: both;
+    list-style-type: none;
+}
+
+
+/* Transparent Button Background */
+.btn-transparent {
+    background: transparent;
+    color: #ffe769;
+    -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -o-transition: background .2s ease-in-out, border .2s ease-in-out;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+    border: 2px solid #fcba02;
+    border-radius: 25px;
+}
+
+
+/* Fonts Panel Title */
+.panel-title {
+    font-family: 'Bangers', cursive;
+    color: #fcba02;
+}
+
+
+/* Transparent Panel */
+.panel-transparent {
+    background: none;
+}
+
+.panel-transparent .panel-heading {
+    background: rgba(122, 130, 136, 0.2)!important;
+}
+
+.panel-transparent .panel-body {
+    background: rgba(46, 51, 56, 0.2)!important;
+}
+
+.panel-heading {
+    border: 0;
+    border-radius: 15px;
+}
+
+.panel {
+    margin: 0;
+}
+
+
+/* Wobble Vertical */
+@-webkit-keyframes hvr-wobble-vertical {
+    16.65% {
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
+    }
+
+    33.3% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+    }
+
+    49.95% {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    66.6% {
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+
+    83.25% {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes hvr-wobble-vertical {
+    16.65% {
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
+    }
+
+    33.3% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+    }
+
+    49.95% {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    66.6% {
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+
+    83.25% {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.hvr-wobble-vertical {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+}
+
+.hvr-wobble-vertical:hover,
+.hvr-wobble-vertical:focus,
+.hvr-wobble-vertical:active {
+    -webkit-animation-name: hvr-wobble-vertical;
+    animation-name: hvr-wobble-vertical;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+
+/* Icon Wobble Vertical */
+@-webkit-keyframes hvr-icon-wobble-vertical {
+    16.65% {
+        -webkit-transform: translateY(6px);
+        transform: translateY(6px);
+    }
+
+    33.3% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+
+    49.95% {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    66.6% {
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+
+    83.25% {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes hvr-icon-wobble-vertical {
+    16.65% {
+        -webkit-transform: translateY(6px);
+        transform: translateY(6px);
+    }
+
+    33.3% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+
+    49.95% {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    66.6% {
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+
+    83.25% {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.hvr-icon-wobble-vertical {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    position: relative;
+    padding-right: 2.2em;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.hvr-icon-wobble-vertical:before {
+    content: "\f062";
+    position: absolute;
+    right: 1em;
+    padding: 0 1px;
+    font-family: FontAwesome;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.hvr-icon-wobble-vertical:hover:before,
+.hvr-icon-wobble-vertical:focus:before,
+.hvr-icon-wobble-vertical:active:before {
+    -webkit-animation-name: hvr-icon-wobble-vertical;
+    animation-name: hvr-icon-wobble-vertical;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}

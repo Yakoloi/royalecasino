@@ -1,71 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 
 <head>
-    <title>Jacks or better video poker!</title>
-    <!--- BOOTSTRAP CDN-->
+    <meta charset="UTF-8">
+    <!-- Card Favicon -->
+    <link rel="shortcut icon" href="assets/images/Cards.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/Cards.ico" type="image/x-icon">
+    <title>Casino Royale</title>
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--- STYLE-->
-    <link rel="stylesheet" type="text/css" href="assets/css/videoPoker.css">
-
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/videoPokerStyle.css">
+    <link rel="stylesheet" href="assets/css/videoPokerStyle2.css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- LINK TO FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- SoundJS -->
+    <script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
 </head>
 
 <body>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Your hand</h3>
+    <div class="container-fluid">
+        <div class="row menuBar">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <div class="btn-group">
+                            <button id="userName" class="btn btn-danger menuButtons" type="button">
+                                User Name
+                            </button>
+                            <button id="signOut" class="btn btn-danger menuButtons" type="button">
+                                Sign Out
+                            </button>
+                            <button id="main-menu" class="btn btn-danger menuButtons" type="button">
+                                Main Menu
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div id="buttonView"> </div>
-                    <div id="handView">
-                        <img id="card1" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
-                        <img id="card2" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
-                        <img id="card3" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
-                        <img id="card4" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
-                        <img id="card5" class="cards" alt="cardback" src="assets/images/cardback.jpg"> </img>
+            </div>
+        </div>
+        <!-- Game Text -->
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Game Text</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <!-- Game Score -->
+                            <div id="gameScore">
+                                <img id="pokerPay" class="img-responsive img-center" src="assets/images/videoPokerPay.PNG" alt="payout"></img>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Game Text -->
+                            <div id="gameText">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Score Board -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Score Board</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1 id="playerChips">Player Chips: 100 </h1>
+                        <h1 id="bet">Bet: 1 </h1>
+                        <h1 id="paid"> Paid: 0 </h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Game Text</h3>
-                </div>
-                <div class="panel-body">
-
-                    <div id="gameImg">
-                        <img id="pokerPay" src="assets/images/videoPokerPay.PNG"> </img>
-
+    <!-- Player Hand -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-danger panel-transparent panel-borderless text-left">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        Player Hand
+                        </h3>
                     </div>
-                    <div id="gameText"> </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Score Board</h3>
-                </div>
-                <div class="panel-body">
-                    <h1 id="playerChips">Player Chips: loading</h1>
-                    <h1 id="bet">Bet: loading </h1>
-                    <h1 id="paid"> Paid: loading</h1>
+                    <div class="panel-body" id="playerhand">
+                        <!-- Button View -->
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="buttonView"></div>
+                            </div>
+                        </div>
+                        <!-- Hand View -->
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="handView">
+                                    <img id='card1' class='cards' alt='cardback' src='assets/images/cardback.jpg'></img>
+                                    <img id='card2' class='cards' alt='cardback' src='assets/images/cardback.jpg'></img>
+                                    <img id='card3' class='cards' alt='cardback' src='assets/images/cardback.jpg'></img>
+                                    <img id='card4' class='cards' alt='cardback' src='assets/images/cardback.jpg'></img>
+                                    <img id='card5' class='cards' alt='cardback' src='assets/images/cardback.jpg'></img>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--- Javascript-->
-    <script type="text/javascript" src="assets/javascript/videoPoker.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Javascript Link -->
+    <script type="text/javascript" src="assets/javascript/videopoker.js"></script>
 </body>
 
 </html>
