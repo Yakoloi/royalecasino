@@ -107,6 +107,12 @@ var deckObj = {
         $("#buttonView").html("");
         $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-outline-primary playAgainButton btn-transparent'>Play Again</button>");
         $("#playAgain").one('click', deckObj.playAgain);
+        var playAgainAudio = document.createElement('audio');
+            playAgainAudio.setAttribute("src", "assets/sound/cardShuffle.mp3");
+        $("#playAgain.playAgainButton").on('click', function(){
+            playAgainAudio.play();
+        });
+
     }
 
 

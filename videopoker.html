@@ -16,17 +16,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- LINK TO FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <!-- SoundJS -->
+    <script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
 </head>
 
 <body>
-    <!-- Username and Signout -->
-    <div class="row">
-        <div class="col-xs-12 userInfo">
-            <button class="btn btn-xs" id="userName">Sign in as: </button>
-            <button class="btn btn-xs" id="signOut">Sign Out</button>
-        </div>
-    </div>
     <div class="container-fluid">
+        <div class="row menuBar">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                    <div class="btn-group">
+                            <button id="userName" class="btn btn-danger menuButtons" type="button">
+                            User Name
+                            </button> 
+                            <button id="signOut" class="btn btn-danger menuButtons" type="button">
+                            Sign Out
+                            </button> 
+                            <button id="main-menu" class="btn btn-danger menuButtons" type="button">
+                            Main Menu
+                            </button> 
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    </div>        
+                </div>
+            </div>
+        </div>
         <!-- Game Text -->
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
