@@ -176,7 +176,7 @@ li {
     border-radius: 15px;
 }
 
-#holdCard {
+/*#holdCard {
     overflow: none;
     float: left;
     display: block;
@@ -184,6 +184,16 @@ li {
     width: 110px !important;
     padding-left: 17px;
     padding-right: 97px;
+}*/
+.hold {
+    overflow: none;
+    float: left;
+    display: block;
+    margin-right: 1px;
+    width: 110px !important;
+    padding-left: 17px;
+    padding-right: 97px;
+}
 }
 
 li {
