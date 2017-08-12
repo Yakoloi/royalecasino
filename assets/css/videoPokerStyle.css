@@ -22,6 +22,9 @@ h1 {
     font-size: 16px;
 }
 
+.cards {
+    margin-right:5px;
+}
 .container-fluid {
     margin-top: 25px;
 }
