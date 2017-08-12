@@ -180,8 +180,6 @@ var game = {
 
     drawCards: function() {
         $("#handView").html("");
-
-        debugger;
         //loop through entire player hand
         for (a = 0; a < game.playerCards.length; a++) {
             //check if index of current playerCard is the index of a hold card
