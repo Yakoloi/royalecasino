@@ -486,60 +486,65 @@ var game = {
 
     },
     buttonAction: function() {
-        switch (game.buttonChoice) {
+        if (game.chips <= 0) {
+            $("#gameText").html("You're out of chips! Create a new account to start from scratch.");
+        } else {
+            switch (game.buttonChoice) {
 
-            case 'betOne':
-                if (game.bet <= 4) {
-                    $("#gameText").html("You incremented your bet by one, you can bet up to five!");
-                    game.chips -= 1;
-                    database.ref("users/" + uid + "/chips").set(game.chips);
-                    game.bet += 1;
-                    database.ref("users/" + uid + "/bet").set(game.bet);
-                    updateVariables();
-                    game.playerChoices();
+                case 'betOne':
+                    if (game.bet <= 4) {
+                        $("#gameText").html("You incremented your bet by one, you can bet up to five!");
+                        game.chips -= 1;
+                        database.ref("users/" + uid + "/chips").set(game.chips);
+                        game.bet += 1;
+                        database.ref("users/" + uid + "/bet").set(game.bet);
+                        updateVariables();
+                        game.playerChoices();
 
-                } else {
-                    $("#gameText").html("You can click on bet one to increment up until 5, then it will start at one again");
-                    game.chips += 4;
-                    game.bet = 1;
+                    } else {
+                        $("#gameText").html("You can click on bet one to increment up until 5, then it will start at one again");
+                        game.chips += 4;
+                        game.bet = 1;
 
-                    //update firebase database and redisplay point
-                    database.ref("users/" + uid + "/bet").set(game.bet);
-                    database.ref("users/" + uid + "/chips").set(game.chips);
-                    updateVariables();
-                    //recall the button that will give onclick events for this 
-                    game.playerChoices();
+                        //update firebase database and redisplay point
+                        database.ref("users/" + uid + "/bet").set(game.bet);
+                        database.ref("users/" + uid + "/chips").set(game.chips);
+                        updateVariables();
+                        //recall the button that will give onclick events for this 
+                        game.playerChoices();
 
-                }
-                break;
+                    }
+                    break;
 
-            case 'betMax':
-                if (game.bet <= 4) {
-                    game.chips += game.bet;
-                    $("#gameText").html("That is your max bet! Click on Bet One to start from One again");
-                    //update firebase database and redisplay point
-                    database.ref("users/" + uid + "/chips").set(game.chips);
-                    game.bet = 5;
-                    database.ref("users/" + uid + "/bet").set(game.bet);
-                    game.chips -= 5;
-                    database.ref("users/" + uid + "/chips").set(game.chips);
-                    updateVariables();
+                case 'betMax':
+                    if (game.bet <= 4) {
+                        game.chips += game.bet;
+                        $("#gameText").html("That is your max bet! Click on Bet One to start from One again");
+                        //update firebase database and redisplay point
+                        database.ref("users/" + uid + "/chips").set(game.chips);
+                        game.bet = 5;
+                        database.ref("users/" + uid + "/bet").set(game.bet);
+                        game.chips -= 5;
+                        database.ref("users/" + uid + "/chips").set(game.chips);
+                        updateVariables();
 
-                    //recall the button that will give onclick events for this 
-                    game.playerChoices();
+                        //recall the button that will give onclick events for this 
+                        game.playerChoices();
 
-                } else {
-                    $("#gameText").html("That is your max bet! Click on Bet One to start from One again");
-                    game.playerChoices();
+                    } else {
+                        $("#gameText").html("That is your max bet! Click on Bet One to start from One again");
+                        game.playerChoices();
 
-                }
-                break;
+                    }
+                    break;
 
-            case 'deal':
-                game.dealCards();
-                $("#betOne").off("click");
-                $("#betMax").off("click");
-                break;
+                case 'deal':
+                    game.dealCards();
+                    $("#betOne").off("click");
+                    $("#betMax").off("click");
+                    break;
+
+            }
 
         }
     },
@@ -788,28 +793,28 @@ $(document).on("click", "#deal", game.playerChoiceButtonAudio);
 $(document).on("click", "#playAgain", game.playerChoiceButtonAudio);
 $(document).on("click", ".hold", game.holdAudio);
 
-$(document).on("click", ".hold", function(){
-            game.holdIndex = $(this).attr('data-index');
-            game.isClicked = $(this).attr('data-isClicked');
+$(document).on("click", ".hold", function() {
+    game.holdIndex = $(this).attr('data-index');
+    game.isClicked = $(this).attr('data-isClicked');
 
-            game.currentholdCard = $(this);
-            game.indexOfHoldCards.sort();
-            var alreadyClicked2 = $.inArray(game.holdIndex, game.indexOfHoldCards);
-            if (alreadyClicked2 ===-1) {
-                game.indexOfHoldCards.push(game.holdIndex);
-                $(this).attr("data-isClicked", true);
-            } else {
-                var alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
-                while (alreadyClicked !== -1) {
-                    game.indexOfHoldCards.splice(alreadyClicked, 1);
-                    alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
-                }
+    game.currentholdCard = $(this);
+    game.indexOfHoldCards.sort();
+    var alreadyClicked2 = $.inArray(game.holdIndex, game.indexOfHoldCards);
+    if (alreadyClicked2 === -1) {
+        game.indexOfHoldCards.push(game.holdIndex);
+        $(this).attr("data-isClicked", true);
+    } else {
+        var alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
+        while (alreadyClicked !== -1) {
+            game.indexOfHoldCards.splice(alreadyClicked, 1);
+            alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
+        }
 
-                $(this).attr("data-isClicked", false);
-            }
+        $(this).attr("data-isClicked", false);
+    }
 
 });
-$(document).on("click", ".menuButtons", function(){
-    window.location.replace("file:///C:/Users/libertycapped/Desktop/CODE/HOMEWORK/GroupProject1/groupProject/main-menu.html");
+$(document).on("click", ".menuButtons", function() {
+    window.location.replace("/groupProject/main-menu.html");
 });
 deckObj.createDeck();
