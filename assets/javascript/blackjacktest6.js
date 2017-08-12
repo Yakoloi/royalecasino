@@ -329,11 +329,16 @@ var game = {
 
     },
     betFunction: function (x) {
-        game.playerChips -= x;
-        game.playerBet += x;
-        database.ref("users/" + uid + "/chips").set(game.playerChips);
-        database.ref("users/" + uid + "/bet").set(game.playerBet);
-        updateVariables();
+        var dif = (game.playerChips-x);
+        if(dif>=0){
+         game.playerChips -= x;
+         game.playerBet += x;
+         database.ref("users/" + uid + "/chips").set(game.playerChips);
+         database.ref("users/" + uid + "/bet").set(game.playerBet);
+         updateVariables();
+        }else{
+            $("#gameText").html("<h4> You're out of chips! Create a new account to play again! </h4>");
+        }
     },
     doubleDown: function () {
         currentBet = game.playerBet;
