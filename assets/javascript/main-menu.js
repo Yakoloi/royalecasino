@@ -42,13 +42,13 @@ $("#signOut").on("click", function () {
 $("#blackJack").on("click", function () {
     $('.whole').fadeOut("fast");
     $('.loader').fadeIn("fast");
-    setTimeout(blackJack, 5000);
+    setTimeout(blackJack, 1000);
 });
 
 $("#videoPoker").on("click", function () {
     $('.whole').fadeOut("fast");
     $('.loader').fadeIn("fast");
-    setTimeout(videoPoker, 5000);
+    setTimeout(videoPoker, 1000);
 });
 
 function signOut() {
@@ -60,17 +60,17 @@ function signOut() {
 }
 
 function redirect() {
-    setTimeout(redirect, 5000);
+    setTimeout(redirect, 1000);
     window.location = '../groupProject/main-menu.html';
 }
 
 function blackJack() {
-    setTimeout(blackJack, 5000);
+    setTimeout(blackJack, 1000);
     window.location = '../groupProject/blackjack-table6.html';
 }
 
 function videoPoker() {
-    setTimeout(videoPoker, 5000);
+    setTimeout(videoPoker, 1000);
     window.location = '../groupProject/blackjack-table6.html';
 }
 
