@@ -815,6 +815,6 @@ $(document).on("click", ".hold", function() {
 
 });
 $(document).on("click", ".menuButtons", function() {
-    window.location.replace("/groupProject/main-menu.html");
+    window.location.replace("./main-menu.html");
 });
 deckObj.createDeck();

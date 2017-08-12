@@ -259,6 +259,9 @@ var game = {
         }
     },
     updatePlayerScore: function() {
+        // game.playerCards[0].values = "6";
+        // game.playerCards[1].values= "5";
+        // debugger;
         game.playerScore = 0;
         var hasAce = false;
         var aceIndex;
