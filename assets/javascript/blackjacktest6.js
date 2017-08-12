@@ -129,8 +129,8 @@ var deckObj = {
     playAgain: function() {
 
         //reset everything
-        $("#playerScore").html("Player Score: 0");
-        $("#dealerScore").html("Dealer Score: 0");
+        $("#playerScore").html("");
+        $("#dealerScore").html("");
         $("#buttonView").html("");
         $("#handView").html("");
         $("#dealerHand").html("");
@@ -201,10 +201,14 @@ var game = {
         deck.pop();
         deck.pop();
 
-
+        //if the player has blackjack!
+        if ((game.playerCards[0].value === "ACE" && game.playerCards[1].value === "JACK" || game.playerCards[1].value === "QUEEN" || game.playerCards[1].value === "KING") || (game.playerCards[0].value === "JACK" || game.playerCards[0].value === "QUEEN" || game.playerCards[0].value === "QUEEN" && game.playerCards[1].value === "ACE")) {
+            game.hasAceAndFaceCard = true;
+            dealer.endGame();
+        }
         //FOR TESTING
-        // game.playerCards[0].value = "6";
-        // game.playerCards[1].value = "5";
+        // game.playerCards[0].value = "ACE";
+        // game.playerCards[1].value = "QUEEN";
 
         //draw's dealer's initial card
         dealer.drawCard();
@@ -215,12 +219,6 @@ var game = {
         //push buttons to dom which allow player choices. 
         game.playerChoices();
 
-
-        //if the player has blackjack!
-        if ((game.playerCards[0].value === "ACE" && game.playerCards[1].value === "JACK" || game.playerCards[1].value === "QUEEN" || game.playerCards[1].value === "KING") || (game.playerCards[0].value === "JACK" || game.playerCards[0].value === "QUEEN" || game.playerCards[0].value === "QUEEN" && game.playerCards[1].value === "ACE")) {
-            game.hasAceAndFaceCard = true;
-            dealer.endGame();
-        }
     },
     playerChoices: function() {
         game.buttonChoice = "";
@@ -258,17 +256,53 @@ var game = {
                 break;
         }
     },
+    organizeHand: function() {
+        var sortedArray = [];
+        var faceCardOrTen = [];
+        for (i = 0; i < game.playerCards.length; i++) {
+            var num = parseInt(game.playerCards[i][1]) || -1;
+            if (num === 10) {
+                faceCardOrTen.push(num);
+            }
+            if (num !== -1 && num !== 10) {
+                sortedArray.push(num);
+            }
+            if (game.playerCards[i][1] === "JACK") {
+                faceCardOrTen.push(10)
+            }
+            if (game.playerCards[i][1] === "QUEEN") {
+                faceCardOrTen.push(10)
+
+            }
+            if (game.playerCards[i][1] === "KING") {
+                faceCardOrTen.push(10)
+
+            }
+            if (game.playerCards[i][1] === "ACE") {
+                faceCardOrTen.push(11)
+            }
+        }
+
+        sortedArray.sort();
+        faceCardOrTen.sort();
+
+        //AFTER SORTING 10 + cards, push them to sortedArray, so it is in numerical order
+        for (i = 0; i < faceCardOrTen.length; i++) {
+            sortedArray.push(faceCardOrTen[i]);
+        }
+        return sortedArray;
+    },
+
     updatePlayerScore: function() {
-        // game.playerCards[0].values = "6";
-        // game.playerCards[1].values= "5";
-        // debugger;
         game.playerScore = 0;
         var hasAce = false;
         var aceIndex;
         var numWithoutAce = 0;
-        for (i = 0; i < game.playerCards.length; i++) {
-            var num = parseInt((game.playerCards[i])[1]) || 10;
-            if (game.playerCards[i][1] === "ACE") {
+        var playerHand = game.organizeHand();
+
+        for (i = 0; i < playerHand.length; i++) {
+            var num = playerHand[i];
+            if (playerHand[i] === 11) {
                 num = 0;
                 hasAce = true;
                 aceIndex = i;
@@ -276,11 +310,11 @@ var game = {
             game.playerScore += num;
         }
         if (hasAce === true) {
-            for (i = 0; i < game.playerCards.length; i++) {
+            for (i = 0; i < playerHand.length; i++) {
                 if (aceIndex != i) {
-                    var notAceCard = parseInt((game.playerCards[i])[1]) || 10;
+                    var notAceCard = playerHand[i];
 
-                    if (game.playerCards[i][1] != "ACE") {
+                    if (playerHand[i] !== 11) {
                         numWithoutAce += notAceCard;
                     } else {
                         //this happens because the card is a duplicate ace card, must be 1 or else it would exceed 21
@@ -341,7 +375,7 @@ var game = {
                 game.playerBet = 0;
                 updateVariables();
                 break;
-            
+
             case "Win":
                 var winnings = game.playerBet * 1.5 + game.playerBet;
                 database.ref("users/" + uid + "/chips").set(game.playerChips + winnings);
