@@ -335,6 +335,8 @@ var game = {
         database.ref("users/" + uid + "/chips").set(chipsMinusDouble);
         database.ref("users/" + uid + "/bet").set(double);
         updateVariables();
+        game.drawCard();
+        game.payOut();
     },
     payOut: function (x) {
 

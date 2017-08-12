@@ -1,37 +1,3 @@
-// // Initialize Firebase
-// var config = {
-//     apiKey: "AIzaSyDx2Q4c27zp0bwaoTpishDh5yRQWL8H60w",
-//     authDomain: "groupproject1-624dd.firebaseapp.com",
-//     databaseURL: "https://groupproject1-624dd.firebaseio.com",
-//     projectId: "groupproject1-624dd",
-//     storageBucket: "groupproject1-624dd.appspot.com",
-//     messagingSenderId: "696725330630"
-// };
-// firebase.initializeApp(config);
-
-// var database = firebase.database();
-// var logUser = "";
-// var name, email, currentBet, uid, chips, paid;
-// var userRef = database.ref("users/");
-// var newUserRef;
-
-// //checks for authlogin then assigns reference variables for user info
-// firebase.auth().onAuthStateChanged(function (user) {
-//     if (user) {
-//         console.log("user logged in")
-//         logUser = firebase.auth().currentUser;
-//         name = user.displayName;
-//         email = user.email;
-//         uid = user.uid;
-//         newUserRef = database.ref("users/" + uid);
-//         deckObj.createDeck();
-//         console.log("variable reset")
-//     } else {
-//         alert("No user is signed in.");
-//     }
-// });
-
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyDx2Q4c27zp0bwaoTpishDh5yRQWL8H60w",
@@ -215,7 +181,7 @@ var game = {
     drawCards: function() {
         $("#handView").html("");
 
-
+        debugger;
         //loop through entire player hand
         for (a = 0; a < game.playerCards.length; a++) {
             //check if index of current playerCard is the index of a hold card
@@ -444,19 +410,19 @@ var game = {
         $("#handView").html("");
         var card1ImgURL = deck[deck.length - 1].image;
         var card1Img = "<img id='card1Img' src='" + card1ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard1' class='hold'><div class='row'> " + card1Img + " </div>" + "<div class='row'>" + "<button id='card1' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='card1' class='hold'><div class='row'> " + card1Img + " </div>" + "<div class='row'>" + "<button id='card1' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card2ImgURL = deck[deck.length - 2].image;
         var card2Img = "<img id='card2Img'  src='" + card2ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard2' class='hold'><div class='row'> " + card2Img + " </div>" + "<div class='row'>" + "<button id='card2' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='card2' class='hold'><div class='row'> " + card2Img + " </div>" + "<div class='row'>" + "<button id='card2' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card3ImgURL = deck[deck.length - 3].image;
         var card3Img = "<img  id='card3Img'  src='" + card3ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard3' class='hold'><div class='row'> " + card3Img + " </div>" + "<div class='row'>" + "<button id='card3' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='card3' class='hold'><div class='row'> " + card3Img + " </div>" + "<div class='row'>" + "<button id='card3' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card4ImgURL = deck[deck.length - 4].image;
         var card4Img = "<img  id='card4Img'  src='" + card4ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard4' class='hold'><div class='row'> " + card4Img + " </div>" + "<div class='row'>" + "<button id='card4' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='card4' class='hold'><div class='row'> " + card4Img + " </div>" + "<div class='row'>" + "<button id='card4' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card5ImgURL = deck[deck.length - 5].image;
         var card5Img = "<img  id='card5Img'  src='" + card5ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard5' class='hold'><div class='row'> " + card5Img + " </div>" + "<div class='row'>" + "<button id='card5' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='card5' class='hold'><div class='row'> " + card5Img + " </div>" + "<div class='row'>" + "<button id='card5' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
 
 
         //Adding cards to new array with suit and card value
@@ -515,8 +481,6 @@ var game = {
         $("#buttonView").append("<button id='betOne' type='button' data-choice='betOne' class='playerChoiceButtons btn-transparent'>Bet One</button>");
         $("#buttonView").append("<button id='betMax' type='button' data-choice='betMax' class='playerChoiceButtons btn-transparent'>Bet Max</button>");
         $("#buttonView").append("<button id='deal'   type='button' data-choice='deal'   class='playerChoiceButtons btn-transparent'>Deal/Draw</button>");
-        // game.updatePlayerScore();
-        // updateVariables();
         $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
             game.buttonAction();
@@ -575,9 +539,6 @@ var game = {
 
             case 'deal':
                 game.dealCards();
-                // game.playerChoices();
-                // game.drawCard();
-                // game.updatePlayerScore();
                 $("#betOne").off("click");
                 $("#betMax").off("click");
                 break;
@@ -828,16 +789,13 @@ $(document).on("click", "#betMax", game.playerChoiceButtonAudio);
 $(document).on("click", "#deal", game.playerChoiceButtonAudio);
 $(document).on("click", "#playAgain", game.playerChoiceButtonAudio);
 $(document).on("click", ".hold", game.holdAudio);
-$(document).on("click", ".holdButton.btn-transparent", function(){
+
+$(document).on("click", ".hold", function(){
             game.holdIndex = $(this).attr('data-index');
             game.isClicked = $(this).attr('data-isClicked');
 
             game.currentholdCard = $(this);
             game.indexOfHoldCards.sort();
-
-
-            // game.indexOfHoldCards.push(game.holdIndex);
-            // if ($.inArray(a.toString(), game.indexOfHoldCards) === -1) {
             var alreadyClicked2 = $.inArray(game.holdIndex, game.indexOfHoldCards);
             if (alreadyClicked2 ===-1) {
                 game.indexOfHoldCards.push(game.holdIndex);
@@ -846,27 +804,11 @@ $(document).on("click", ".holdButton.btn-transparent", function(){
                 var alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
                 while (alreadyClicked !== -1) {
                     game.indexOfHoldCards.splice(alreadyClicked, 1);
-                    // for(i=0; i<game.indexOfHoldCards.length; i++){
-                    //     if(game.indexOfHoldCards[i]===game.indexOfHoldCards[i+1]
-                    // }
                     alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
                 }
 
-                // while (previousClick !== -1) {
-                //     game.indexOfHoldCards.splice(previousClick, 1);
-                //     previousClick = game.indexOfHoldCards.indexOf(game.holdIndex);
-                // }
                 $(this).attr("data-isClicked", false);
             }
-            // game.holdCards();
-
-            // var holdCardId = $(this).attr('id');
-            // var holdCardIdNum = parseInt(holdCardId.substring(4, 5));
-            // var evalCardImage = eval("card" + holdCardIdNum + "Img");
-            // var cardDiv = "#holdCard" + holdCardIdNum;
-            // $(cardDiv).html("");
-            // $(cardDiv).html("<div class='row'> " + evalCardImage + " </div>" + "<div class='row'>" + "<button id='card'" + holdCardIdNum + " type='button' class='holdButton btn-transparent'>Hold</button></div>");
-            // $("#" + holdCardId).attr("data-index", holdCardIdNum);
 
 });
 
