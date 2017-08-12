@@ -71,7 +71,7 @@ function blackJack() {
 
 function videoPoker() {
     setTimeout(videoPoker, 1000);
-    window.location = '../groupProject/blackjack-table6.html';
+    window.location = '../groupProject/videoPoker.html';
 }
 
 
