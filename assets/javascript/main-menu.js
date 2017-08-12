@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     } else {
         console.log("No user is signed in.");
-        window.location = './startpage.html';
+        window.location = './index.html';
     }
 });
 
