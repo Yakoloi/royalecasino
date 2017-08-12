@@ -120,7 +120,7 @@ $("#sign-in").on("click", function (event) {
 
 function redirect() {
     setTimeout(redirect, 2000);
-    window.location = '../groupProject/main-menu.html';
+    window.location = './main-menu.html';
 }
 
 

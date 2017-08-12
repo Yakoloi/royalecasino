@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     } else {
         console.log("No user is signed in.");
-        window.location = '../groupProject/startpage.html';
+        window.location = './startpage.html';
     }
 });
 
@@ -61,17 +61,17 @@ function signOut() {
 
 function redirect() {
     setTimeout(redirect, 1000);
-    window.location = '../groupProject/main-menu.html';
+    window.location = './main-menu.html';
 }
 
 function blackJack() {
     setTimeout(blackJack, 1000);
-    window.location = '../groupProject/blackjack-table6.html';
+    window.location = './blackjack-table6.html';
 }
 
 function videoPoker() {
     setTimeout(videoPoker, 1000);
-    window.location = '../groupProject/videoPoker.html';
+    window.location = './videoPoker.html';
 }
 
 
