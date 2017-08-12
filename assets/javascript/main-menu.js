@@ -27,14 +27,13 @@ firebase.auth().onAuthStateChanged(function (user) {
         chips = user.chips;
         console.log("chips: " + chips)
         bet = user.bet;
+        $("#userName").html(name);
 
     } else {
         console.log("No user is signed in.");
         window.location = '../groupProject/startpage.html';
     }
 });
-
-$("#userName").html(name);
 
 $("#signOut").on("click", function () {
     signOut();
