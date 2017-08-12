@@ -152,7 +152,7 @@ var deckObj = {
         $("#buttonView").append("<button id='playAgain' type='button' class='btn btn-md'>Play Again</button>");
         $("#playAgain").one('click', deckObj.playAgain);
         $("#playAgain").one('click', function() {
-            audio.play();
+            click.play();
         });
 
     }
