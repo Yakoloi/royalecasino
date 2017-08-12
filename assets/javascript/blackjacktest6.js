@@ -201,14 +201,16 @@ var game = {
         deck.pop();
         deck.pop();
 
+        //YOU CAN WRITE TEST VALUES HERE *****
+        // game.playerCards[0].value = "ACE";
+        // game.playerCards[1].value = "QUEEN";
+        //**************************************
+
         //if the player has blackjack!
         if ((game.playerCards[0].value === "ACE" && game.playerCards[1].value === "JACK" || game.playerCards[1].value === "QUEEN" || game.playerCards[1].value === "KING") || (game.playerCards[0].value === "JACK" || game.playerCards[0].value === "QUEEN" || game.playerCards[0].value === "QUEEN" && game.playerCards[1].value === "ACE")) {
             game.hasAceAndFaceCard = true;
             dealer.endGame();
         }
-        //FOR TESTING
-        // game.playerCards[0].value = "ACE";
-        // game.playerCards[1].value = "QUEEN";
 
         //draw's dealer's initial card
         dealer.drawCard();
@@ -236,7 +238,6 @@ var game = {
 
     },
     buttonAction: function() {
-        // game.buttonChoice = $(this).attr('data-choice');
         switch (game.buttonChoice) {
             case 'hit':
                 game.playerChoices();
