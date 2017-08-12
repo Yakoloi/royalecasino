@@ -216,66 +216,16 @@ var game = {
         $("#handView").html("");
 
 
-        //eliminate duplicates from the hold card index array (from the user clicking and unclicking hold)
-        for (i = 0; i < game.indexOfHoldCards.length; i++) {
-            if (game.indexOfHoldCards[i] === game.indexOfHoldCards[i + 1]) {
-                // game.indexOfHoldCards[i] = -1;
-                while (game.indexOfHoldCards[i] === game.indexOfHoldCards[i + 1]) {
-                    game.indexOfHoldCards.splice(i, 1);
-                }
-            }
-        }
-
-
-        for (i = 0; i < game.indexOfHoldCards.length; i++) {
-
-            var num = parseInt(game.indexOfHoldCards[i]);
-            // var handIndex = game.playerCards.indexOf(num);
-            if (game.playerCards[num] !== -1) {
-
-
-                game.playerCards[num] = [deck[deck.length - 1].suit, deck[deck.length - 1].value, deck[deck.length - 1].image];
+        //loop through entire player hand
+        for (a = 0; a < game.playerCards.length; a++) {
+            //check if index of current playerCard is the index of a hold card
+            if ($.inArray(a.toString(), game.indexOfHoldCards) === -1) {
+                game.playerCards[a] = [deck[deck.length - 1].suit, deck[deck.length - 1].value, deck[deck.length - 1].image];
                 deck.pop();
-
-
             }
-
         }
-        // for (i = 0; i < game.indexOfHoldCards.length; i++) {
 
-        //     //integer of held card in Player Cards array
-        //     var num = parseInt(game.indexOfHoldCards[i]);
-        //     //held card to append to array
-        //     var heldCard = game.playerCards[num];
-        //     game.playerCards2.splice(num, 0, game.playerCards[num]);
-        //     game.playerCards2.splice(num + 1, 1);
-        // }
-
-        // //looping through players full hand before holding cards
-        // for (a = 0; a < game.playerCards.length; a++) {
-
-        //     var aIsHoldCard = false;
-
-        //     //if i is NOT in game.indexOfHoldCards
-        //     for (b = 0; b < game.indexOfHoldCards.length; b++) {
-        //         var bIndex = parseInt(game.indexOfHoldCards[b]);
-        //         var aIndex = game.playerCards.indexOf[a]
-        //         if (game.playerCards[a] === bIndex) {
-        //             aIsHoldCard = true;
-        //         }
-        //     }
-
-        //     //after checking index array, IF a is NOT the index of a hold card!
-        //     if (aIsHoldCard === false) {
-        //         game.playerCards2[a].push(deck[deck.length - 1].suit, deck[deck.length - 1].value, deck[deck.length - 1].image);
-        //         deck.pop();
-        //     }
-
-
-
-        // }
-        // game.playerCards2 = game.playerCards2.filter(e => e.length);
-        // console.log(game.playerCards2);
+        game.indexOfHoldCards = [];
         hand.checkHand();
         game.payOut();
         game.displayNewCards();
@@ -490,36 +440,26 @@ var game = {
     },
 
     dealCards: function() {
-        //get hand
+        //get hand from deck obj
         $("#handView").html("");
         var card1ImgURL = deck[deck.length - 1].image;
         var card1Img = "<img id='card1Img' src='" + card1ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card1Img + " </div>" + "<div class='row'>" + "<button id='card1' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='holdCard1' class='hold'><div class='row'> " + card1Img + " </div>" + "<div class='row'>" + "<button id='card1' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card2ImgURL = deck[deck.length - 2].image;
         var card2Img = "<img id='card2Img'  src='" + card2ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card2Img + " </div>" + "<div class='row'>" + "<button id='card2' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='holdCard2' class='hold'><div class='row'> " + card2Img + " </div>" + "<div class='row'>" + "<button id='card2' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card3ImgURL = deck[deck.length - 3].image;
         var card3Img = "<img  id='card3Img'  src='" + card3ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card3Img + " </div>" + "<div class='row'>" + "<button id='card3' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='holdCard3' class='hold'><div class='row'> " + card3Img + " </div>" + "<div class='row'>" + "<button id='card3' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card4ImgURL = deck[deck.length - 4].image;
         var card4Img = "<img  id='card4Img'  src='" + card4ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card4Img + " </div>" + "<div class='row'>" + "<button id='card4' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
+        $("#handView").append("<div id='holdCard4' class='hold'><div class='row'> " + card4Img + " </div>" + "<div class='row'>" + "<button id='card4' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
         var card5ImgURL = deck[deck.length - 5].image;
         var card5Img = "<img  id='card5Img'  src='" + card5ImgURL + "'></img>"
-        $("#handView").append("<div id='holdCard' class='hold'><div class='row'> " + card5Img + " </div>" + "<div class='row'>" + "<button id='card5' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
-        // border for hold cards
-        $('.hold').click(function() {
-            $(this).toggleClass('clicked');
-            // hold card audio
-            var holdAudio = document.createElement('audio');
-            holdAudio.setAttribute("src", "assets/audio/cardSlide.mp3");
-            $(".holdButton.btn-transparent").on('click', function() {
-                holdAudio.play();
-            });
+        $("#handView").append("<div id='holdCard5' class='hold'><div class='row'> " + card5Img + " </div>" + "<div class='row'>" + "<button id='card5' type='button' class='holdButton btn-transparent'>Hold</button></div></div>")
 
-        });
 
-        //Adding cards to array with suit and card value
+        //Adding cards to new array with suit and card value
         game.playerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value, deck[deck.length - 1].image]);
         $("#card1").attr("data-index", 0);
         $("#card1").attr("data-isClicked", false);
@@ -537,120 +477,37 @@ var game = {
         $("#card5").attr("data-isClicked", false);
 
         console.log(game.playerCards);
+
+        //take off 5 cards from the top of the deck becuase we just pulled them
         deck.pop();
         deck.pop();
         deck.pop();
         deck.pop();
         deck.pop();
 
-        // dealer.drawCard();
-        // game.updatePlayerScore();
-        // game.playerChoices();
-        // updateVariables();
-        $(".holdButton.btn-transparent").on("click", function() {
-            game.holdIndex = $(this).attr('data-index');
-            game.isClicked = $(this).attr('data-isClicked');
-            game.currentholdCard = $(this);
-            game.indexOfHoldCards.sort();
-            // game.indexOfHoldCards.push(game.holdIndex);
 
-            var previousClick = game.indexOfHoldCards.indexOf(game.holdIndex);
-            if (game.isClicked === "false") {
-                game.indexOfHoldCards.push(game.holdIndex);
-                $(this).attr("data-isClicked", true);
-            } else {
-                while (previousClick !== -1) {
-                    game.indexOfHoldCards.splice(previousClick, 1);
-                    previousClick = game.indexOfHoldCards.indexOf(game.holdIndex);
-                }
-                $(this).attr("data-isClicked", false);
-            }
-            game.holdCards();
-        });
+        //when the player clicks the deal/draw button, call function that will draw new cards for every nonHold Card
         $("#deal").one("click", function() {
             game.drawCards();
         });
 
     },
-    holdCards: function() {
-        // game.indexOfHoldCards.sort();
-        // game.indexOfHoldCards.push(game.holdIndex);
+    playerChoiceButtonAudio: function() {
+        // player choices audio  
+        var betOneAudio = document.createElement('audio');
+        betOneAudio.setAttribute("src", "assets/audio/chipsStack.mp3");
+        betOneAudio.load()
+        betOneAudio.play();
 
-        // var previousClick = game.indexOfHoldCards.indexOf(game.holdIndex);
-        // if (game.isClicked === "false") {
-        //     game.indexOfHoldCards.push(game.holdIndex);
-        //     $(this).attr("data-isClicked", true);
-        // } else {
-        //     while (previousClick !== -1) {
-        //         game.indexOfHoldCards.splice(previousClick, 1);
-        //         previousClick = game.indexOfHoldCards.indexOf(game.holdIndex);
-        //     }
-        //     $(game.currentHoldCard).attr("data-isClicked", false);
-        // }
-
-        // }
-        // $("#card3").attr("data-isClicked", false);
-
-
-        // var names = ["Mike", "Matt", "Nancy", "Adam", "Jenny", "Nancy", "Carl"];
-        // var uniqueNames = [];
-        // $.each(game.IndexOfHoldCards, function(i, el) {
-        //     if ($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-        // });
-        // var ar = $.inArray(game.holdIndex, game.currentHoldCard);
-        // console.log(ar);
-
-        // if(previousClick !== -1) {
-        //         while (previousClick !== -1){
-        //             game.indexOfHoldCards.splice(previousClick, 1);
-        //             previousClick = game.indexOfHoldCards.indexOf(game.holdIndex);
-        //         }
-        //     }else{
-        //         game.indexOfHoldCards.push(game.holdIndex);
-        //     }
-
-
-
-
-        // for(i=0; i<game.indexOfGameCards.length; i++){
-
-        // }
-        // var alreadyClicked = false;
-        // var clickedIndex = -1;
-        // var ar = [];
-        // ar.push(game.holdIndex);
-        // game.holdIndex = parseInt(game.holdIndex);
-        // game.indexOfHoldCards.push(game.holdIndex);
-        // for (i = 0; i < game.indexOfHoldCards.length; i++) {
-        //     if (game.indexOfHoldCards[i] === game.holdIndex) {
-        //         game.holdIndex = parseInt(game.holdIndex);
-        //         // trackDoubleHoldCards.push(game.holdIndex);
-        //         game.indexOfHoldCards.push(game.holdIndex);
-        //         alreadyClicked = true;
-        //         clickedIndex = i;
-        //     }
-        // }
-        // if (alreadyClicked===false) {
-        //     game.indexOfHoldCards.push(game.holdIndex);
-        //     alreadyClicked = false;
-        // }else if(alreadyClicked === true) {
-        //     game.indexOfHoldCards.splice(clickedIndex, 1);
-        //     alreadyClicked=false;
-        // }
-        // game.indexOfHoldCards.push(game.holdIndex);
-
-
-        // for(i=0; i<game.indexOfHoldCards; i++){
-        //     if(game.indexOfHoldCards[i])
-        // }
-
-        game.indexOfHoldCards.sort();
-        // for(i=0; i<game.indexOfHoldCards.length; i++){
-        //     if(game.indexOfHoldCards[i]===game.indexOfHoldCards[i+1]){
-        //         game.indexOfHoldCards[i] = -1;
-        //     }
-        // }
-
+    },
+    holdAudio: function() {
+        $(this).toggleClass('clicked');
+        // hold card audio
+        var holdAudio = document.createElement('audio');
+        holdAudio.setAttribute("src", "assets/audio/cardSlide.mp3");
+        $(".holdButton.btn-transparent").on('click', function() {
+            holdAudio.play();
+        });
     },
     playerChoices: function() {
         game.buttonChoice = "";
@@ -663,32 +520,15 @@ var game = {
         $(".playerChoiceButtons").one('click', function() {
             game.buttonChoice = $(this).attr('data-choice');
             game.buttonAction();
-            // player choices audio   
-            var betOneAudio = document.createElement('audio');
-            betOneAudio.setAttribute("src", "assets/audio/chipsStack.mp3");
-            betOneAudio.load()
-            $("#betOne.playerChoiceButtons").on('click', function() {
-                betOneAudio.play();
-            });
-            var betMaxAudio = document.createElement('audio');
-            betMaxAudio.setAttribute("src", "assets/audio/chipsStack.mp3");
-            $("#betMax.playerChoiceButtons").on('click', function() {
-                betMaxAudio.play();
-            });
-            var dealAudio = document.createElement('audio');
-            dealAudio.setAttribute("src", "assets/audio/cardShuffle.mp3");
-            $("#deal.playerChoiceButtons").on('click', function() {
-                dealAudio.play();
-            });
-
         });
 
     },
     buttonAction: function() {
-        // game.buttonChoice = $(this).attr('data-choice');
         switch (game.buttonChoice) {
+
             case 'betOne':
                 if (game.bet <= 4) {
+                    $("#gameText").html("You incremented your bet by one, you can bet up to five!");
                     game.chips -= 1;
                     database.ref("users/" + uid + "/chips").set(game.chips);
                     game.bet += 1;
@@ -697,27 +537,33 @@ var game = {
                     game.playerChoices();
 
                 } else {
-                    // $("#gameText").html("That is your max bet! You must draw now!");
+                    $("#gameText").html("You can click on bet one to increment up until 5, then it will start at one again");
                     game.chips += 4;
                     game.bet = 1;
+
+                    //update firebase database and redisplay point
                     database.ref("users/" + uid + "/bet").set(game.bet);
                     database.ref("users/" + uid + "/chips").set(game.chips);
                     updateVariables();
+                    //recall the button that will give onclick events for this 
                     game.playerChoices();
 
                 }
-
-
                 break;
+
             case 'betMax':
                 if (game.bet <= 4) {
                     game.chips += game.bet;
+                    $("#gameText").html("That is your max bet! Click on Bet One to start from One again");
+                    //update firebase database and redisplay point
                     database.ref("users/" + uid + "/chips").set(game.chips);
                     game.bet = 5;
                     database.ref("users/" + uid + "/bet").set(game.bet);
                     game.chips -= 5;
                     database.ref("users/" + uid + "/chips").set(game.chips);
                     updateVariables();
+
+                    //recall the button that will give onclick events for this 
                     game.playerChoices();
 
                 } else {
@@ -728,11 +574,12 @@ var game = {
                 break;
 
             case 'deal':
-
                 game.dealCards();
                 // game.playerChoices();
                 // game.drawCard();
                 // game.updatePlayerScore();
+                $("#betOne").off("click");
+                $("#betMax").off("click");
                 break;
 
         }
@@ -828,13 +675,13 @@ var hand = {
         }
 
         //card values
-        for (i = 0; i < game.playerCards2.length; i++) {
-            hand.handValues.push(game.playerCards2[i][1]);
+        for (i = 0; i < game.playerCards.length; i++) {
+            hand.handValues.push(game.playerCards[i][1]);
         }
 
         //card suits
-        for (i = 0; i < game.playerCards2.length; i++) {
-            hand.handSuits.push(game.playerCards2[i][0]);
+        for (i = 0; i < game.playerCards.length; i++) {
+            hand.handSuits.push(game.playerCards[i][0]);
         }
 
         //SORT
@@ -976,4 +823,51 @@ var hand = {
 
 
 }
+$(document).on("click", "#betOne", game.playerChoiceButtonAudio);
+$(document).on("click", "#betMax", game.playerChoiceButtonAudio);
+$(document).on("click", "#deal", game.playerChoiceButtonAudio);
+$(document).on("click", "#playAgain", game.playerChoiceButtonAudio);
+$(document).on("click", ".hold", game.holdAudio);
+$(document).on("click", ".holdButton.btn-transparent", function(){
+            game.holdIndex = $(this).attr('data-index');
+            game.isClicked = $(this).attr('data-isClicked');
+
+            game.currentholdCard = $(this);
+            game.indexOfHoldCards.sort();
+
+
+            // game.indexOfHoldCards.push(game.holdIndex);
+            // if ($.inArray(a.toString(), game.indexOfHoldCards) === -1) {
+            var alreadyClicked2 = $.inArray(game.holdIndex, game.indexOfHoldCards);
+            if (alreadyClicked2 ===-1) {
+                game.indexOfHoldCards.push(game.holdIndex);
+                $(this).attr("data-isClicked", true);
+            } else {
+                var alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
+                while (alreadyClicked !== -1) {
+                    game.indexOfHoldCards.splice(alreadyClicked, 1);
+                    // for(i=0; i<game.indexOfHoldCards.length; i++){
+                    //     if(game.indexOfHoldCards[i]===game.indexOfHoldCards[i+1]
+                    // }
+                    alreadyClicked = $.inArray(game.holdIndex, game.indexOfHoldCards);
+                }
+
+                // while (previousClick !== -1) {
+                //     game.indexOfHoldCards.splice(previousClick, 1);
+                //     previousClick = game.indexOfHoldCards.indexOf(game.holdIndex);
+                // }
+                $(this).attr("data-isClicked", false);
+            }
+            // game.holdCards();
+
+            // var holdCardId = $(this).attr('id');
+            // var holdCardIdNum = parseInt(holdCardId.substring(4, 5));
+            // var evalCardImage = eval("card" + holdCardIdNum + "Img");
+            // var cardDiv = "#holdCard" + holdCardIdNum;
+            // $(cardDiv).html("");
+            // $(cardDiv).html("<div class='row'> " + evalCardImage + " </div>" + "<div class='row'>" + "<button id='card'" + holdCardIdNum + " type='button' class='holdButton btn-transparent'>Hold</button></div>");
+            // $("#" + holdCardId).attr("data-index", holdCardIdNum);
+
+});
+
 deckObj.createDeck();
