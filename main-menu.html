@@ -2,15 +2,9 @@
 <html>
 
 <head>
-    <!-- Card Favicon -->
-    <link rel="shortcut icon" href="assets/images/Cards.ico" type="image/x-icon">
-    <link rel="icon" href="assets/images/Cards.ico" type="image/x-icon">
-    <title>Royale Casino</title>
+    <title>Game Choices</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Card Favicon -->
-    <link rel="shortcut icon" href="assets/images/Cards.ico" type="image/x-icon">
-    <link rel="icon" href="assets/images/Cards.ico" type="image/x-icon">
     <!-- link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- link to local style sheet-->
@@ -27,25 +21,39 @@
 <body>
     <div class="container-fluid">
 
-		<!-- will replace images of the 2 game option here and add more styling maybe firewor animation -->
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center userInfo">
+                <button class="btn btn-xs" id="userName">Wellcome: </button>
+                <button class="btn btn-xs" id="signOut">Sign Out</button>
+            </div>
+        </div>
+
+		
         <div class="row" id="gameOption">
-            <div class="col-xs-3 col-xs-hidden"></div>
-            <div class="col-xs-3 text-center">
-                <img src="assets/images/casino-sign1.png" id="blackJack" alt="blackjack" />
+            <div class="col-sm-3 col-xs-hidden"></div>
+
+            <div class="col-xs-6 col-sm-3 text-center">
+                <a href="blackjack-table6.html">
+                    <img src="assets/images/blackjack.png" id="blackJack" class="blink" alt="blackjack" />
+                </a>
             </div>
-            <div class="col-xs-3 text-center">
-                <img src="assets/images/casino-sign1.png" id="videoPoker" alt="video-poker" />
+            
+            <div class="col-xs-6 col-sm-3 text-center">
+                <a href="videoPoker.html">
+                    <img src="assets/images/poker3.png" id="videoPoker" class="test" alt="video poker" />
+                </a>
             </div>
-            <div class="col-xs-3 col-xs-hidden"></div>
+
+            <div class="col-sm-3 col-xs-hidden"></div>
         </div>
 
 
         <div class="row">
 	        <div class="container">
-	            <div class="col-xs-6 col-xs-offset-3">
+	            <div class="col-sm-6 col-sm-offset-3">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
-	                        <h2 class="panel-title">Users Information</h2>
+	                        <h2 class="panel-title">Leader Board</h2>
 	                    </div>
 	                    <div class="panel-body table-responsive">
 	                        <table class="table table-hover" id="user-info">
