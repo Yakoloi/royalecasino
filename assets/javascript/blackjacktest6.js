@@ -162,7 +162,6 @@ var deckObj = {
 
         //reset everything
         $("#playerScore").html("Player Score: 0");
-        //$("#playerChips").html("Playagain: " + chips);
         $("#dealerScore").html("Dealer Score: 0");
         $("#buttonView").html("");
         $("#handView").html("");
@@ -228,14 +227,20 @@ var game = {
         game.playerCards.push([deck[deck.length - 1].suit, deck[deck.length - 1].value]);
         game.playerCards.push([deck[deck.length - 2].suit, deck[deck.length - 2].value]);
         console.log(game.playerCards);
+
+        //pop the deck twice because we just pushed the last two cards in the deck to the playerCards array
         deck.pop();
         deck.pop();
-        //how to access an array in an array (game.playerCards[0])[1]
-        console.log((game.playerCards[0])[1]);
-        console.log(deck);
-        // console.log(typeof (game.playerCards[0])[1]);
+
+
+
+        //draw's dealer's initial card
         dealer.drawCard();
+
+        //update's player's score in the database and what is shown in the game
         game.updatePlayerScore();
+
+        //push buttons to dom which allow player choices. 
         game.playerChoices();
 
 
@@ -324,7 +329,6 @@ var game = {
 
     },
     betFunction: function (x) {
-        // game.playerChips += game.playerBet;
         game.playerChips -= x;
         game.playerBet += x;
         database.ref("users/" + uid + "/chips").set(game.playerChips);
@@ -377,8 +381,6 @@ var game = {
                 updateVariables();
                 break;
         }
-       // game.playerBet = 0;
-        //updateVariables();
     },
 
 }
@@ -423,7 +425,7 @@ var dealer = {
 
         for (i = 0; i < dealer.dealerCards.length; i++) {
 
-            //get me the value of the card, if it returns Null than give value of 10 (is faceCard)
+            //get me the value of the card, if it returns Null then give value of 10 (is faceCard)
             var num2 = parseInt((dealer.dealerCards[i])[1]) || 10;
 
             //if facecard is ace
