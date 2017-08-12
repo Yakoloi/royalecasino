@@ -30,6 +30,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="container-fuild">
 
         <div class="row">
@@ -187,6 +188,161 @@
 
 
     <script type="text/javascript" src="assets/javascript/blackJacktest6.js"></script>
+=======
+<div class="container-fuild">
+	
+	<div class="row">
+		
+		<div class="col-xs-12 userInfo">
+			<button class="btn btn-xs" id="userName"></button>
+			<button class="btn btn-xs" id="signOut">Sign Out</button>
+		</div>
+
+		
+	</div>
+	
+
+	<div class="row text-center gamePanel">
+		<div class="col-xs-8 col-xs-offset-2">
+			<p class="" id="dealerScore"></p>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="" id="dealerHand"></div>
+		</div>
+		
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="" id="gameText"><h4>&nbsp;</h4></div>
+		</div>
+
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="" id="handView"></div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2">
+			<p class="" id="playerScore"></p>
+		</div>
+		
+	</div>
+
+		
+	
+
+
+	<div class="row">
+		<div class="action text-center">
+		<!--=================== chips to bet ===================-->
+			<div class="col-xs-12 col-sm-4 text-center">
+				
+				<div class="row" id="chipBet">
+					<div class="col-xs-3">
+						<img src="assets/images/chip-1.png" class="img-responsive chips" id="chipOne" data-chipNum="1"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-5.png" class="img-responsive chips" id="chipFive" data-chipNum="5"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-10.png" class="img-responsive chips" id="chipTen" data-chipNum="10"/>
+					</div>
+					<div class="col-xs-3">
+						<img src="assets/images/chip-20.png" class="img-responsive chips" id="chipTwenty" data-chipNum="20"/>
+					</div>
+				</div>
+
+				
+			</div>
+
+			<!--=================== buttons ===================-->
+			<div class="col-xs-12 col-sm-4 text-center" >
+				<div class="row" id="buttonView">
+					<!-- <div class="col-xs-12"><button class="btn btn-md btn-responsive" id="dealCards">Deal</button></div> -->
+					<!-- <div class="col-xs-4 col-xs-offset-2"><button class="btn btn-md btn-responsive" id="hit">Hit</button></div> -->
+
+					<!-- <div class="col-xs-4"><button class="btn btn-md btn-responsive" id="stand">Stand</button></div> -->
+    			</div>
+			</div>
+			
+			<!--=================== cash/bet $$$$ ===================-->
+			<div class="col-xs-12 col-sm-3" >
+				<div id="money">
+					<p id="playerChips">Balance:</p>
+					<p id="betMoney">Bet:</p>
+					</ul>
+					
+				</div>	
+			</div>
+			<!--=================== music button ===================-->
+			<div class="col-xs-12 col-sm-1">
+				<div class="row">
+					<div class="col-xs-3 col-sm-hidden"></div>
+
+					<div class="col-xs-3 col-sm-12">
+						<img src="assets/images/music-on.png" class="img-responsive" id="musicOn"/>
+					</div>
+					
+					<div class="col-xs-3 col-sm-12">
+						<img src="assets/images/main-menu.png" class="img-responsive" id="main-menu"/>
+					</div>
+
+					<div class="col-xs-3 col-sm-hidden"></div>
+					
+				</div>	
+			</div>
+			
+		</div>
+	</div>
+
+	
+
+
+
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+//------------------------music/audio on/off -------------------//
+var isAudioOn = true;
+var click = document.createElement('audio');
+     click.setAttribute("src", "assets/audio/click.mp3");
+
+// var music = document.createElement('audio');
+//     music.setAttribute("src", "assets/audio/music.mp3")
+var music = new Audio('assets/audio/music.mp3');
+
+music.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
+music.play();
+music.loop = true;
+music.volume = 0.2;
+
+
+    $('#musicOn').on('click', function(){
+        if(isAudioOn === true){
+        $('#musicOn').attr('src', 'assets/images/music-off.png');
+        isAudioOn = false;
+        music.pause();
+        }
+        else{
+        $('#musicOn').attr('src', 'assets/images/music-on.png')    
+        isAudioOn = true;
+        click.play();
+        music.play();
+        }
+    });
+
+    $('.chips').on('click', function(){
+        click.play();
+    });
+
+});
+</script>
+
+
+
+<script type="text/javascript" src="assets/javascript/blackJacktest6.js"></script>
+>>>>>>> 0f27902aaa4e5a5e6186e4f0aca5ed4595289666
 
 </body>
 
