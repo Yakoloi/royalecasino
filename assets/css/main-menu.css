@@ -16,6 +16,55 @@ fb blue: #3b5998;
     padding: 0;
 }
 
+.loader {
+    margin-top: 16%;
+    position: absolute;
+    margin-left: 43%;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid black;
+    border-right: 16px solid red;
+    border-bottom: 16px solid black;
+    border-left: 16px solid red;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+canvas {
+    cursor: move;
+    display: block;
+}
+
+#canvas{
+    margin-bottom: -550px;
+}
+
+/*
+.container-fluid{
+    margin-top: -350px;
+}
+*/
+
 
 /*******************************************************************************************/
 
@@ -84,8 +133,21 @@ button#userName:hover, button#userName:focus, button#userName:active{
 
 }
 
-img:hover{
-	transform: scale(0.8);
+img#videoPoker, img#blackJack {
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+
+img#videoPoker:hover, img#blackJack:hover {
+  border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+     -moz-transform: rotate(360deg);
+       -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
 }
 
 img.blink {

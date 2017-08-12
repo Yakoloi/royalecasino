@@ -19,63 +19,57 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 text-center userInfo">
-                <button class="btn btn-xs" id="userName">Wellcome: </button>
-                <button class="btn btn-xs" id="signOut">Sign Out</button>
-            </div>
-        </div>
-
-		
-        <div class="row" id="gameOption">
-            <div class="col-sm-3 col-xs-hidden"></div>
-
-            <div class="col-xs-6 col-sm-3 text-center">
-                <a href="blackjack-table6.html">
+   <div class="loader text-center row">&nbsp</div>
+    <div class="container-fluid whole">
+        <div class="col-xs-12">
+                <canvas id="canvas">Canvas is not supported in your browser.</canvas>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 text-center userInfo">
+                        <button class="btn btn-xs" id="userName">Wellcome: </button>
+                        <button class="btn btn-xs" id="signOut">Sign Out</button>
+                    </div>
+                </div>
+                <div class="row" id="gameOption">
+                    <div class="col-sm-3 col-xs-hidden"></div>
+                    <div class="col-xs-6 col-sm-3 text-center ">
+                        <a href="blackjack-table6.html">
                     <img src="assets/images/blackjack.png" id="blackJack" class="blink" alt="blackjack" />
                 </a>
-            </div>
-            
-            <div class="col-xs-6 col-sm-3 text-center">
-                <a href="videoPoker.html">
+                    </div>
+                    <div class="col-xs-6 col-sm-3 text-center">
+                        <a href="videoPoker.html">
                     <img src="assets/images/poker3.png" id="videoPoker" class="test" alt="video poker" />
                 </a>
+                    </div>
+                    <div class="col-sm-3 col-xs-hidden"></div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Leader Board</h2>
+                                </div>
+                                <div class="panel-body table-responsive">
+                                    <table class="table table-hover" id="user-info">
+                                        <thead>
+                                            <tr>
+                                                <th>Username</th>
+                                                <th>Chips</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- dinamicly add in td here for username and chips -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-sm-3 col-xs-hidden"></div>
         </div>
-
-
-        <div class="row">
-	        <div class="container">
-	            <div class="col-sm-6 col-sm-offset-3">
-	                <div class="panel panel-default">
-	                    <div class="panel-heading">
-	                        <h2 class="panel-title">Leader Board</h2>
-	                    </div>
-	                    <div class="panel-body table-responsive">
-	                        <table class="table table-hover" id="user-info">
-	                            <thead>
-	                                <tr>
-	                                    <th>Username</th>
-	                                    <th>Chips</th>
-	                                    
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                            	<!-- dinamicly add in td here for username and chips -->
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-        </div>
-
-
-    </div>
 </body>
 <script type="text/javascript" src="assets/javascript/main-menu.js"></script>
+<script type="text/javascript" src="assets/javascript/firework.js"></script>
 </html>
