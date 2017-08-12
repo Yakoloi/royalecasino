@@ -809,5 +809,7 @@ $(document).on("click", ".hold", function(){
             }
 
 });
-
+$(document).on("click", ".menuButtons", function(){
+    window.location.replace("file:///C:/Users/libertycapped/Desktop/CODE/HOMEWORK/GroupProject1/groupProject/main-menu.html");
+});
 deckObj.createDeck();
