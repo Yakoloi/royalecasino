@@ -1,13 +1,10 @@
 $('.whole').hide();
 
-
 setTimeout(function () {
     $('.loader').fadeOut();
     $('.loader').delay(150).fadeOut('slow');
     $(".whole").fadeIn("slow");
 }, 1500);
-
-
 
 //Initialize Firebase
 var config = {
@@ -40,7 +37,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         $("#startButton").click(function () {
             $('#startButton').hide();
             $('.loader').show();
-            redirect();
+            setTimeout(redirect, 2000);
         })
 
     } else {
@@ -49,7 +46,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function newUserInit() {
-   setTimeout(redirect, 5000);
+    setTimeout(redirect, 1000);
     console.log("newUserInit");
     $('.login-container').fadeOut("fast");
     $('.loader').show();
@@ -71,30 +68,31 @@ function newUserInit() {
         paid: 0,
         username: usernameInput
     });
-
-    redirect();
-
 };
 
 $("#sign-up").on("click", function (event) {
     event.preventDefault();
 
-    setTimeout(newUserInit, 2500);
-
     var emailInput = document.getElementById('sign-up-email').value;
     var passwordInput = document.getElementById('sign-up-password').value;
+    var confirmPassword = document.getElementById("confirm_password").value;
     usernameInput = document.getElementById('sign-up-username').value;
 
-    firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput).then(function () {
+    if (passwordInput == confirmPassword) {
 
-            newUserInit();
-        })
-        .catch(function (error) {
-            console.log(error.code);
-            console.log(error.message);
-            $("#text").html(error.message);
-        });
-
+        firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput)
+            .then(function () {
+                console.log("usercreated");
+                $('.login-container').fadeOut("fast");
+                $('.loader').fadeIn("fast");
+                setTimeout(newUserInit, 1000);
+                // Success 
+            })
+            .catch(function (error) {
+                console.log(error.message);
+                $("#text").html(error.message);
+            });
+    } else $("#text").html("Password doesn't match");
 });
 
 $("#sign-in").on("click", function (event) {
@@ -109,11 +107,12 @@ $("#sign-in").on("click", function (event) {
             console.log("loggedinSignIn");
             $('.login-container').fadeOut("fast");
             $('.loader').fadeIn("fast");
-            redirect();
+            setTimeout(redirect, 2000);
             // Success 
         })
         .catch(function (error) {
             console.log("please try again");
+            $("#text").html(error.message);
             // Error Handling
         });
 
@@ -140,15 +139,16 @@ $('#startButton').one('click', function () {
     $('#startButton').show();
     setTimeout(function () {
         $('#startButton').hide();
+        $('.loader').fadeIn("fast");
     }, 300);
     $('.blink').show();
     setTimeout(function () {
         $('.blink').hide();
-    }, 500);
+    }, 300);
     $('.login-container').hide();
     setTimeout(function () {
         $('.login-container').fadeIn("slow");
-    }, 500);
+    }, 2000);
 
 });
 //animation for the login/signup panel
@@ -165,16 +165,3 @@ $(".back").on('click', function () {
     $(".signIn").removeClass("active-dx");
     $(".signUp").removeClass("inactive-sx");
 });
-/* //validate password matching
- var signUpPassword = document.getElementById("sign-up-password")
- var confirm_password = document.getElementById("confirm_password");
-
- function validatePassword() {
-     if (signUpPassword.value != confirm_password.value) {
-         confirm_password.setCustomValidity("Passwords Don't Match");
-     } else {
-         confirm_password.setCustomValidity('');
-     }
- }
- signUpPassword.onchange = validatePassword;
- confirm_password.onkeyup = validatePassword;*/

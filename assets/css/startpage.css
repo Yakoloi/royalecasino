@@ -111,7 +111,7 @@ button#startButton {
 button#startButton:hover {
     background: linear-gradient(to right, #f37400, #fcba02);
     border: none;
-    animation: bounce 1s;
+    animation: bounce .5s;
 }
 
 @keyframes bounce {
