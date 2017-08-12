@@ -28,7 +28,11 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log("variable reset")
     } else {
         console.log("No user is signed in.");
+<<<<<<< HEAD
         window.location = '../groupProject/index.html'
+=======
+        window.location = './index.html'
+>>>>>>> 7da75f6b53064cd663db7dc99e9592c1e9d12cc2
     }
 });
 
