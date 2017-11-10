@@ -1,7 +1,7 @@
 ![https://github.com/tgwalker93/RoyaleCasino/blob/master/assets/images/casino-sign1.png](https://github.com/tgwalker93/RoyaleCasino/blob/master/assets/images/casino-sign1.png)
 
 # Royale Casino
-A casino games project that currently has Blackjack and Video Poker. Users can register and start with 1,000 chips. The user can choose to spend his chips in Blackjack or in Video Poker. Currently there is a leaderboard at the main menu displaying all the players registered by their chips.  
+A casino games project that currently has Blackjack and Video Poker. Users can register and start with 1,000 chips. The user can choose to spend his chips in Blackjack or in Video Poker. Currently there is a leaderboard at the main menu displaying all the players registered ordered by their chips.  
 
 ## Getting Started
 
