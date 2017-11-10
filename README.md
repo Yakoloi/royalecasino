@@ -26,3 +26,6 @@ If you want to download this repository and open it locally, there are no prereq
 * **David Luu** - *Front-End Developer* - [chrisjal](https://github.com/chrisjal)
 * **Omar Solis** - *Firebase Developer* - [chunchuprati](https://github.com/chunchuprati)
 
+---
+
+[![HitCount](http://hits.dwyl.io/tgwalker93/RoyaleCasino.svg)](http://hits.dwyl.io/tgwalker93/RoyaleCasino)
